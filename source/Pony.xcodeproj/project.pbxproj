@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26E8D5B11CCFD7650027489B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E8D5B01CCFD7650027489B /* AppDelegate.swift */; };
-		26E8D5B31CCFD7650027489B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E8D5B21CCFD7650027489B /* ViewController.swift */; };
-		26E8D5B61CCFD7650027489B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26E8D5B41CCFD7650027489B /* Main.storyboard */; };
-		26E8D5B81CCFD7650027489B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26E8D5B71CCFD7650027489B /* Assets.xcassets */; };
-		26E8D5BB1CCFD7650027489B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26E8D5B91CCFD7650027489B /* LaunchScreen.storyboard */; };
-		26E8D5C61CCFD7650027489B /* PonyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E8D5C51CCFD7650027489B /* PonyTests.swift */; };
 		3956DC758D9AA584E5A35383 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE1A90DE10DFBC548CAF88 /* Pods.framework */; };
+		B3D3927C94618DBDDFEFC760 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D39C4F5FB810F2F1285312 /* Main.storyboard */; };
+		B3D39814C97989FF4FC94B00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D3992E660164C0D4394C02 /* Assets.xcassets */; };
+		B3D3994FFBD0A3DD53922CFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D398059136C67E8E89A1E6 /* ViewController.swift */; };
+		B3D3996BB5D9226DEE769859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D39E6172BEA358A6F0A616 /* LaunchScreen.storyboard */; };
+		B3D39BB6A2416BE46C48E858 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39E77BE46BD5EEECED290 /* AppDelegate.swift */; };
+		B3D39CA41A736F7AFB9C1F68 /* PonyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D392D5086292640F17717D /* PonyTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,17 +28,17 @@
 
 /* Begin PBXFileReference section */
 		26E8D5AD1CCFD7650027489B /* Pony.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pony.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		26E8D5B01CCFD7650027489B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		26E8D5B21CCFD7650027489B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		26E8D5B51CCFD7650027489B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		26E8D5B71CCFD7650027489B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		26E8D5BA1CCFD7650027489B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		26E8D5BC1CCFD7650027489B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		26E8D5C11CCFD7650027489B /* PonyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PonyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		26E8D5C51CCFD7650027489B /* PonyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PonyTests.swift; sourceTree = "<group>"; };
-		26E8D5C71CCFD7660027489B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AEE1A90DE10DFBC548CAF88 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C50F6960A8C66EA378E86D4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B3D392D5086292640F17717D /* PonyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PonyTests.swift; sourceTree = "<group>"; };
+		B3D396234A639E5B4C42C6A1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		B3D398059136C67E8E89A1E6 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B3D3992E660164C0D4394C02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B3D39C4F5FB810F2F1285312 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B3D39DD8F8406B8C80B3A794 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		B3D39E6172BEA358A6F0A616 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B3D39E77BE46BD5EEECED290 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6231C168F2200268DB66B28 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,12 +93,8 @@
 		26E8D5AF1CCFD7650027489B /* Pony */ = {
 			isa = PBXGroup;
 			children = (
-				26E8D5B01CCFD7650027489B /* AppDelegate.swift */,
-				26E8D5B21CCFD7650027489B /* ViewController.swift */,
-				26E8D5B41CCFD7650027489B /* Main.storyboard */,
-				26E8D5B71CCFD7650027489B /* Assets.xcassets */,
-				26E8D5B91CCFD7650027489B /* LaunchScreen.storyboard */,
-				26E8D5BC1CCFD7650027489B /* Info.plist */,
+				B3D390297B8F313992EDACF7 /* Resources */,
+				B3D3937BA028EC10FEEA889F /* Sources */,
 			);
 			path = Pony;
 			sourceTree = "<group>";
@@ -106,10 +102,54 @@
 		26E8D5C41CCFD7650027489B /* PonyTests */ = {
 			isa = PBXGroup;
 			children = (
-				26E8D5C51CCFD7650027489B /* PonyTests.swift */,
-				26E8D5C71CCFD7660027489B /* Info.plist */,
+				B3D3953AC7A6E40ED1E9F067 /* Resources */,
+				B3D3920D9B6CD5B3EBDDE4F0 /* Sources */,
 			);
 			path = PonyTests;
+			sourceTree = "<group>";
+		};
+		B3D390297B8F313992EDACF7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B3D39D3C814263454120AB0E /* UI */,
+				B3D3992E660164C0D4394C02 /* Assets.xcassets */,
+				B3D39DD8F8406B8C80B3A794 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B3D3920D9B6CD5B3EBDDE4F0 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B3D392D5086292640F17717D /* PonyTests.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B3D3937BA028EC10FEEA889F /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B3D39E77BE46BD5EEECED290 /* AppDelegate.swift */,
+				B3D398059136C67E8E89A1E6 /* ViewController.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B3D3953AC7A6E40ED1E9F067 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B3D396234A639E5B4C42C6A1 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B3D39D3C814263454120AB0E /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				B3D39E6172BEA358A6F0A616 /* LaunchScreen.storyboard */,
+				B3D39C4F5FB810F2F1285312 /* Main.storyboard */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		BAB49B084C24C7E5F84C9740 /* Frameworks */ = {
@@ -204,9 +244,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26E8D5BB1CCFD7650027489B /* LaunchScreen.storyboard in Resources */,
-				26E8D5B81CCFD7650027489B /* Assets.xcassets in Resources */,
-				26E8D5B61CCFD7650027489B /* Main.storyboard in Resources */,
+				B3D39814C97989FF4FC94B00 /* Assets.xcassets in Resources */,
+				B3D3996BB5D9226DEE769859 /* LaunchScreen.storyboard in Resources */,
+				B3D3927C94618DBDDFEFC760 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,8 +312,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26E8D5B31CCFD7650027489B /* ViewController.swift in Sources */,
-				26E8D5B11CCFD7650027489B /* AppDelegate.swift in Sources */,
+				B3D39BB6A2416BE46C48E858 /* AppDelegate.swift in Sources */,
+				B3D3994FFBD0A3DD53922CFE /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,7 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26E8D5C61CCFD7650027489B /* PonyTests.swift in Sources */,
+				B3D39CA41A736F7AFB9C1F68 /* PonyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,25 +334,6 @@
 			targetProxy = 26E8D5C21CCFD7650027489B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		26E8D5B41CCFD7650027489B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				26E8D5B51CCFD7650027489B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		26E8D5B91CCFD7650027489B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				26E8D5BA1CCFD7650027489B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		26E8D5C81CCFD7660027489B /* Debug */ = {
@@ -403,7 +424,7 @@
 			baseConfigurationReference = 8C50F6960A8C66EA378E86D4 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Pony/Info.plist;
+				INFOPLIST_FILE = Pony/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.dorokhov.pony;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -415,7 +436,7 @@
 			baseConfigurationReference = C6231C168F2200268DB66B28 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Pony/Info.plist;
+				INFOPLIST_FILE = Pony/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.dorokhov.pony;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -426,7 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PonyTests/Info.plist;
+				INFOPLIST_FILE = PonyTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.dorokhov.PonyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -438,7 +459,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = PonyTests/Info.plist;
+				INFOPLIST_FILE = PonyTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.dorokhov.PonyTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
