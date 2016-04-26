@@ -32,8 +32,8 @@ extension Storyboard {
         }
         dispatch_once(&Static.token) {
             // Do not use #selector for now to support Xcode 7.2 (Swift 2.1)
-            let original = class_getClassMethod(Storyboard.self, Selector("storyboardWithName:bundle:"))
-            let swizzled = class_getClassMethod(Storyboard.self, Selector("swinject_storyboardWithName:bundle:"))
+            let original = class_getClassMethod(Storyboard.self, NSSelectorFromString("storyboardWithName:bundle:"))
+            let swizzled = class_getClassMethod(Storyboard.self, NSSelectorFromString("swinject_storyboardWithName:bundle:"))
             method_exchangeImplementations(original, swizzled)
         }
     }
