@@ -86,7 +86,9 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/AlamofireObjectMapper.framework"
+  install_framework "Pods/KeychainSwift.framework"
   install_framework "Pods/ObjectMapper.framework"
+  install_framework "Pods/OrderedSet.framework"
   install_framework "Pods/SwiftyJSON.framework"
   install_framework "Pods/Swinject.framework"
   install_framework "Pods/XCGLogger.framework"
@@ -94,7 +96,9 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/AlamofireObjectMapper.framework"
+  install_framework "Pods/KeychainSwift.framework"
   install_framework "Pods/ObjectMapper.framework"
+  install_framework "Pods/OrderedSet.framework"
   install_framework "Pods/SwiftyJSON.framework"
   install_framework "Pods/Swinject.framework"
   install_framework "Pods/XCGLogger.framework"
