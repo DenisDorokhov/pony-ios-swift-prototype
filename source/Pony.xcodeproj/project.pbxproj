@@ -7,19 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26355A1D1CD2AE000023063C /* TokenPairDaoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39EE7E0F890B30D5F12F7 /* TokenPairDaoMock.swift */; };
+		26355A1E1CD2B64A0023063C /* RestUrlDaoSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D393C8784FF489E26E4E7F /* RestUrlDaoSpec.swift */; };
 		3956DC758D9AA584E5A35383 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE1A90DE10DFBC548CAF88 /* Pods.framework */; };
 		561A3C9C416CA6582C3DD4B7 /* Pods_PonyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A72F40AC0753B824B6BB77 /* Pods_PonyTests.framework */; };
-		B3D390C003F383AD86239A23 /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3943736E09A9E01C55BE8 /* AlamofireManager.swift */; };
 		B3D3927C94618DBDDFEFC760 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D39C4F5FB810F2F1285312 /* Main.storyboard */; };
 		B3D39424EEE94B5E5453D37F /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39FB5683940F8C4F44E92 /* FileUtils.swift */; };
 		B3D394362CA1FC2C14A502F9 /* TokenPairDaoSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39C58B8F7ECD43CDB64AF /* TokenPairDaoSpec.swift */; };
+		B3D39591EBA39EE3C331F7DD /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39E8AA3ED63236F004023 /* TestUtils.swift */; };
+		B3D395BCC77B315517857D0A /* RestUrlDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39293B6B5E032A3FA3200 /* RestUrlDao.swift */; };
 		B3D39814C97989FF4FC94B00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D3992E660164C0D4394C02 /* Assets.xcassets */; };
 		B3D398B9C195FB2D69E83899 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D399C1B0F06CAF1F3C4AF4 /* ViewController.swift */; };
 		B3D3996BB5D9226DEE769859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D39E6172BEA358A6F0A616 /* LaunchScreen.storyboard */; };
-		B3D399920F457318BB5382F4 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3950701FDD70ED316C737 /* TestUtils.swift */; };
-		B3D39A64AD8055D40B6BED68 /* TokenPairDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3950C12C0B86E3846DA0F /* TokenPairDao.swift */; };
 		B3D39BB6A2416BE46C48E858 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39E77BE46BD5EEECED290 /* AppDelegate.swift */; };
+		B3D39BC499A87EE18B70846E /* TokenPairDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D393A86FC0536BA2C77A03 /* TokenPairDao.swift */; };
+		B3D39BD7BDA40D0AB12CF9D8 /* TokenPairDaoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D397FCA461D490DF5786C7 /* TokenPairDaoMock.swift */; };
+		B3D39C159D2BE0E9147D381C /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39FEB986753D323CE1837 /* AlamofireManager.swift */; };
 		B3D39DC88D79B1D33FFF1D87 /* RandomUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39CDB6C3C0F1C70E90F40 /* RandomUtils.swift */; };
 		B3D39EACA48B32089015F6C0 /* TokenPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39215077A2AF4B7B76409 /* TokenPair.swift */; };
 /* End PBXBuildFile section */
@@ -42,10 +44,11 @@
 		8C50F6960A8C66EA378E86D4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		91A72F40AC0753B824B6BB77 /* Pods_PonyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PonyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3D39215077A2AF4B7B76409 /* TokenPair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPair.swift; sourceTree = "<group>"; };
-		B3D3943736E09A9E01C55BE8 /* AlamofireManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
-		B3D3950701FDD70ED316C737 /* TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
-		B3D3950C12C0B86E3846DA0F /* TokenPairDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDao.swift; sourceTree = "<group>"; };
+		B3D39293B6B5E032A3FA3200 /* RestUrlDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestUrlDao.swift; sourceTree = "<group>"; };
+		B3D393A86FC0536BA2C77A03 /* TokenPairDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDao.swift; sourceTree = "<group>"; };
+		B3D393C8784FF489E26E4E7F /* RestUrlDaoSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestUrlDaoSpec.swift; sourceTree = "<group>"; };
 		B3D396234A639E5B4C42C6A1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		B3D397FCA461D490DF5786C7 /* TokenPairDaoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDaoMock.swift; sourceTree = "<group>"; };
 		B3D3992E660164C0D4394C02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3D399C1B0F06CAF1F3C4AF4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B3D39C4F5FB810F2F1285312 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -54,8 +57,9 @@
 		B3D39DD8F8406B8C80B3A794 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		B3D39E6172BEA358A6F0A616 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3D39E77BE46BD5EEECED290 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B3D39EE7E0F890B30D5F12F7 /* TokenPairDaoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDaoMock.swift; sourceTree = "<group>"; };
+		B3D39E8AA3ED63236F004023 /* TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		B3D39FB5683940F8C4F44E92 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
+		B3D39FEB986753D323CE1837 /* AlamofireManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
 		C6231C168F2200268DB66B28 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F05CBE31F8C2E0D0F18B3B20 /* Pods-PonyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PonyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PonyTests/Pods-PonyTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,8 +155,9 @@
 		B3D3920D9B6CD5B3EBDDE4F0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				B3D3950701FDD70ED316C737 /* TestUtils.swift */,
-				B3D39EE7E0F890B30D5F12F7 /* TokenPairDaoMock.swift */,
+				B3D39B9533688E2C057EE5B4 /* Common */,
+				B3D39EFB275B5A3F78696CCC /* Mock */,
+				B3D393C8784FF489E26E4E7F /* RestUrlDaoSpec.swift */,
 				B3D39C58B8F7ECD43CDB64AF /* TokenPairDaoSpec.swift */,
 			);
 			path = Sources;
@@ -186,6 +191,31 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		B3D39A40ACC21728156084E8 /* Rest */ = {
+			isa = PBXGroup;
+			children = (
+				B3D39FEB986753D323CE1837 /* AlamofireManager.swift */,
+			);
+			path = Rest;
+			sourceTree = "<group>";
+		};
+		B3D39B9533688E2C057EE5B4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B3D39E8AA3ED63236F004023 /* TestUtils.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B3D39D38A30582C055F490A2 /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				B3D393A86FC0536BA2C77A03 /* TokenPairDao.swift */,
+				B3D39293B6B5E032A3FA3200 /* RestUrlDao.swift */,
+			);
+			path = Dao;
+			sourceTree = "<group>";
+		};
 		B3D39D3C814263454120AB0E /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,8 +228,8 @@
 		B3D39D4135A6D9C0F637C747 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B3D3943736E09A9E01C55BE8 /* AlamofireManager.swift */,
-				B3D3950C12C0B86E3846DA0F /* TokenPairDao.swift */,
+				B3D39A40ACC21728156084E8 /* Rest */,
+				B3D39D38A30582C055F490A2 /* Dao */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -210,6 +240,14 @@
 				B3D39215077A2AF4B7B76409 /* TokenPair.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B3D39EFB275B5A3F78696CCC /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				B3D397FCA461D490DF5786C7 /* TokenPairDaoMock.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		BAB49B084C24C7E5F84C9740 /* Frameworks */ = {
@@ -423,11 +461,12 @@
 			files = (
 				B3D39BB6A2416BE46C48E858 /* AppDelegate.swift in Sources */,
 				B3D398B9C195FB2D69E83899 /* ViewController.swift in Sources */,
-				B3D390C003F383AD86239A23 /* AlamofireManager.swift in Sources */,
 				B3D39EACA48B32089015F6C0 /* TokenPair.swift in Sources */,
-				B3D39A64AD8055D40B6BED68 /* TokenPairDao.swift in Sources */,
 				B3D39424EEE94B5E5453D37F /* FileUtils.swift in Sources */,
 				B3D39DC88D79B1D33FFF1D87 /* RandomUtils.swift in Sources */,
+				B3D39C159D2BE0E9147D381C /* AlamofireManager.swift in Sources */,
+				B3D39BC499A87EE18B70846E /* TokenPairDao.swift in Sources */,
+				B3D395BCC77B315517857D0A /* RestUrlDao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,8 +475,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3D394362CA1FC2C14A502F9 /* TokenPairDaoSpec.swift in Sources */,
-				26355A1D1CD2AE000023063C /* TokenPairDaoMock.swift in Sources */,
-				B3D399920F457318BB5382F4 /* TestUtils.swift in Sources */,
+				B3D39BD7BDA40D0AB12CF9D8 /* TokenPairDaoMock.swift in Sources */,
+				B3D39591EBA39EE3C331F7DD /* TestUtils.swift in Sources */,
+				26355A1E1CD2B64A0023063C /* RestUrlDaoSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

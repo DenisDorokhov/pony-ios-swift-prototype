@@ -6,20 +6,6 @@
 import Foundation
 import Alamofire
 
-class AlamofireManagerProvider: NSObject {
-
-    private(set) var manager: AlamofireManager!
-
-    init(debug: Bool = false) {
-
-        let config: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-
-        config.HTTPAdditionalHeaders = Manager.defaultHTTPHeaders
-
-        manager = AlamofireManager(configuration: config)
-    }
-}
-
 class AlamofireManager: Manager {
 
     var debug = false
