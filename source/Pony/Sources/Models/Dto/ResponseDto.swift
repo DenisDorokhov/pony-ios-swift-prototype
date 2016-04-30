@@ -7,14 +7,10 @@ import Foundation
 import ObjectMapper
 
 class AbstractResponseDto {
+
     var version: String?
     var successful: Bool?
     var errors: [ErrorDto]?
-}
-
-class ObjectResponseDto<T: Mappable>: AbstractResponseDto, Mappable {
-
-    var data: T?
 
     required init?(_ map: Map) {}
 
@@ -22,6 +18,20 @@ class ObjectResponseDto<T: Mappable>: AbstractResponseDto, Mappable {
         version <- map["version"]
         successful <- map["successful"]
         errors <- map["errors"]
+    }
+}
+
+class ObjectResponseDto<T: Mappable>: AbstractResponseDto, Mappable {
+
+    var data: T?
+
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+
+    override func mapping(map: Map) {
+        super.mapping(map)
+
         data <- map["data"]
     }
 }
@@ -30,12 +40,13 @@ class ArrayResponseDto<T: Mappable>: AbstractResponseDto, Mappable {
 
     var data: [T]?
 
-    required init?(_ map: Map) {}
+    required init?(_ map: Map) {
+        super.init(map)
+    }
 
-    func mapping(map: Map) {
-        version <- map["version"]
-        successful <- map["successful"]
-        errors <- map["errors"]
+    override func mapping(map: Map) {
+        super.mapping(map)
+
         data <- map["data"]
     }
 }

@@ -24,6 +24,10 @@ class SongDto: AbstractDto {
     var album: AlbumDto?
     var genre: GenreDto?
 
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+
     override func mapping(map: Map) {
         super.mapping(map)
 

@@ -21,6 +21,10 @@ class UserDto: AbstractDto {
 
     var role: RoleDto?
 
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+
     override func mapping(map: Map) {
         super.mapping(map)
 

@@ -14,6 +14,10 @@ class AlbumDto: AbstractDto {
     var artworkUrl: String?
     var artist: ArtistDto?
 
+    required init?(_ map: Map) {
+        super.init(map)
+    }
+
     override func mapping(map: Map) {
         super.mapping(map)
 
