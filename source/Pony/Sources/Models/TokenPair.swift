@@ -22,8 +22,12 @@ class TokenPair: Mappable {
         self.refreshTokenExpiration = refreshTokenExpiration
     }
 
-    required init?(_ map: Map) {
+    convenience init(authentication: AuthenticationDto) {
+        self.init(accessToken: authentication.accessToken!, accessTokenExpiration: authentication.accessTokenExpiration,
+                refreshToken: authentication.refreshToken, refreshTokenExpiration: authentication.refreshTokenExpiration)
     }
+
+    required init?(_ map: Map) {}
 
     func mapping(map: Map) {
         accessToken <- map["accessToken"]
@@ -31,5 +35,4 @@ class TokenPair: Mappable {
         refreshToken <- map["refreshToken"]
         refreshTokenExpiration <- (map["refreshTokenExpiration"], DateTransform())
     }
-
 }

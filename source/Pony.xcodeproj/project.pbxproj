@@ -8,20 +8,36 @@
 
 /* Begin PBXBuildFile section */
 		26355A1E1CD2B64A0023063C /* RestUrlDaoSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D393C8784FF489E26E4E7F /* RestUrlDaoSpec.swift */; };
+		26355A1F1CD4CA170023063C /* RestServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39204849A2F8BF7AACC01 /* RestServiceSpec.swift */; };
+		26355A201CD4CAC50023063C /* RestUrlDaoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39A1EC54D5D19065F43E0 /* RestUrlDaoMock.swift */; };
 		3956DC758D9AA584E5A35383 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE1A90DE10DFBC548CAF88 /* Pods.framework */; };
 		561A3C9C416CA6582C3DD4B7 /* Pods_PonyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A72F40AC0753B824B6BB77 /* Pods_PonyTests.framework */; };
+		B3D3907803E98A8DBC6F87D6 /* AuthenticationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D398BA996EBE41A6E4F180 /* AuthenticationDto.swift */; };
+		B3D391F087103A60630996B3 /* ArtistAlbumsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39ED28CB931F15188E53C /* ArtistAlbumsDto.swift */; };
+		B3D391F10C9664010A531F27 /* ArtistDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D392ABB0ED805D4E4D69EC /* ArtistDto.swift */; };
+		B3D39257BB1E4ED0AE62027C /* AbstractDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D397AD091BFA6D65145AAB /* AbstractDto.swift */; };
 		B3D3927C94618DBDDFEFC760 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D39C4F5FB810F2F1285312 /* Main.storyboard */; };
+		B3D393BE3536E3ABE47287E6 /* InstallationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3952BEC23B4C5E4A89E97 /* InstallationDto.swift */; };
 		B3D39424EEE94B5E5453D37F /* FileUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39FB5683940F8C4F44E92 /* FileUtils.swift */; };
 		B3D394362CA1FC2C14A502F9 /* TokenPairDaoSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39C58B8F7ECD43CDB64AF /* TokenPairDaoSpec.swift */; };
+		B3D394AEA2D2DAF1CA810F4D /* CredentialsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39153D7139D9415D75BD1 /* CredentialsDto.swift */; };
 		B3D39591EBA39EE3C331F7DD /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39E8AA3ED63236F004023 /* TestUtils.swift */; };
 		B3D395BCC77B315517857D0A /* RestUrlDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39293B6B5E032A3FA3200 /* RestUrlDao.swift */; };
+		B3D39686497A0C88B0EF4CC8 /* AlbumSongsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3909BC0A859462BFBB397 /* AlbumSongsDto.swift */; };
+		B3D396FEA13B808816610604 /* GenreDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D391FD7D2EE83E8BE838F2 /* GenreDto.swift */; };
+		B3D397C1AA610DE53E09AB70 /* ResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39F7836C26765E953B37C /* ResponseDto.swift */; };
 		B3D39814C97989FF4FC94B00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D3992E660164C0D4394C02 /* Assets.xcassets */; };
+		B3D39852A46CA62DBD312BA1 /* SongDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39944AA6B2AC4E34DDAE8 /* SongDto.swift */; };
 		B3D398B9C195FB2D69E83899 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D399C1B0F06CAF1F3C4AF4 /* ViewController.swift */; };
+		B3D39926415F2AD9CC31C835 /* AlbumDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3910B96ED631BFD9CA8CB /* AlbumDto.swift */; };
+		B3D399448F11D170BE54050E /* ErrorDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D398150765568A7A7A4C5E /* ErrorDto.swift */; };
+		B3D39959C49D9F18339FCF68 /* UserDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39811021EEA849E09736B /* UserDto.swift */; };
 		B3D3996BB5D9226DEE769859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D39E6172BEA358A6F0A616 /* LaunchScreen.storyboard */; };
 		B3D39BB6A2416BE46C48E858 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39E77BE46BD5EEECED290 /* AppDelegate.swift */; };
 		B3D39BC499A87EE18B70846E /* TokenPairDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D393A86FC0536BA2C77A03 /* TokenPairDao.swift */; };
 		B3D39BD7BDA40D0AB12CF9D8 /* TokenPairDaoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D397FCA461D490DF5786C7 /* TokenPairDaoMock.swift */; };
 		B3D39C159D2BE0E9147D381C /* AlamofireManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39FEB986753D323CE1837 /* AlamofireManager.swift */; };
+		B3D39D26AB503C4EAED027ED /* RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3951D9B5205ED4EAD71DB /* RestService.swift */; };
 		B3D39DC88D79B1D33FFF1D87 /* RandomUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39CDB6C3C0F1C70E90F40 /* RandomUtils.swift */; };
 		B3D39EACA48B32089015F6C0 /* TokenPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39215077A2AF4B7B76409 /* TokenPair.swift */; };
 /* End PBXBuildFile section */
@@ -43,14 +59,28 @@
 		4A386F42DE3EC6D73D04AB8D /* Pods-PonyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PonyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PonyTests/Pods-PonyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8C50F6960A8C66EA378E86D4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		91A72F40AC0753B824B6BB77 /* Pods_PonyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PonyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3D3909BC0A859462BFBB397 /* AlbumSongsDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumSongsDto.swift; sourceTree = "<group>"; };
+		B3D3910B96ED631BFD9CA8CB /* AlbumDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumDto.swift; sourceTree = "<group>"; };
+		B3D39153D7139D9415D75BD1 /* CredentialsDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsDto.swift; sourceTree = "<group>"; };
+		B3D391FD7D2EE83E8BE838F2 /* GenreDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreDto.swift; sourceTree = "<group>"; };
+		B3D39204849A2F8BF7AACC01 /* RestServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestServiceSpec.swift; sourceTree = "<group>"; };
 		B3D39215077A2AF4B7B76409 /* TokenPair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPair.swift; sourceTree = "<group>"; };
 		B3D39293B6B5E032A3FA3200 /* RestUrlDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestUrlDao.swift; sourceTree = "<group>"; };
+		B3D392ABB0ED805D4E4D69EC /* ArtistDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistDto.swift; sourceTree = "<group>"; };
 		B3D393A86FC0536BA2C77A03 /* TokenPairDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDao.swift; sourceTree = "<group>"; };
 		B3D393C8784FF489E26E4E7F /* RestUrlDaoSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestUrlDaoSpec.swift; sourceTree = "<group>"; };
+		B3D3951D9B5205ED4EAD71DB /* RestService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestService.swift; sourceTree = "<group>"; };
+		B3D3952BEC23B4C5E4A89E97 /* InstallationDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstallationDto.swift; sourceTree = "<group>"; };
 		B3D396234A639E5B4C42C6A1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		B3D397AD091BFA6D65145AAB /* AbstractDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDto.swift; sourceTree = "<group>"; };
 		B3D397FCA461D490DF5786C7 /* TokenPairDaoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDaoMock.swift; sourceTree = "<group>"; };
+		B3D39811021EEA849E09736B /* UserDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDto.swift; sourceTree = "<group>"; };
+		B3D398150765568A7A7A4C5E /* ErrorDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorDto.swift; sourceTree = "<group>"; };
+		B3D398BA996EBE41A6E4F180 /* AuthenticationDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationDto.swift; sourceTree = "<group>"; };
 		B3D3992E660164C0D4394C02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B3D39944AA6B2AC4E34DDAE8 /* SongDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDto.swift; sourceTree = "<group>"; };
 		B3D399C1B0F06CAF1F3C4AF4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B3D39A1EC54D5D19065F43E0 /* RestUrlDaoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestUrlDaoMock.swift; sourceTree = "<group>"; };
 		B3D39C4F5FB810F2F1285312 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B3D39C58B8F7ECD43CDB64AF /* TokenPairDaoSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDaoSpec.swift; sourceTree = "<group>"; };
 		B3D39CDB6C3C0F1C70E90F40 /* RandomUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomUtils.swift; sourceTree = "<group>"; };
@@ -58,6 +88,8 @@
 		B3D39E6172BEA358A6F0A616 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B3D39E77BE46BD5EEECED290 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3D39E8AA3ED63236F004023 /* TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
+		B3D39ED28CB931F15188E53C /* ArtistAlbumsDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistAlbumsDto.swift; sourceTree = "<group>"; };
+		B3D39F7836C26765E953B37C /* ResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseDto.swift; sourceTree = "<group>"; };
 		B3D39FB5683940F8C4F44E92 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 		B3D39FEB986753D323CE1837 /* AlamofireManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
 		C6231C168F2200268DB66B28 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +191,7 @@
 				B3D39EFB275B5A3F78696CCC /* Mock */,
 				B3D393C8784FF489E26E4E7F /* RestUrlDaoSpec.swift */,
 				B3D39C58B8F7ECD43CDB64AF /* TokenPairDaoSpec.swift */,
+				B3D39204849A2F8BF7AACC01 /* RestServiceSpec.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -173,6 +206,26 @@
 				B3D39E77BE46BD5EEECED290 /* AppDelegate.swift */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		B3D3944EED3F1F2C4A29E4AC /* Dto */ = {
+			isa = PBXGroup;
+			children = (
+				B3D397AD091BFA6D65145AAB /* AbstractDto.swift */,
+				B3D392ABB0ED805D4E4D69EC /* ArtistDto.swift */,
+				B3D3910B96ED631BFD9CA8CB /* AlbumDto.swift */,
+				B3D39ED28CB931F15188E53C /* ArtistAlbumsDto.swift */,
+				B3D39944AA6B2AC4E34DDAE8 /* SongDto.swift */,
+				B3D391FD7D2EE83E8BE838F2 /* GenreDto.swift */,
+				B3D3952BEC23B4C5E4A89E97 /* InstallationDto.swift */,
+				B3D3909BC0A859462BFBB397 /* AlbumSongsDto.swift */,
+				B3D398BA996EBE41A6E4F180 /* AuthenticationDto.swift */,
+				B3D39153D7139D9415D75BD1 /* CredentialsDto.swift */,
+				B3D398150765568A7A7A4C5E /* ErrorDto.swift */,
+				B3D39F7836C26765E953B37C /* ResponseDto.swift */,
+				B3D39811021EEA849E09736B /* UserDto.swift */,
+			);
+			path = Dto;
 			sourceTree = "<group>";
 		};
 		B3D3953AC7A6E40ED1E9F067 /* Resources */ = {
@@ -195,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				B3D39FEB986753D323CE1837 /* AlamofireManager.swift */,
+				B3D3951D9B5205ED4EAD71DB /* RestService.swift */,
 			);
 			path = Rest;
 			sourceTree = "<group>";
@@ -238,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				B3D39215077A2AF4B7B76409 /* TokenPair.swift */,
+				B3D3944EED3F1F2C4A29E4AC /* Dto */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -246,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				B3D397FCA461D490DF5786C7 /* TokenPairDaoMock.swift */,
+				B3D39A1EC54D5D19065F43E0 /* RestUrlDaoMock.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -467,6 +523,20 @@
 				B3D39C159D2BE0E9147D381C /* AlamofireManager.swift in Sources */,
 				B3D39BC499A87EE18B70846E /* TokenPairDao.swift in Sources */,
 				B3D395BCC77B315517857D0A /* RestUrlDao.swift in Sources */,
+				B3D39257BB1E4ED0AE62027C /* AbstractDto.swift in Sources */,
+				B3D391F10C9664010A531F27 /* ArtistDto.swift in Sources */,
+				B3D39926415F2AD9CC31C835 /* AlbumDto.swift in Sources */,
+				B3D391F087103A60630996B3 /* ArtistAlbumsDto.swift in Sources */,
+				B3D39852A46CA62DBD312BA1 /* SongDto.swift in Sources */,
+				B3D396FEA13B808816610604 /* GenreDto.swift in Sources */,
+				B3D393BE3536E3ABE47287E6 /* InstallationDto.swift in Sources */,
+				B3D39686497A0C88B0EF4CC8 /* AlbumSongsDto.swift in Sources */,
+				B3D3907803E98A8DBC6F87D6 /* AuthenticationDto.swift in Sources */,
+				B3D394AEA2D2DAF1CA810F4D /* CredentialsDto.swift in Sources */,
+				B3D399448F11D170BE54050E /* ErrorDto.swift in Sources */,
+				B3D397C1AA610DE53E09AB70 /* ResponseDto.swift in Sources */,
+				B3D39959C49D9F18339FCF68 /* UserDto.swift in Sources */,
+				B3D39D26AB503C4EAED027ED /* RestService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +545,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3D394362CA1FC2C14A502F9 /* TokenPairDaoSpec.swift in Sources */,
+				26355A1F1CD4CA170023063C /* RestServiceSpec.swift in Sources */,
+				26355A201CD4CAC50023063C /* RestUrlDaoMock.swift in Sources */,
 				B3D39BD7BDA40D0AB12CF9D8 /* TokenPairDaoMock.swift in Sources */,
 				B3D39591EBA39EE3C331F7DD /* TestUtils.swift in Sources */,
 				26355A1E1CD2B64A0023063C /* RestUrlDaoSpec.swift in Sources */,

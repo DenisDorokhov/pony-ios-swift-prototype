@@ -29,7 +29,7 @@ class TokenPairDaoImpl: TokenPairDao {
 
     func fetchTokenPair() -> TokenPair? {
 
-        var tokenPair: TokenPair? = nil
+        var tokenPair: TokenPair?
 
         if let tokenPairJson = keychain.get(KEY_TOKEN_PAIR) {
 

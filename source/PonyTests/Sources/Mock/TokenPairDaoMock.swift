@@ -13,12 +13,8 @@ class TokenPairDaoMock: TokenPairDao {
 
     private(set) var fetchTokenPairCallsCount: Int = 0
 
-    init(tokenPair: TokenPair?) {
+    init(tokenPair: TokenPair? = nil) {
         self.tokenPair = tokenPair
-    }
-
-    convenience init() {
-        self.init(tokenPair: nil)
     }
 
     func fetchTokenPair() -> TokenPair? {

@@ -8,7 +8,18 @@ import Alamofire
 
 class AlamofireManager: Manager {
 
-    var debug = false
+    var debug: Bool
+
+    init(debug: Bool = false) {
+
+        self.debug = debug
+
+        let config: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+
+        config.HTTPAdditionalHeaders = Manager.defaultHTTPHeaders
+
+        super.init(configuration: config)
+    }
 
     override func request(URLRequest: URLRequestConvertible) -> Request {
         let request = super.request(URLRequest)
