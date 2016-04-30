@@ -4,6 +4,7 @@ use_frameworks!
 
 pod 'Alamofire', '3.3.0'
 pod 'AlamofireObjectMapper', '3.0.0'
+pod 'AlamofireImage', '2.4.0'
 pod 'XCGLogger', '3.3'
 pod 'Swinject', '1.1.1' # TODO: upgrade for Xcode 7.3!
 pod 'SwiftyJSON', '2.3.2' # TODO: upgrade for Xcode 7.3!

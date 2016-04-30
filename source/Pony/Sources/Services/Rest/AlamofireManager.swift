@@ -60,6 +60,6 @@ class AlamofireManager: Manager {
             }
         }
 
-        return output.joinWithSeparator("\n")
+        return output.joinWithSeparator("\n") + "\n"
     }
 }

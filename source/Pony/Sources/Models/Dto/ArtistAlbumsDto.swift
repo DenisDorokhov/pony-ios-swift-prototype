@@ -9,7 +9,7 @@ import ObjectMapper
 class ArtistAlbumsDto: Mappable {
 
     var artist: ArtistDto?
-    var albums: [AlbumDto]?
+    var albums: [AlbumSongsDto]?
 
     required init?(_ map: Map) {}
 

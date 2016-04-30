@@ -99,6 +99,81 @@ class RestServiceSpec: QuickSpec {
                 })
                 expect(authentication).toEventuallyNot(beNil())
             }
+
+            it("should get artists") {
+                authenticate(credentials)
+                var artists: [ArtistDto]?
+                service.getArtists(onSuccess: {
+                    artists = $0
+                })
+                expect(artists).toEventuallyNot(beNil())
+            }
+
+            it("should get artist albums") {
+                authenticate(credentials)
+                var artists: [ArtistDto]!
+                waitUntil {
+                    done in
+                    service.getArtists(onSuccess: {
+                        artists = $0
+                        done()
+                    })
+                }
+                var artistAlbums: ArtistAlbumsDto?
+                service.getArtistAlbums(artists[0].id!, onSuccess: {
+                    artistAlbums = $0
+                })
+                expect(artistAlbums).toEventuallyNot(beNil())
+            }
+
+            it("should download image") {
+                authenticate(credentials)
+                var artists: [ArtistDto]!
+                waitUntil {
+                    done in
+                    service.getArtists(onSuccess: {
+                        artists = $0
+                        done()
+                    })
+                }
+                var image: UIImage?
+                service.downloadImage(artists[0].artworkUrl!, onSuccess: {
+                    image = $0
+                })
+                expect(image).toEventuallyNot(beNil())
+            }
+
+            it("should download song") {
+                authenticate(credentials)
+                var artists: [ArtistDto]!
+                waitUntil {
+                    done in
+                    service.getArtists(onSuccess: {
+                        artists = $0
+                        done()
+                    })
+                }
+                var artistAlbums: ArtistAlbumsDto!
+                waitUntil {
+                    done in
+                    service.getArtistAlbums(artists[0].id!, onSuccess: {
+                        artistAlbums = $0
+                        done()
+                    })
+                }
+                let filePath = FileUtils.generateTemporaryPath()
+                var onProgressCalled = false
+                var completed = false
+                service.downloadSong(artistAlbums.albums![0].songs![0].url!, toFile: filePath, onProgress: {
+                    progress in
+                    onProgressCalled = true
+                }, onSuccess: {
+                    completed = true
+                })
+                expect(completed).toEventually(beTrue(), timeout: 10)
+                expect(onProgressCalled).to(beTrue())
+                expect(NSFileManager.defaultManager().fileExistsAtPath(filePath)).to(beTrue())
+            }
         }
     }
 }

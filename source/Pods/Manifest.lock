@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (3.3.0)
+  - AlamofireImage (2.4.0):
+    - Alamofire (~> 3.3)
   - AlamofireObjectMapper (3.0.0):
     - Alamofire (~> 3.2)
     - ObjectMapper (~> 1.0)
@@ -14,6 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (= 3.3.0)
+  - AlamofireImage (= 2.4.0)
   - AlamofireObjectMapper (= 3.0.0)
   - KeychainSwift (= 3.0.13)
   - Nimble (= 4.0.1)
@@ -35,6 +38,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 9054db4a1b1ca9e363223183e01cea380159a27c
+  AlamofireImage: 87408b652e0f5ae5fe364035f15aea8b9b24c77e
   AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
   KeychainSwift: 3bda518adb1ab386da0a9a1de93b561ee2c9322b
   Nimble: 0f3c8b8b084cda391209c3c5efbb48bedeeb920a
