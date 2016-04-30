@@ -6,7 +6,7 @@
 import Foundation
 import ObjectMapper
 
-class AbstractResponseDto {
+class ResponseDto {
 
     var version: String?
     var successful: Bool?
@@ -21,7 +21,7 @@ class AbstractResponseDto {
     }
 }
 
-class ObjectResponseDto<T: Mappable>: AbstractResponseDto, Mappable {
+class ObjectResponseDto<T: Mappable>: ResponseDto, Mappable {
 
     var data: T?
 
@@ -36,7 +36,7 @@ class ObjectResponseDto<T: Mappable>: AbstractResponseDto, Mappable {
     }
 }
 
-class ArrayResponseDto<T: Mappable>: AbstractResponseDto, Mappable {
+class ArrayResponseDto<T: Mappable>: ResponseDto, Mappable {
 
     var data: [T]?
 

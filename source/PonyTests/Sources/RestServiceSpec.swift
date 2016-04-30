@@ -17,8 +17,6 @@ class RestServiceSpec: QuickSpec {
 
     override func spec() {
 
-        Nimble.AsyncDefaults.Timeout = 3
-
         describe("RestService") {
 
             var service: RestService!
@@ -146,16 +144,16 @@ class RestServiceSpec: QuickSpec {
                 let artists = getArtists()
                 let artistAlbums = getArtistAlbums(artists[0].id!)
                 let filePath = FileUtils.generateTemporaryPath()
-                var onProgressCalled = false
+                var progressCalled = false
                 var completed = false
                 service.downloadSong(artistAlbums.albums![0].songs![0].url!, toFile: filePath, onProgress: {
                     progress in
-                    onProgressCalled = true
+                    progressCalled = true
                 }, onSuccess: {
                     completed = true
                 })
                 expect(completed).toEventually(beTrue(), timeout: 10)
-                expect(onProgressCalled).to(beTrue())
+                expect(progressCalled).to(beTrue())
                 expect(NSFileManager.defaultManager().fileExistsAtPath(filePath)).to(beTrue())
             }
         }
