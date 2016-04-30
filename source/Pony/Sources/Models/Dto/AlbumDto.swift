@@ -10,7 +10,7 @@ class AlbumDto: AbstractDto {
 
     var name: String?
     var year: Int?
-    var artwork: Int?
+    var artwork: Int64?
     var artworkUrl: String?
     var artist: ArtistDto?
 
@@ -19,7 +19,7 @@ class AlbumDto: AbstractDto {
 
         name <- map["name"]
         year <- map["year"]
-        artwork <- map["artwork"]
+        artwork <- (map["artwork"], Int64Transform())
         artworkUrl <- map["artworkUrl"]
         artist <- map["artist"]
     }

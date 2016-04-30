@@ -12,7 +12,7 @@ class SongDto: AbstractDto {
 
     var url: String?
 
-    var size: Int?
+    var size: Int64?
 
     var duration: Int?
     var discNumber: Int?
@@ -29,7 +29,7 @@ class SongDto: AbstractDto {
 
         updateDate <- (map["name"], DateTransform())
         url <- map["url"]
-        size <- map["size"]
+        size <- (map["size"], Int64Transform())
         duration <- map["duration"]
         discNumber <- map["discNumber"]
         trackNumber <- map["trackNumber"]

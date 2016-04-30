@@ -33,6 +33,7 @@
 		B3D399448F11D170BE54050E /* ErrorDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D398150765568A7A7A4C5E /* ErrorDto.swift */; };
 		B3D39959C49D9F18339FCF68 /* UserDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39811021EEA849E09736B /* UserDto.swift */; };
 		B3D3996BB5D9226DEE769859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D39E6172BEA358A6F0A616 /* LaunchScreen.storyboard */; };
+		B3D39A7134E553F3DB1D0D53 /* Int64Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39BE3C85156F539EC1B38 /* Int64Transform.swift */; };
 		B3D39BB6A2416BE46C48E858 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39E77BE46BD5EEECED290 /* AppDelegate.swift */; };
 		B3D39BC499A87EE18B70846E /* TokenPairDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D393A86FC0536BA2C77A03 /* TokenPairDao.swift */; };
 		B3D39BD7BDA40D0AB12CF9D8 /* TokenPairDaoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D397FCA461D490DF5786C7 /* TokenPairDaoMock.swift */; };
@@ -81,6 +82,7 @@
 		B3D39944AA6B2AC4E34DDAE8 /* SongDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongDto.swift; sourceTree = "<group>"; };
 		B3D399C1B0F06CAF1F3C4AF4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B3D39A1EC54D5D19065F43E0 /* RestUrlDaoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestUrlDaoMock.swift; sourceTree = "<group>"; };
+		B3D39BE3C85156F539EC1B38 /* Int64Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int64Transform.swift; sourceTree = "<group>"; };
 		B3D39C4F5FB810F2F1285312 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B3D39C58B8F7ECD43CDB64AF /* TokenPairDaoSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDaoSpec.swift; sourceTree = "<group>"; };
 		B3D39CDB6C3C0F1C70E90F40 /* RandomUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomUtils.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				B3D39FB5683940F8C4F44E92 /* FileUtils.swift */,
 				B3D39CDB6C3C0F1C70E90F40 /* RandomUtils.swift */,
+				B3D39BE3C85156F539EC1B38 /* Int64Transform.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				B3D397C1AA610DE53E09AB70 /* ResponseDto.swift in Sources */,
 				B3D39959C49D9F18339FCF68 /* UserDto.swift in Sources */,
 				B3D39D26AB503C4EAED027ED /* RestService.swift in Sources */,
+				B3D39A7134E553F3DB1D0D53 /* Int64Transform.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

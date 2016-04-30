@@ -9,14 +9,14 @@ import ObjectMapper
 class ArtistDto: AbstractDto {
 
     var name: String?
-    var artwork: Int?
+    var artwork: Int64?
     var artworkUrl: String?
 
     override func mapping(map: Map) {
         super.mapping(map)
 
         name <- map["name"]
-        artwork <- map["artwork"]
+        artwork <- (map["artwork"], Int64Transform())
         artworkUrl <- map["artworkUrl"]
     }
 }

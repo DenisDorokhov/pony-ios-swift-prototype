@@ -81,7 +81,7 @@ class RestService {
         }
     }
 
-    func getArtistAlbums(artistId: Int,
+    func getArtistAlbums(artistId: Int64,
                          onSuccess: (ArtistAlbumsDto -> Void)? = nil,
                          onFailure: ([ErrorDto] -> Void)? = nil) -> Request {
         return alamofireManager.request(.GET, buildUrl("/api/artistAlbums/\(artistId)"),

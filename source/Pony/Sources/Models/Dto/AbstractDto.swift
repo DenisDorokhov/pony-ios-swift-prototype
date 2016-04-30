@@ -8,11 +8,11 @@ import ObjectMapper
 
 class AbstractDto: Mappable {
 
-    var id: Int?
+    var id: Int64?
 
     required init?(_ map: Map) {}
 
     func mapping(map: Map) {
-        id <- map["id"]
+        id <- (map["id"], Int64Transform())
     }
 }

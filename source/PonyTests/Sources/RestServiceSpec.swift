@@ -34,21 +34,42 @@ class RestServiceSpec: QuickSpec {
             }
 
             let credentials = CredentialsDto(email: self.DEMO_EMAIL, password: self.DEMO_PASSWORD)
-            let authenticate: (CredentialsDto -> AuthenticationDto?) = {
+
+            let authenticate: (CredentialsDto -> AuthenticationDto) = {
                 credentials in
-                var authentication: AuthenticationDto? = nil
+                var authentication: AuthenticationDto!
                 waitUntil {
                     done in
                     service.authenticate(credentials, onSuccess: {
                         authentication = $0
                         service.tokenPairDao.storeTokenPair(TokenPair(authentication: $0))
                         done()
-                    }, onFailure: {
-                        errors in
-                        done()
                     })
                 }
                 return authentication
+            }
+            let getArtists: (Void -> [ArtistDto]) = {
+                var artists: [ArtistDto]!
+                waitUntil {
+                    done in
+                    service.getArtists(onSuccess: {
+                        artists = $0
+                        done()
+                    })
+                }
+                return artists
+            }
+            let getArtistAlbums: (Int64 -> ArtistAlbumsDto) = {
+                artistId in
+                var artistAlbums: ArtistAlbumsDto!
+                waitUntil {
+                    done in
+                    service.getArtistAlbums(artistId, onSuccess: {
+                        artistAlbums = $0
+                        done()
+                    })
+                }
+                return artistAlbums
             }
 
             it("should handle errors") {
@@ -69,8 +90,7 @@ class RestServiceSpec: QuickSpec {
             }
 
             it("should authenticate") {
-                let authentication = authenticate(credentials)
-                expect(authentication).notTo(beNil())
+                authenticate(credentials)
             }
 
             it("should logout") {
@@ -102,40 +122,18 @@ class RestServiceSpec: QuickSpec {
 
             it("should get artists") {
                 authenticate(credentials)
-                var artists: [ArtistDto]?
-                service.getArtists(onSuccess: {
-                    artists = $0
-                })
-                expect(artists).toEventuallyNot(beNil())
+                getArtists()
             }
 
             it("should get artist albums") {
                 authenticate(credentials)
-                var artists: [ArtistDto]!
-                waitUntil {
-                    done in
-                    service.getArtists(onSuccess: {
-                        artists = $0
-                        done()
-                    })
-                }
-                var artistAlbums: ArtistAlbumsDto?
-                service.getArtistAlbums(artists[0].id!, onSuccess: {
-                    artistAlbums = $0
-                })
-                expect(artistAlbums).toEventuallyNot(beNil())
+                let artists = getArtists()
+                getArtistAlbums(artists[0].id!)
             }
 
             it("should download image") {
                 authenticate(credentials)
-                var artists: [ArtistDto]!
-                waitUntil {
-                    done in
-                    service.getArtists(onSuccess: {
-                        artists = $0
-                        done()
-                    })
-                }
+                let artists = getArtists()
                 var image: UIImage?
                 service.downloadImage(artists[0].artworkUrl!, onSuccess: {
                     image = $0
@@ -145,22 +143,8 @@ class RestServiceSpec: QuickSpec {
 
             it("should download song") {
                 authenticate(credentials)
-                var artists: [ArtistDto]!
-                waitUntil {
-                    done in
-                    service.getArtists(onSuccess: {
-                        artists = $0
-                        done()
-                    })
-                }
-                var artistAlbums: ArtistAlbumsDto!
-                waitUntil {
-                    done in
-                    service.getArtistAlbums(artists[0].id!, onSuccess: {
-                        artistAlbums = $0
-                        done()
-                    })
-                }
+                let artists = getArtists()
+                let artistAlbums = getArtistAlbums(artists[0].id!)
                 let filePath = FileUtils.generateTemporaryPath()
                 var onProgressCalled = false
                 var completed = false
