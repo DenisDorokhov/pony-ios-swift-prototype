@@ -148,11 +148,11 @@ class RestService {
 
         if error.domain == NSURLErrorDomain {
             if error.code == NSURLErrorNotConnectedToInternet {
-                return ErrorDto.createClientOffline()
+                return ErrorDto.clientOffline
             } else if error.code == NSURLErrorTimedOut {
-                return ErrorDto.createClientRequestTimeout()
+                return ErrorDto.clientRequestTimeout
             } else if error.code == NSURLErrorCancelled {
-                return ErrorDto.createClientRequestCancelled()
+                return ErrorDto.clientRequestCancelled
             }
         }
 
@@ -160,29 +160,29 @@ class RestService {
     }
 
     private func executeObjectCallback<T>(response: Response<ObjectResponseDto<T>, NSError>,
-                                          _ onSuccess: (T -> Void)? = nil,
-                                          _ onFailure: ([ErrorDto] -> Void)? = nil) {
+                                          _ onSuccess: (T -> Void)?,
+                                          _ onFailure: ([ErrorDto] -> Void)?) {
         executeResponseCallback(response, {
             dto in
             if let data = dto.data {
                 onSuccess?(data)
             } else {
                 self.log.error("API returned nil data object.")
-                onFailure?([ErrorDto.createUnexpected()])
+                onFailure?([ErrorDto.unexpected])
             }
         }, onFailure)
     }
 
     private func executeArrayCallback<T>(response: Response<ArrayResponseDto<T>, NSError>,
-                                         _ onSuccess: ([T] -> Void)? = nil,
-                                         _ onFailure: ([ErrorDto] -> Void)? = nil) {
+                                         _ onSuccess: ([T] -> Void)?,
+                                         _ onFailure: ([ErrorDto] -> Void)?) {
         executeResponseCallback(response, {
             dto in
             if let data = dto.data {
                 onSuccess?(data)
             } else {
                 self.log.error("API returned nil data array.")
-                onFailure?([ErrorDto.createUnexpected()])
+                onFailure?([ErrorDto.unexpected])
             }
         }, onFailure)
     }
@@ -200,7 +200,7 @@ class RestService {
                     onFailure?(errors)
                 } else {
                     log.error("API returned nil errors.")
-                    onFailure?([ErrorDto.createUnexpected()])
+                    onFailure?([ErrorDto.unexpected])
                 }
             }
         } else {

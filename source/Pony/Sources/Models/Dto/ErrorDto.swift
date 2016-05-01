@@ -34,6 +34,22 @@ class ErrorDto: Mappable, CustomStringConvertible {
     static let CODE_PAGE_SIZE_INVALID = "errorPageSizeInvalid"
     static let CODE_SONGS_COUNT_INVALID = "errorSongsCountInvalid"
 
+    static var clientOffline: ErrorDto {
+        return ErrorDto(code: CODE_CLIENT_OFFLINE, text: "Could not make server request. Are you online?")
+    }
+    static var clientRequestTimeout: ErrorDto {
+        return ErrorDto(code: CODE_CLIENT_REQUEST_TIMEOUT, text: "Client request timed out.")
+    }
+    static var clientRequestCancelled: ErrorDto {
+        return ErrorDto(code: CODE_CLIENT_REQUEST_CANCELLED, text: "Client request has been cancelled.")
+    }
+    static var accessDenied: ErrorDto {
+        return ErrorDto(code: CODE_ACCESS_DENIED, text: "Access denied.")
+    }
+    static var unexpected: ErrorDto {
+        return ErrorDto(code: CODE_UNEXPECTED, text: "Unexpected error occurred.")
+    }
+
     var field: String?
     var code: String?
     var text: String?
@@ -72,26 +88,6 @@ class ErrorDto: Mappable, CustomStringConvertible {
 
     class func fetchFirstByCodes(codes: [String], fromArray errors: [ErrorDto]) -> ErrorDto? {
         return fetchAllByCodes(codes, fromArray: errors).first
-    }
-
-    class func createClientOffline() -> ErrorDto {
-        return ErrorDto(code: CODE_CLIENT_OFFLINE, text: "Could not make server request. Are you online?")
-    }
-
-    class func createClientRequestTimeout() -> ErrorDto {
-        return ErrorDto(code: CODE_CLIENT_REQUEST_TIMEOUT, text: "Client request timed out.")
-    }
-
-    class func createClientRequestCancelled() -> ErrorDto {
-        return ErrorDto(code: CODE_CLIENT_REQUEST_CANCELLED, text: "Client request has been cancelled.")
-    }
-
-    class func createAccessDenied() -> ErrorDto {
-        return ErrorDto(code: CODE_ACCESS_DENIED, text: "Access denied.")
-    }
-
-    class func createUnexpected() -> ErrorDto {
-        return ErrorDto(code: CODE_UNEXPECTED, text: "Unexpected error occurred.")
     }
 
     required init?(_ map: Map) {}
