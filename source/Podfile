@@ -7,7 +7,6 @@ pod 'AlamofireObjectMapper', '3.0.0'
 pod 'AlamofireImage', '2.4.0'
 pod 'XCGLogger', '3.3'
 pod 'Swinject', '1.1.1' # TODO: upgrade for Xcode 7.3!
-pod 'SwiftyJSON', '2.3.2' # TODO: upgrade for Xcode 7.3!
 pod 'KeychainSwift', '3.0.13'
 pod 'OrderedSet', :git => 'https://github.com/Weebly/OrderedSet.git', :commit => '39ac853' # TODO: upgrade after new release
 pod 'SwiftyTimer', '1.4.0'

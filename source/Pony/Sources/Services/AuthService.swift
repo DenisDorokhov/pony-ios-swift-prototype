@@ -6,7 +6,6 @@
 import Foundation
 import OrderedSet
 import SwiftyTimer
-import Alamofire
 import XCGLogger
 
 protocol AuthServiceDelegate: class {
@@ -33,9 +32,9 @@ class AuthService {
 
     private var delegates: OrderedSet<NSValue> = []
 
-    private var refreshTokenRequest: Request?
-    private var authenticationRequest: Request?
-    private var updateUserRequest: Request?
+    private var refreshTokenRequest: RestRequest?
+    private var authenticationRequest: RestRequest?
+    private var updateUserRequest: RestRequest?
 
     func addDelegate(delegate: AuthServiceDelegate) {
         delegates.append(NSValue(nonretainedObject: delegate))

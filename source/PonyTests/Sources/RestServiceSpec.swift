@@ -17,12 +17,12 @@ class RestServiceSpec: QuickSpec {
 
     override func spec() {
 
-        describe("RestService") {
+        describe("RestServiceImpl") {
 
-            var service: RestService!
+            var service: RestServiceImpl!
             beforeEach {
                 TestUtils.cleanAll()
-                service = RestService()
+                service = RestServiceImpl()
                 service.alamofireManager = AlamofireManager(debug: true)
                 service.tokenPairDao = TokenPairDaoMock()
                 service.restUrlDao = RestUrlDaoMock(url: self.DEMO_URL)
