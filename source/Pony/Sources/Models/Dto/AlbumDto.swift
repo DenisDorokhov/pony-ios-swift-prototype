@@ -12,7 +12,7 @@ class AlbumDto: AbstractDto {
     var year: Int?
     var artwork: Int64?
     var artworkUrl: String?
-    var artist: ArtistDto?
+    var artist: ArtistDto!
 
     required init?(_ map: Map) {
         super.init(map)

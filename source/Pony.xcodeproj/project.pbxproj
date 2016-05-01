@@ -14,6 +14,7 @@
 		561A3C9C416CA6582C3DD4B7 /* Pods_PonyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A72F40AC0753B824B6BB77 /* Pods_PonyTests.framework */; };
 		B3D3907803E98A8DBC6F87D6 /* AuthenticationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D398BA996EBE41A6E4F180 /* AuthenticationDto.swift */; };
 		B3D39122BB0E1E81E2A58A90 /* BootstrapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39F52401F016C133B0CEA /* BootstrapService.swift */; };
+		B3D39162AADDFA0D314AB4C4 /* RestServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39F809856F31BC2EF5203 /* RestServiceMock.swift */; };
 		B3D39198471030D8D5D6D5FC /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39BF5AAB8ECFB44483D19 /* AuthService.swift */; };
 		B3D391F087103A60630996B3 /* ArtistAlbumsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39ED28CB931F15188E53C /* ArtistAlbumsDto.swift */; };
 		B3D391F10C9664010A531F27 /* ArtistDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D392ABB0ED805D4E4D69EC /* ArtistDto.swift */; };
@@ -25,6 +26,7 @@
 		B3D394AEA2D2DAF1CA810F4D /* CredentialsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39153D7139D9415D75BD1 /* CredentialsDto.swift */; };
 		B3D39591EBA39EE3C331F7DD /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39E8AA3ED63236F004023 /* TestUtils.swift */; };
 		B3D395BCC77B315517857D0A /* RestUrlDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39293B6B5E032A3FA3200 /* RestUrlDao.swift */; };
+		B3D396128F93CE66BE415E61 /* AuthServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39C3883749C49F2BE973D /* AuthServiceSpec.swift */; };
 		B3D39686497A0C88B0EF4CC8 /* AlbumSongsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3909BC0A859462BFBB397 /* AlbumSongsDto.swift */; };
 		B3D396FEA13B808816610604 /* GenreDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D391FD7D2EE83E8BE838F2 /* GenreDto.swift */; };
 		B3D397C1AA610DE53E09AB70 /* ResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39F7836C26765E953B37C /* ResponseDto.swift */; };
@@ -86,6 +88,7 @@
 		B3D39A1EC54D5D19065F43E0 /* RestUrlDaoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestUrlDaoMock.swift; sourceTree = "<group>"; };
 		B3D39BE3C85156F539EC1B38 /* Int64Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int64Transform.swift; sourceTree = "<group>"; };
 		B3D39BF5AAB8ECFB44483D19 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		B3D39C3883749C49F2BE973D /* AuthServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthServiceSpec.swift; sourceTree = "<group>"; };
 		B3D39C4F5FB810F2F1285312 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B3D39C58B8F7ECD43CDB64AF /* TokenPairDaoSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDaoSpec.swift; sourceTree = "<group>"; };
 		B3D39CDB6C3C0F1C70E90F40 /* RandomUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomUtils.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 		B3D39ED28CB931F15188E53C /* ArtistAlbumsDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistAlbumsDto.swift; sourceTree = "<group>"; };
 		B3D39F52401F016C133B0CEA /* BootstrapService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BootstrapService.swift; sourceTree = "<group>"; };
 		B3D39F7836C26765E953B37C /* ResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseDto.swift; sourceTree = "<group>"; };
+		B3D39F809856F31BC2EF5203 /* RestServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestServiceMock.swift; sourceTree = "<group>"; };
 		B3D39FB5683940F8C4F44E92 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 		B3D39FEB986753D323CE1837 /* AlamofireManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
 		C6231C168F2200268DB66B28 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 				B3D393C8784FF489E26E4E7F /* RestUrlDaoSpec.swift */,
 				B3D39C58B8F7ECD43CDB64AF /* TokenPairDaoSpec.swift */,
 				B3D39204849A2F8BF7AACC01 /* RestServiceSpec.swift */,
+				B3D39C3883749C49F2BE973D /* AuthServiceSpec.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 			children = (
 				B3D397FCA461D490DF5786C7 /* TokenPairDaoMock.swift */,
 				B3D39A1EC54D5D19065F43E0 /* RestUrlDaoMock.swift */,
+				B3D39F809856F31BC2EF5203 /* RestServiceMock.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -562,6 +568,8 @@
 				B3D39BD7BDA40D0AB12CF9D8 /* TokenPairDaoMock.swift in Sources */,
 				B3D39591EBA39EE3C331F7DD /* TestUtils.swift in Sources */,
 				26355A1E1CD2B64A0023063C /* RestUrlDaoSpec.swift in Sources */,
+				B3D396128F93CE66BE415E61 /* AuthServiceSpec.swift in Sources */,
+				B3D39162AADDFA0D314AB4C4 /* RestServiceMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

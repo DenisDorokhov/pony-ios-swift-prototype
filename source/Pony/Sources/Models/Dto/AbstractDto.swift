@@ -8,7 +8,11 @@ import ObjectMapper
 
 class AbstractDto: Mappable {
 
-    var id: Int64?
+    var id: Int64!
+
+    init(id: Int64) {
+        self.id = id
+    }
 
     required init?(_ map: Map) {}
 

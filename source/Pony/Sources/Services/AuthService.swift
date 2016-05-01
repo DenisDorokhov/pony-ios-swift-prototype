@@ -53,8 +53,7 @@ class AuthService {
             logout()
         }
 
-        let email = credentials.email ?? ""
-        log.info("Authenticating user '\(email)'...")
+        log.info("Authenticating user '\(credentials.email)'...")
 
         updateUserRequest?.cancel()
         updateUserRequest = nil
@@ -70,19 +69,17 @@ class AuthService {
 
             self.updateAuthentication(authentication)
 
-            let email = authentication.user?.email ?? ""
-            self.log.info("User '\(email)' has authenticated.")
+            self.log.info("User '\(authentication.user.email)' has authenticated.")
 
-            onSuccess?(authentication.user!)
-            self.propagateAuthentication(authentication.user!)
+            onSuccess?(authentication.user)
+            self.propagateAuthentication(authentication.user)
 
         }, onFailure: {
             errors in
 
             self.authenticationRequest = nil
 
-            let email = credentials.email ?? ""
-            self.log.info("Authentication failed for user '\(email)': \(errors)")
+            self.log.info("Authentication failed for user '\(credentials.email)': \(errors)")
 
             onFailure?(errors)
         })
@@ -106,8 +103,7 @@ class AuthService {
 
                 self.updateUserRequest = nil
 
-                let email = user.email ?? ""
-                self.log.info("User '\(email)' is authenticated.")
+                self.log.info("User '\(user.email)' is authenticated.")
 
                 onSuccess?(user)
                 self.propagateUserUpdate(user)
@@ -137,8 +133,7 @@ class AuthService {
 
         if let lastUser = currentUser {
 
-            let email = lastUser.email ?? ""
-            log.info("Logging out user '\(email)'...")
+            log.info("Logging out user '\(lastUser.email)'...")
 
             restService.logout(onSuccess: {
                 onSuccess?($0)
@@ -149,7 +144,7 @@ class AuthService {
 
             clearAuthentication()
 
-            log.info("User '\(email)' has logged out.")
+            log.info("User '\(lastUser.email)' has logged out.")
             propagateLogout(lastUser)
 
         } else {
@@ -158,6 +153,25 @@ class AuthService {
 
             log.info("Skipping log out: user is not authenticated.")
             onFailure?([ErrorDto.accessDenied])
+        }
+    }
+
+    func checkAccessTokenExpiration(handler: (Void -> Void)? = nil) {
+        if let accessTokenExpiration = tokenPairDao.fetchTokenPair()?.accessTokenExpiration.timeIntervalSinceNow {
+            if refreshTokenRequest == nil && authenticationRequest == nil && accessTokenExpiration <= Double(REFRESH_TOKEN_TIME_BEFORE_EXPIRATION) {
+                refreshToken(onSuccess: {
+                    authentication in
+                    self.propagateUserUpdate(authentication.user)
+                    handler?()
+                }, onFailure: {
+                    errors in
+                    handler?()
+                })
+            } else {
+                handler?()
+            }
+        } else {
+            handler?()
         }
     }
 
@@ -179,8 +193,8 @@ class AuthService {
                 log.info("Could not update authentication status, access is denied, trying to refresh token...")
                 refreshToken(onSuccess: {
                     authentication in
-                    onSuccess?(authentication.user!)
-                    self.propagateUserUpdate(authentication.user!)
+                    onSuccess?(authentication.user)
+                    self.propagateUserUpdate(authentication.user)
                 }, onFailure: onFailure)
             } else {
                 onFailure?(errors)
@@ -194,7 +208,7 @@ class AuthService {
 
     private func updateAuthentication(authentication: AuthenticationDto) {
         tokenPairDao.storeTokenPair(TokenPair(authentication: authentication))
-        currentUser = authentication.user!
+        currentUser = authentication.user
     }
 
     private func clearAuthentication() {
@@ -215,8 +229,7 @@ class AuthService {
 
                 self.updateAuthentication(authentication)
 
-                let email = authentication.user?.email ?? ""
-                self.log.info("Token for user '\(email)' has been refreshed.")
+                self.log.info("Token for user '\(authentication.user.email)' has been refreshed.")
 
                 onSuccess?(authentication)
 
@@ -234,32 +247,15 @@ class AuthService {
                     let lastUser = self.currentUser
 
                     self.clearAuthentication()
-                    self.propagateLogout(lastUser!)
+                    if let lastUser = lastUser {
+                        self.propagateLogout(lastUser)
+                    }
                 }
             })
 
         } else {
             log.info("Skipping token refresh: no token found.")
             onFailure?([ErrorDto.accessDenied])
-        }
-    }
-
-    private func checkAccessTokenExpiration(handler: (Void -> Void)?) {
-        if let accessTokenExpiration = tokenPairDao.fetchTokenPair()?.accessTokenExpiration?.timeIntervalSince1970 {
-            if refreshTokenRequest == nil && authenticationRequest == nil && accessTokenExpiration <= Double(REFRESH_TOKEN_TIME_BEFORE_EXPIRATION) {
-                refreshToken(onSuccess: {
-                    authentication in
-                    self.propagateUserUpdate(authentication.user!)
-                    handler?()
-                }, onFailure: {
-                    errors in
-                    handler?()
-                })
-            } else {
-                handler?()
-            }
-        } else {
-            handler?()
         }
     }
 

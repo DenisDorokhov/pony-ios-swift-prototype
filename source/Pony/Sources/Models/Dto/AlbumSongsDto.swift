@@ -8,8 +8,8 @@ import ObjectMapper
 
 class AlbumSongsDto: Mappable {
 
-    var album: AlbumDto?
-    var songs: [SongDto]?
+    var album: AlbumDto!
+    var songs: [SongDto]!
 
     required init?(_ map: Map) {}
 

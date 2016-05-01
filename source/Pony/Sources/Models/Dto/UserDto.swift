@@ -13,13 +13,24 @@ enum RoleDto: String {
 
 class UserDto: AbstractDto {
 
-    var creationDate: NSDate?
+    var creationDate: NSDate!
     var updateDate: NSDate?
 
-    var name: String?
-    var email: String?
+    var name: String!
+    var email: String!
 
-    var role: RoleDto?
+    var role: RoleDto!
+
+    init(id: Int64, creationDate: NSDate, updateDate: NSDate? = nil, name: String, email: String, role: RoleDto) {
+
+        self.creationDate = creationDate
+        self.updateDate = updateDate
+        self.name = name
+        self.email = email
+        self.role = role
+
+        super.init(id: id)
+    }
 
     required init?(_ map: Map) {
         super.init(map)

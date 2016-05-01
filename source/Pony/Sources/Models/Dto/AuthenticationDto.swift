@@ -8,13 +8,23 @@ import ObjectMapper
 
 class AuthenticationDto: Mappable {
 
-    var accessToken: String?
-    var accessTokenExpiration: NSDate?
+    var accessToken: String!
+    var accessTokenExpiration: NSDate!
 
-    var refreshToken: String?
-    var refreshTokenExpiration: NSDate?
+    var refreshToken: String!
+    var refreshTokenExpiration: NSDate!
 
-    var user: UserDto?
+    var user: UserDto!
+
+    init(accessToken: String, accessTokenExpiration: NSDate,
+         refreshToken: String, refreshTokenExpiration: NSDate,
+         user: UserDto) {
+        self.accessToken = accessToken
+        self.accessTokenExpiration = accessTokenExpiration
+        self.refreshToken = refreshToken
+        self.refreshTokenExpiration = refreshTokenExpiration
+        self.user = user
+    }
 
     required init?(_ map: Map) {}
 

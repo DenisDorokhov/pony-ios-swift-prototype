@@ -221,16 +221,11 @@ class RestServiceImpl: RestService {
                                          _ onFailure: ([ErrorDto] -> Void)?) {
         executeResponseCallback(response, {
             dto in
-            if let data = dto.data {
-                onSuccess?(data)
-            } else {
-                self.log.error("API returned nil data array.")
-                onFailure?([ErrorDto.unexpected])
-            }
+            onSuccess?(dto.data!)
         }, onFailure)
     }
 
-    private func executeResponseCallback<T:ResponseDto>(response: Response<T, NSError>,
+    private func executeResponseCallback<T: ResponseDto>(response: Response<T, NSError>,
                                                         _ onSuccess: (T -> Void)?,
                                                         _ onFailure: ([ErrorDto] -> Void)?) {
         if response.result.isSuccess {
@@ -238,13 +233,8 @@ class RestServiceImpl: RestService {
             if dto.successful ?? false {
                 onSuccess?(dto)
             } else {
-                if let errors = dto.errors {
-                    log.error("API response errors: \(errors)")
-                    onFailure?(errors)
-                } else {
-                    log.error("API returned nil errors.")
-                    onFailure?([ErrorDto.unexpected])
-                }
+                log.error("API response errors: \(dto.errors)")
+                onFailure?(dto.errors)
             }
         } else {
             log.error("API request error: \(response.result.error!).")

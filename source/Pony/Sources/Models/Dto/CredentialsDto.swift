@@ -8,8 +8,8 @@ import ObjectMapper
 
 class CredentialsDto: Mappable {
 
-    var email: String?
-    var password: String?
+    var email: String!
+    var password: String!
 
     init(email: String, password: String) {
         self.email = email

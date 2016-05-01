@@ -10,19 +10,19 @@ class SongDto: AbstractDto {
 
     var updateDate: NSDate?
 
-    var url: String?
+    var url: String!
 
-    var size: Int64?
+    var size: Int64!
 
-    var duration: Int?
+    var duration: Int!
     var discNumber: Int?
     var trackNumber: Int?
 
     var artistName: String?
     var name: String?
 
-    var album: AlbumDto?
-    var genre: GenreDto?
+    var album: AlbumDto!
+    var genre: GenreDto!
 
     required init?(_ map: Map) {
         super.init(map)

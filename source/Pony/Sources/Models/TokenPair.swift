@@ -8,14 +8,14 @@ import ObjectMapper
 
 class TokenPair: Mappable {
 
-    private(set) var accessToken: String?
-    private(set) var accessTokenExpiration: NSDate?
+    private(set) var accessToken: String!
+    private(set) var accessTokenExpiration: NSDate!
 
-    private(set) var refreshToken: String?
-    private(set) var refreshTokenExpiration: NSDate?
+    private(set) var refreshToken: String!
+    private(set) var refreshTokenExpiration: NSDate!
 
-    init(accessToken: String?, accessTokenExpiration: NSDate?,
-         refreshToken: String?, refreshTokenExpiration: NSDate?) {
+    init(accessToken: String, accessTokenExpiration: NSDate,
+         refreshToken: String, refreshTokenExpiration: NSDate) {
         self.accessToken = accessToken
         self.accessTokenExpiration = accessTokenExpiration
         self.refreshToken = refreshToken

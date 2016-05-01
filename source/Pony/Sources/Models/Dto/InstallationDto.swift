@@ -8,7 +8,7 @@ import ObjectMapper
 
 class InstallationDto: Mappable {
 
-    var version: String?
+    var version: String!
 
     required init?(_ map: Map) {}
 

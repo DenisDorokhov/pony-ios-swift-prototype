@@ -16,7 +16,6 @@ class RestServiceSpec: QuickSpec {
     private let DEMO_PASSWORD = "demo"
 
     override func spec() {
-
         describe("RestServiceImpl") {
 
             var service: RestServiceImpl!
@@ -126,7 +125,7 @@ class RestServiceSpec: QuickSpec {
             it("should get artist albums") {
                 authenticate(credentials)
                 let artists = getArtists()
-                getArtistAlbums(artists[0].id!)
+                getArtistAlbums(artists[0].id)
             }
 
             it("should download image") {
@@ -142,11 +141,11 @@ class RestServiceSpec: QuickSpec {
             it("should download song") {
                 authenticate(credentials)
                 let artists = getArtists()
-                let artistAlbums = getArtistAlbums(artists[0].id!)
+                let artistAlbums = getArtistAlbums(artists[0].id)
                 let filePath = FileUtils.generateTemporaryPath()
                 var progressCalled = false
                 var completed = false
-                service.downloadSong(artistAlbums.albums![0].songs![0].url!, toFile: filePath, onProgress: {
+                service.downloadSong(artistAlbums.albums[0].songs[0].url, toFile: filePath, onProgress: {
                     progress in
                     progressCalled = true
                 }, onSuccess: {

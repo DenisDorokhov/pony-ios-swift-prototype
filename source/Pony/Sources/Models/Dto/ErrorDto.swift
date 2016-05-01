@@ -50,11 +50,12 @@ class ErrorDto: Mappable, CustomStringConvertible {
         return ErrorDto(code: CODE_UNEXPECTED, text: "Unexpected error occurred.")
     }
 
-    var field: String?
-    var code: String?
-    var text: String?
+    var code: String!
+    var text: String!
 
     var arguments: [String]?
+
+    var field: String?
 
     init(code: String, text: String, arguments: [String]? = nil, field: String? = nil) {
         self.field = field
@@ -78,7 +79,7 @@ class ErrorDto: Mappable, CustomStringConvertible {
         var result: [ErrorDto] = []
         for error in errors {
             for code in codes {
-                if error.code == code || error.code?.hasPrefix("\(code).") ?? false {
+                if error.code == code || error.code.hasPrefix("\(code).") {
                     result.append(error)
                 }
             }

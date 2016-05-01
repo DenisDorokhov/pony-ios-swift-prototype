@@ -8,9 +8,9 @@ import ObjectMapper
 
 class ResponseDto {
 
-    var version: String?
-    var successful: Bool?
-    var errors: [ErrorDto]?
+    var version: String!
+    var successful: Bool!
+    var errors: [ErrorDto]!
 
     required init?(_ map: Map) {}
 
