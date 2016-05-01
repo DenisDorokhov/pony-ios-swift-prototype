@@ -32,9 +32,9 @@ class RestServiceSpec: QuickSpec {
 
             let credentials = CredentialsDto(email: self.DEMO_EMAIL, password: self.DEMO_PASSWORD)
 
-            let authenticate: (CredentialsDto -> AuthenticationDto) = {
+            let authenticate: CredentialsDto -> AuthenticationDto? = {
                 credentials in
-                var authentication: AuthenticationDto!
+                var authentication: AuthenticationDto?
                 waitUntil {
                     done in
                     service.authenticate(credentials, onSuccess: {
@@ -45,8 +45,8 @@ class RestServiceSpec: QuickSpec {
                 }
                 return authentication
             }
-            let getArtists: (Void -> [ArtistDto]) = {
-                var artists: [ArtistDto]!
+            let getArtists: Void -> [ArtistDto]? = {
+                var artists: [ArtistDto]?
                 waitUntil {
                     done in
                     service.getArtists(onSuccess: {
@@ -56,9 +56,9 @@ class RestServiceSpec: QuickSpec {
                 }
                 return artists
             }
-            let getArtistAlbums: (Int64 -> ArtistAlbumsDto) = {
+            let getArtistAlbums: Int64 -> ArtistAlbumsDto? = {
                 artistId in
-                var artistAlbums: ArtistAlbumsDto!
+                var artistAlbums: ArtistAlbumsDto?
                 waitUntil {
                     done in
                     service.getArtistAlbums(artistId, onSuccess: {
@@ -119,41 +119,53 @@ class RestServiceSpec: QuickSpec {
 
             it("should get artists") {
                 authenticate(credentials)
-                getArtists()
+                expect(getArtists()).toNot(beNil())
             }
 
             it("should get artist albums") {
                 authenticate(credentials)
-                let artists = getArtists()
-                getArtistAlbums(artists[0].id)
+                if let artists = getArtists() {
+                    expect(getArtistAlbums(artists[0].id)).toNot(beNil())
+                } else {
+                    fail()
+                }
             }
 
             it("should download image") {
                 authenticate(credentials)
-                let artists = getArtists()
-                var image: UIImage?
-                service.downloadImage(artists[0].artworkUrl!, onSuccess: {
-                    image = $0
-                })
-                expect(image).toEventuallyNot(beNil())
+                if let artists = getArtists() {
+                    var image: UIImage?
+                    service.downloadImage(artists[0].artworkUrl!, onSuccess: {
+                        image = $0
+                    })
+                    expect(image).toEventuallyNot(beNil())
+                } else {
+                    fail()
+                }
             }
 
             it("should download song") {
                 authenticate(credentials)
-                let artists = getArtists()
-                let artistAlbums = getArtistAlbums(artists[0].id)
-                let filePath = FileUtils.generateTemporaryPath()
-                var progressCalled = false
-                var completed = false
-                service.downloadSong(artistAlbums.albums[0].songs[0].url, toFile: filePath, onProgress: {
-                    progress in
-                    progressCalled = true
-                }, onSuccess: {
-                    completed = true
-                })
-                expect(completed).toEventually(beTrue(), timeout: 10)
-                expect(progressCalled).to(beTrue())
-                expect(NSFileManager.defaultManager().fileExistsAtPath(filePath)).to(beTrue())
+                if let artists = getArtists() {
+                    if let artistAlbums = getArtistAlbums(artists[0].id) {
+                        let filePath = FileUtils.generateTemporaryPath()
+                        var progressCalled = false
+                        var completed = false
+                        service.downloadSong(artistAlbums.albums[0].songs[0].url, toFile: filePath, onProgress: {
+                            progress in
+                            progressCalled = true
+                        }, onSuccess: {
+                            completed = true
+                        })
+                        expect(completed).toEventually(beTrue(), timeout: 10)
+                        expect(progressCalled).to(beTrue())
+                        expect(NSFileManager.defaultManager().fileExistsAtPath(filePath)).to(beTrue())
+                    } else {
+                        fail()
+                    }
+                } else {
+                    fail()
+                }
             }
         }
     }

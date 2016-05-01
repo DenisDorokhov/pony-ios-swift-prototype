@@ -72,8 +72,8 @@ class AuthServiceSpec: QuickSpec {
                 TestUtils.cleanAll()
             }
 
-            let authenticate: Void -> UserDto = {
-                var user: UserDto!
+            let authenticate: Void -> UserDto? = {
+                var user: UserDto?
                 waitUntil {
                     done in
                     authService.authenticate(buildCredentialsMock(), onSuccess: {
@@ -83,8 +83,8 @@ class AuthServiceSpec: QuickSpec {
                 }
                 return user
             }
-            let updateUser: Void -> UserDto = {
-                var user: UserDto!
+            let updateUser: Void -> UserDto? = {
+                var user: UserDto?
                 waitUntil {
                     done in
                     authService.updateUser(onSuccess: {
