@@ -90,13 +90,9 @@ class BootstrapServiceSpec: QuickSpec {
                 TestUtils.cleanAll()
             }
 
-            it("should start bootstrap") {
+            it("should start bootstrap and require rest url") {
                 bootstrapService.bootstrap()
                 expect(delegateMock.didStartBootstrap).to(beTrue())
-            }
-
-            it("should require rest url") {
-                bootstrapService.bootstrap()
                 expect(delegateMock.didRequireRestUrl).to(beTrue())
             }
 

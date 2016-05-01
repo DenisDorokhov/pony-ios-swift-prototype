@@ -16,6 +16,9 @@ class RestServiceSpec: QuickSpec {
     private let DEMO_PASSWORD = "demo"
 
     override func spec() {
+
+        Nimble.AsyncDefaults.Timeout = 5
+
         describe("RestServiceImpl") {
 
             var service: RestServiceImpl!
