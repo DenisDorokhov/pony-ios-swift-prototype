@@ -25,7 +25,7 @@ class AuthService {
     var tokenPairDao: TokenPairDao!
     var restService: RestService!
 
-    var authenticated: Bool {
+    var isAuthenticated: Bool {
         return currentUser != nil
     }
 
@@ -49,7 +49,7 @@ class AuthService {
                       onSuccess: (UserDto -> Void)? = nil,
                       onFailure: ([ErrorDto] -> Void)? = nil) {
 
-        if authenticated {
+        if isAuthenticated {
             log.warning("User is already authenticated, logging out...")
             logout()
         }
@@ -67,7 +67,7 @@ class AuthService {
         authenticationRequest = restService.authenticate(credentials, onSuccess: {
             authentication in
 
-            self.authenticationRequest = nil;
+            self.authenticationRequest = nil
 
             self.updateAuthentication(authentication)
 
@@ -97,7 +97,7 @@ class AuthService {
             log.info("Updating authentication status...")
 
             authenticationRequest?.cancel()
-            authenticationRequest = nil;
+            authenticationRequest = nil
 
             updateUserRequest?.cancel()
             updateUserRequest = restService.getCurrentUser(onSuccess: {
@@ -105,7 +105,7 @@ class AuthService {
 
                 self.currentUser = user
 
-                self.updateUserRequest = nil;
+                self.updateUserRequest = nil
 
                 let email = user.email ?? ""
                 self.log.info("User '\(email)' is authenticated.")
@@ -139,7 +139,7 @@ class AuthService {
         if let lastUser = currentUser {
 
             let email = lastUser.email ?? ""
-            log.info("Logging out user '\(email)'...");
+            log.info("Logging out user '\(email)'...")
 
             restService.logout(onSuccess: {
                 onSuccess?($0)
@@ -267,7 +267,7 @@ class AuthService {
     private func scheduleAccessTokenExpirationCheck() {
         NSTimer.after(10.seconds) {
             [weak self] in
-            if self?.authenticated ?? false {
+            if self?.isAuthenticated ?? false {
                 self?.checkAccessTokenExpiration {
                     self?.scheduleAccessTokenExpirationCheck()
                 }

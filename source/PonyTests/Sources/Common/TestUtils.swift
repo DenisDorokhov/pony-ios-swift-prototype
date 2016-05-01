@@ -32,7 +32,7 @@ class TestUtils {
     }
 
     static func cleanUserDefaults() {
-        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(NSBundle.mainBundle().bundleIdentifier!);
+        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(NSBundle.mainBundle().bundleIdentifier!)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
 

@@ -13,6 +13,7 @@
 		3956DC758D9AA584E5A35383 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE1A90DE10DFBC548CAF88 /* Pods.framework */; };
 		561A3C9C416CA6582C3DD4B7 /* Pods_PonyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A72F40AC0753B824B6BB77 /* Pods_PonyTests.framework */; };
 		B3D3907803E98A8DBC6F87D6 /* AuthenticationDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D398BA996EBE41A6E4F180 /* AuthenticationDto.swift */; };
+		B3D39122BB0E1E81E2A58A90 /* BootstrapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39F52401F016C133B0CEA /* BootstrapService.swift */; };
 		B3D39198471030D8D5D6D5FC /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39BF5AAB8ECFB44483D19 /* AuthService.swift */; };
 		B3D391F087103A60630996B3 /* ArtistAlbumsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39ED28CB931F15188E53C /* ArtistAlbumsDto.swift */; };
 		B3D391F10C9664010A531F27 /* ArtistDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D392ABB0ED805D4E4D69EC /* ArtistDto.swift */; };
@@ -93,6 +94,7 @@
 		B3D39E77BE46BD5EEECED290 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B3D39E8AA3ED63236F004023 /* TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		B3D39ED28CB931F15188E53C /* ArtistAlbumsDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistAlbumsDto.swift; sourceTree = "<group>"; };
+		B3D39F52401F016C133B0CEA /* BootstrapService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BootstrapService.swift; sourceTree = "<group>"; };
 		B3D39F7836C26765E953B37C /* ResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseDto.swift; sourceTree = "<group>"; };
 		B3D39FB5683940F8C4F44E92 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 		B3D39FEB986753D323CE1837 /* AlamofireManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				B3D39A40ACC21728156084E8 /* Rest */,
 				B3D39D38A30582C055F490A2 /* Dao */,
 				B3D39BF5AAB8ECFB44483D19 /* AuthService.swift */,
+				B3D39F52401F016C133B0CEA /* BootstrapService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				B3D39D26AB503C4EAED027ED /* RestService.swift in Sources */,
 				B3D39A7134E553F3DB1D0D53 /* Int64Transform.swift in Sources */,
 				B3D39198471030D8D5D6D5FC /* AuthService.swift in Sources */,
+				B3D39122BB0E1E81E2A58A90 /* BootstrapService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
