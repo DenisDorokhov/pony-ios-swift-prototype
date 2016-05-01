@@ -25,7 +25,6 @@ class BootstrapService {
     private let log = XCGLogger.defaultInstance()
 
     var restUrlDao: RestUrlDao!
-    var restService: RestService!
     var authService: AuthService!
 
     private var delegates: OrderedSet<NSValue> = []

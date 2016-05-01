@@ -10,7 +10,7 @@ import SwiftDate
 
 @testable import Pony
 
-class AuthServiceDelegateMock: AuthServiceDelegate {
+private class AuthServiceDelegateMock: AuthServiceDelegate {
 
     var didAuthenticateUser: UserDto?
     var didUpdateUser: UserDto?
@@ -29,13 +29,15 @@ class AuthServiceDelegateMock: AuthServiceDelegate {
     }
 }
 
-func buildCredentialsMock() -> CredentialsDto {
+private func buildCredentialsMock() -> CredentialsDto {
     return CredentialsDto(email: "foo@bar.com", password: "demo")
 }
-func buildUserMock() -> UserDto {
+
+private func buildUserMock() -> UserDto {
     return UserDto(id: 1, creationDate: NSDate(), name: "Foobar", email: "foo@bar.com", role: .User)
 }
-func buildAuthenticationMock(accessTokenExpiration accessTokenExpiration: NSDate = 1.days.ago, refreshTokenExpiration: NSDate = 1.days.ago) -> AuthenticationDto {
+
+private func buildAuthenticationMock(accessTokenExpiration accessTokenExpiration: NSDate = 1.days.ago, refreshTokenExpiration: NSDate = 1.days.ago) -> AuthenticationDto {
     return AuthenticationDto(accessToken: "someAccessToken", accessTokenExpiration: accessTokenExpiration,
             refreshToken: "someRefreshToken", refreshTokenExpiration: refreshTokenExpiration,
             user: buildUserMock())
