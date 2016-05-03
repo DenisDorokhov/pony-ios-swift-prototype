@@ -21,13 +21,13 @@ class TestUtils {
         let fileManager = NSFileManager.defaultManager()
 
         for item in try! fileManager.contentsOfDirectoryAtPath(FileUtils.documentsPath) {
-            try! fileManager.removeItemAtPath(NSString(string: FileUtils.documentsPath).stringByAppendingPathComponent(item))
+            let _ = try? fileManager.removeItemAtPath(NSString(string: FileUtils.documentsPath).stringByAppendingPathComponent(item))
         }
         for item in try! fileManager.contentsOfDirectoryAtPath(FileUtils.cachePath) {
-            try! fileManager.removeItemAtPath(NSString(string: FileUtils.cachePath).stringByAppendingPathComponent(item))
+            let _ = try? fileManager.removeItemAtPath(NSString(string: FileUtils.cachePath).stringByAppendingPathComponent(item))
         }
         for item in try! fileManager.contentsOfDirectoryAtPath(FileUtils.temporaryPath) {
-            try! fileManager.removeItemAtPath(NSString(string: FileUtils.temporaryPath).stringByAppendingPathComponent(item))
+            let _ = try? fileManager.removeItemAtPath(NSString(string: FileUtils.temporaryPath).stringByAppendingPathComponent(item))
         }
     }
 

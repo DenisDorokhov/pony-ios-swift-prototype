@@ -11,6 +11,11 @@ class AlbumSongsDto: Mappable {
     var album: AlbumDto!
     var songs: [SongDto]!
 
+    init(album: AlbumDto, songs: [SongDto]) {
+        self.album = album
+        self.songs = songs
+    }
+
     required init?(_ map: Map) {}
 
     func mapping(map: Map) {

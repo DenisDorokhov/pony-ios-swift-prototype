@@ -5,8 +5,11 @@
 
 import Foundation
 import Alamofire
+import XCGLogger
 
 class AlamofireManager: Manager {
+
+    private let log = XCGLogger.defaultInstance()
 
     var debug: Bool
 
@@ -25,10 +28,10 @@ class AlamofireManager: Manager {
         let request = super.request(URLRequest)
         if debug {
             // TODO: more readable request dump
-            print("RestManager request:\n\(request.debugDescription)")
+            log.debug("RestManager request:\n\(request.debugDescription)")
             request.response {
                 request, response, data, error in
-                print("RestManager response:\n\(self.dumpResponse(request, response, data, error))")
+                self.log.debug("RestManager response:\n\(self.dumpResponse(request, response, data, error))")
             }
         }
         return request

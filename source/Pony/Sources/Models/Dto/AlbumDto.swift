@@ -14,6 +14,11 @@ class AlbumDto: AbstractDto {
     var artworkUrl: String?
     var artist: ArtistDto!
 
+    init(id: Int64, artist: ArtistDto) {
+        self.artist = artist
+        super.init(id: id)
+    }
+
     required init?(_ map: Map) {
         super.init(map)
     }

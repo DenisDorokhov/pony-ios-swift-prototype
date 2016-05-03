@@ -24,6 +24,12 @@ class SongDto: AbstractDto {
     var album: AlbumDto!
     var genre: GenreDto!
 
+    init(id: Int64, album: AlbumDto, genre: GenreDto) {
+        self.album = album
+        self.genre = genre
+        super.init(id: id)
+    }
+
     required init?(_ map: Map) {
         super.init(map)
     }

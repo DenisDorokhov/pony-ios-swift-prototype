@@ -10,6 +10,11 @@ PODS:
   - ObjectMapper (1.2.0)
   - OrderedSet (1.0.0)
   - Quick (0.9.2)
+  - Realm (0.100.0):
+    - Realm/Headers (= 0.100.0)
+  - Realm/Headers (0.100.0)
+  - RealmSwift (0.100.0):
+    - Realm (= 0.100.0)
   - SwiftDate (3.0.8)
   - SwiftyTimer (1.4.0)
   - Swinject (1.1.1)
@@ -23,6 +28,7 @@ DEPENDENCIES:
   - Nimble (= 4.0.1)
   - OrderedSet (from `https://github.com/Weebly/OrderedSet.git`, commit `39ac853`)
   - Quick (= 0.9.2)
+  - RealmSwift (= 0.100.0)
   - SwiftDate (= 3.0.8)
   - SwiftyTimer (= 1.4.0)
   - Swinject (= 1.1.1)
@@ -47,6 +53,8 @@ SPEC CHECKSUMS:
   ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
   OrderedSet: 5e8872b82a91128ab1b3e3ff70a048dd9d4cab6c
   Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
+  Realm: b13b548e712d28a66678970c45cd245ebb94ba3b
+  RealmSwift: 1bb0ba2ceaa06b65d740b4f91bfa06e3fd1b805c
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftyTimer: db4458cfaf67fc71e16ad6e4637c60b86f76a649
   Swinject: 8c1b46e49c604f8c5c1f45f92ef314d3736bbef4

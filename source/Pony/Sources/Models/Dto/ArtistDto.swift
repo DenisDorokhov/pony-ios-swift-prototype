@@ -12,6 +12,10 @@ class ArtistDto: AbstractDto {
     var artwork: Int64?
     var artworkUrl: String?
 
+    override init(id: Int64) {
+        super.init(id: id)
+    }
+
     required init?(_ map: Map) {
         super.init(map)
     }
