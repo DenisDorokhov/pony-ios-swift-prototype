@@ -38,7 +38,7 @@ class RestServiceSpec: QuickSpec {
             let authenticate: CredentialsDto -> AuthenticationDto? = {
                 credentials in
                 var authentication: AuthenticationDto?
-                waitUntil {
+                waitUntil(timeout: Nimble.AsyncDefaults.Timeout) {
                     done in
                     service.authenticate(credentials, onSuccess: {
                         authentication = $0
@@ -50,7 +50,7 @@ class RestServiceSpec: QuickSpec {
             }
             let getArtists: Void -> [ArtistDto]? = {
                 var artists: [ArtistDto]?
-                waitUntil {
+                waitUntil(timeout: Nimble.AsyncDefaults.Timeout) {
                     done in
                     service.getArtists(onSuccess: {
                         artists = $0
@@ -62,7 +62,7 @@ class RestServiceSpec: QuickSpec {
             let getArtistAlbums: Int64 -> ArtistAlbumsDto? = {
                 artistId in
                 var artistAlbums: ArtistAlbumsDto?
-                waitUntil {
+                waitUntil(timeout: Nimble.AsyncDefaults.Timeout) {
                     done in
                     service.getArtistAlbums(artistId, onSuccess: {
                         artistAlbums = $0

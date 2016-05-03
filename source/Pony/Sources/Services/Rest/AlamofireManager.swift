@@ -28,10 +28,10 @@ class AlamofireManager: Manager {
         let request = super.request(URLRequest)
         if debug {
             // TODO: more readable request dump
-            log.debug("RestManager request:\n\(request.debugDescription)")
+            log.debug("RestManager request:\n\(request.debugDescription)\n")
             request.response {
                 request, response, data, error in
-                self.log.debug("RestManager response:\n\(self.dumpResponse(request, response, data, error))")
+                self.log.debug("RestManager response:\n\(self.dumpResponse(request, response, data, error))\n")
             }
         }
         return request
@@ -63,6 +63,6 @@ class AlamofireManager: Manager {
             }
         }
 
-        return output.joinWithSeparator("\n") + "\n"
+        return output.joinWithSeparator("\n")
     }
 }
