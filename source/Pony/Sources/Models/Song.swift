@@ -6,8 +6,9 @@
 import Foundation
 import ObjectMapper
 
-class SongDto: AbstractDto {
+class Song: Mappable {
 
+    var id: Int64!
     var updateDate: NSDate?
 
     var url: String!
@@ -21,22 +22,19 @@ class SongDto: AbstractDto {
     var artistName: String?
     var name: String?
 
-    var album: AlbumDto!
-    var genre: GenreDto!
+    var album: Album!
+    var genre: Genre!
 
-    init(id: Int64, album: AlbumDto, genre: GenreDto) {
+    init(id: Int64, album: Album, genre: Genre) {
+        self.id = id
         self.album = album
         self.genre = genre
-        super.init(id: id)
     }
 
-    required init?(_ map: Map) {
-        super.init(map)
-    }
+    required init?(_ map: Map) {}
 
-    override func mapping(map: Map) {
-        super.mapping(map)
-
+    func mapping(map: Map) {
+        id <- (map["id"], Int64Transform())
         updateDate <- (map["name"], DateTransform())
         url <- map["url"]
         size <- (map["size"], Int64Transform())

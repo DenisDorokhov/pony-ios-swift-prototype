@@ -6,12 +6,14 @@
 import Foundation
 import ObjectMapper
 
-enum RoleDto: String {
+enum Role: String {
     case User = "USER"
     case Admin = "ADMIN"
 }
 
-class UserDto: AbstractDto {
+class User: Mappable {
+
+    var id: Int64!
 
     var creationDate: NSDate!
     var updateDate: NSDate?
@@ -19,26 +21,21 @@ class UserDto: AbstractDto {
     var name: String!
     var email: String!
 
-    var role: RoleDto!
+    var role: Role!
 
-    init(id: Int64, creationDate: NSDate, updateDate: NSDate? = nil, name: String, email: String, role: RoleDto) {
-
+    init(id: Int64, creationDate: NSDate, updateDate: NSDate? = nil, name: String, email: String, role: Role) {
+        self.id = id
         self.creationDate = creationDate
         self.updateDate = updateDate
         self.name = name
         self.email = email
         self.role = role
-
-        super.init(id: id)
     }
 
-    required init?(_ map: Map) {
-        super.init(map)
-    }
+    required init?(_ map: Map) {}
 
-    override func mapping(map: Map) {
-        super.mapping(map)
-
+    func mapping(map: Map) {
+        id <- (map["id"], Int64Transform())
         creationDate <- (map["creationDate"], DateTransform())
         updateDate <- (map["updateDate"], DateTransform())
         name <- map["name"]

@@ -6,12 +6,12 @@
 import Foundation
 import ObjectMapper
 
-class ArtistAlbumsDto: Mappable {
+class ArtistAlbums: Mappable {
 
-    var artist: ArtistDto!
-    var albums: [AlbumSongsDto]!
+    var artist: Artist!
+    var albums: [AlbumSongs]!
 
-    init(artist: ArtistDto, albums: [AlbumSongsDto]) {
+    init(artist: Artist, albums: [AlbumSongs]) {
         self.artist = artist
         self.albums = albums
     }

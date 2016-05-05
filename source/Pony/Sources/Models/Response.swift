@@ -6,11 +6,11 @@
 import Foundation
 import ObjectMapper
 
-class ResponseDto {
+class Response {
 
     var version: String!
     var successful: Bool!
-    var errors: [ErrorDto]!
+    var errors: [Error]!
 
     required init?(_ map: Map) {}
 
@@ -21,7 +21,7 @@ class ResponseDto {
     }
 }
 
-class ObjectResponseDto<T: Mappable>: ResponseDto, Mappable {
+class ObjectResponse<T: Mappable>: Response, Mappable {
 
     var data: T?
 
@@ -36,7 +36,7 @@ class ObjectResponseDto<T: Mappable>: ResponseDto, Mappable {
     }
 }
 
-class ArrayResponseDto<T: Mappable>: ResponseDto, Mappable {
+class ArrayResponse<T: Mappable>: Response, Mappable {
 
     var data: [T]?
 

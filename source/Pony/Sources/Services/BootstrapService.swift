@@ -17,7 +17,7 @@ protocol BootstrapServiceDelegate: class {
     func bootstrapServiceDidRequireRestUrl(bootstrapService: BootstrapService)
     func bootstrapServiceDidRequireAuthentication(bootstrapService: BootstrapService)
 
-    func bootstrapService(bootstrapService: BootstrapService, didFailWithErrors errors: [ErrorDto])
+    func bootstrapService(bootstrapService: BootstrapService, didFailWithErrors errors: [Error])
 }
 
 class BootstrapService {
@@ -92,7 +92,7 @@ class BootstrapService {
         }, onFailure: {
             errors in
             self.isBootstrapping = false
-            if ErrorDto.fetchFirstByCodes([ErrorDto.CODE_ACCESS_DENIED], fromArray: errors) != nil {
+            if Error.fetchFirstByCodes([Error.CODE_ACCESS_DENIED], fromArray: errors) != nil {
                 self.log.info("Bootstrapping requires authentication.")
                 for delegate in self.fetchDelegates() {
                     delegate.bootstrapServiceDidRequireAuthentication(self)

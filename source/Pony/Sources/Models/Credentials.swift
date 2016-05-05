@@ -6,7 +6,7 @@
 import Foundation
 import ObjectMapper
 
-class CredentialsDto: Mappable {
+class Credentials: Mappable {
 
     var email: String!
     var password: String!

@@ -9,9 +9,9 @@ import SwiftyTimer
 import XCGLogger
 
 protocol AuthServiceDelegate: class {
-    func authService(authService: AuthService, didAuthenticateUser user: UserDto)
-    func authService(authService: AuthService, didUpdateUser user: UserDto)
-    func authService(authService: AuthService, didLogoutUser user: UserDto)
+    func authService(authService: AuthService, didAuthenticateUser user: User)
+    func authService(authService: AuthService, didUpdateUser user: User)
+    func authService(authService: AuthService, didLogoutUser user: User)
 }
 
 class AuthService {
@@ -28,7 +28,7 @@ class AuthService {
         return currentUser != nil
     }
 
-    private(set) var currentUser: UserDto?
+    private(set) var currentUser: User?
 
     private var delegates: OrderedSet<NSValue> = []
 
@@ -44,9 +44,9 @@ class AuthService {
         delegates.remove(NSValue(nonretainedObject: delegate))
     }
 
-    func authenticate(credentials: CredentialsDto,
-                      onSuccess: (UserDto -> Void)? = nil,
-                      onFailure: ([ErrorDto] -> Void)? = nil) {
+    func authenticate(credentials: Credentials,
+                      onSuccess: (User -> Void)? = nil,
+                      onFailure: ([Error] -> Void)? = nil) {
 
         if isAuthenticated {
             log.warning("User is already authenticated, logging out...")
@@ -85,8 +85,8 @@ class AuthService {
         })
     }
 
-    func updateUser(onSuccess onSuccess: (UserDto -> Void)? = nil,
-                    onFailure: ([ErrorDto] -> Void)? = nil) {
+    func updateUser(onSuccess onSuccess: (User -> Void)? = nil,
+                    onFailure: ([Error] -> Void)? = nil) {
 
         if tokenPairDao.fetchTokenPair() != nil {
 
@@ -115,12 +115,12 @@ class AuthService {
 
         } else {
             log.info("Skipping status update: no token found.")
-            onFailure?([ErrorDto.accessDenied])
+            onFailure?([Error.accessDenied])
         }
     }
 
-    func logout(onSuccess onSuccess: (UserDto -> Void)? = nil,
-                onFailure: ([ErrorDto] -> Void)? = nil) {
+    func logout(onSuccess onSuccess: (User -> Void)? = nil,
+                onFailure: ([Error] -> Void)? = nil) {
 
         authenticationRequest?.cancel()
         authenticationRequest = nil
@@ -152,7 +152,7 @@ class AuthService {
             clearAuthentication()
 
             log.info("Skipping log out: user is not authenticated.")
-            onFailure?([ErrorDto.accessDenied])
+            onFailure?([Error.accessDenied])
         }
     }
 
@@ -175,19 +175,19 @@ class AuthService {
         }
     }
 
-    private func onUpdateUserRequestFailure(errors: [ErrorDto],
-                                            onSuccess: (UserDto -> Void)?,
-                                            onFailure: ([ErrorDto] -> Void)?) {
-        if ErrorDto.fetchFirstByCodes([
-                ErrorDto.CODE_CLIENT_REQUEST_FAILED,
-                ErrorDto.CODE_CLIENT_REQUEST_CANCELLED,
-                ErrorDto.CODE_CLIENT_REQUEST_TIMEOUT,
-                ErrorDto.CODE_CLIENT_OFFLINE], fromArray: errors) != nil {
+    private func onUpdateUserRequestFailure(errors: [Error],
+                                            onSuccess: (User -> Void)?,
+                                            onFailure: ([Error] -> Void)?) {
+        if Error.fetchFirstByCodes([
+                Error.CODE_CLIENT_REQUEST_FAILED,
+                Error.CODE_CLIENT_REQUEST_CANCELLED,
+                Error.CODE_CLIENT_REQUEST_TIMEOUT,
+                Error.CODE_CLIENT_OFFLINE], fromArray: errors) != nil {
 
             log.error("Could not update authentication status (client error): \(errors).")
             onFailure?(errors)
 
-        } else if ErrorDto.fetchFirstByCodes([ErrorDto.CODE_ACCESS_DENIED], fromArray: errors) != nil {
+        } else if Error.fetchFirstByCodes([Error.CODE_ACCESS_DENIED], fromArray: errors) != nil {
 
             if refreshTokenRequest == nil {
                 log.info("Could not update authentication status, access is denied, trying to refresh token...")
@@ -206,7 +206,7 @@ class AuthService {
         }
     }
 
-    private func updateAuthentication(authentication: AuthenticationDto) {
+    private func updateAuthentication(authentication: Authentication) {
         tokenPairDao.storeTokenPair(TokenPair(authentication: authentication))
         currentUser = authentication.user
     }
@@ -216,7 +216,7 @@ class AuthService {
         currentUser = nil
     }
 
-    private func refreshToken(onSuccess onSuccess: (AuthenticationDto -> Void)?, onFailure: ([ErrorDto] -> Void)?) {
+    private func refreshToken(onSuccess onSuccess: (Authentication -> Void)?, onFailure: ([Error] -> Void)?) {
         if tokenPairDao.fetchTokenPair() != nil {
 
             log.info("Refreshing access token...")
@@ -242,7 +242,7 @@ class AuthService {
 
                 onFailure?(errors)
 
-                if ErrorDto.fetchFirstByCodes([ErrorDto.CODE_ACCESS_DENIED], fromArray: errors) != nil {
+                if Error.fetchFirstByCodes([Error.CODE_ACCESS_DENIED], fromArray: errors) != nil {
 
                     let lastUser = self.currentUser
 
@@ -255,7 +255,7 @@ class AuthService {
 
         } else {
             log.info("Skipping token refresh: no token found.")
-            onFailure?([ErrorDto.accessDenied])
+            onFailure?([Error.accessDenied])
         }
     }
 
@@ -272,19 +272,19 @@ class AuthService {
         }
     }
 
-    private func propagateAuthentication(user: UserDto) {
+    private func propagateAuthentication(user: User) {
         for delegate in fetchDelegates() {
             delegate.authService(self, didAuthenticateUser: user)
         }
     }
 
-    private func propagateUserUpdate(user: UserDto) {
+    private func propagateUserUpdate(user: User) {
         for delegate in fetchDelegates() {
             delegate.authService(self, didUpdateUser: user)
         }
     }
 
-    private func propagateLogout(user: UserDto) {
+    private func propagateLogout(user: User) {
         for delegate in fetchDelegates() {
             delegate.authService(self, didLogoutUser: user)
         }

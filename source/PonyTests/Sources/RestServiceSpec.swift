@@ -33,11 +33,11 @@ class RestServiceSpec: QuickSpec {
                 TestUtils.cleanAll()
             }
 
-            let credentials = CredentialsDto(email: self.DEMO_EMAIL, password: self.DEMO_PASSWORD)
+            let credentials = Credentials(email: self.DEMO_EMAIL, password: self.DEMO_PASSWORD)
 
-            let authenticate: CredentialsDto -> AuthenticationDto? = {
+            let authenticate: Credentials -> Authentication? = {
                 credentials in
-                var authentication: AuthenticationDto?
+                var authentication: Authentication?
                 waitUntil(timeout: Nimble.AsyncDefaults.Timeout) {
                     done in
                     service.authenticate(credentials, onSuccess: {
@@ -48,8 +48,8 @@ class RestServiceSpec: QuickSpec {
                 }
                 return authentication
             }
-            let getArtists: Void -> [ArtistDto]? = {
-                var artists: [ArtistDto]?
+            let getArtists: Void -> [Artist]? = {
+                var artists: [Artist]?
                 waitUntil(timeout: Nimble.AsyncDefaults.Timeout) {
                     done in
                     service.getArtists(onSuccess: {
@@ -59,9 +59,9 @@ class RestServiceSpec: QuickSpec {
                 }
                 return artists
             }
-            let getArtistAlbums: Int64 -> ArtistAlbumsDto? = {
+            let getArtistAlbums: Int64 -> ArtistAlbums? = {
                 artistId in
-                var artistAlbums: ArtistAlbumsDto?
+                var artistAlbums: ArtistAlbums?
                 waitUntil(timeout: Nimble.AsyncDefaults.Timeout) {
                     done in
                     service.getArtistAlbums(artistId, onSuccess: {
@@ -74,7 +74,7 @@ class RestServiceSpec: QuickSpec {
 
             it("should handle errors") {
                 service.restUrlDao = RestUrlDaoMock(url: "http://notExistingDomain")
-                var errors: [ErrorDto]?
+                var errors: [Error]?
                 service.getInstallation(onFailure: {
                     errors = $0
                 })
@@ -82,7 +82,7 @@ class RestServiceSpec: QuickSpec {
             }
 
             it("should get installation") {
-                var installation: InstallationDto?
+                var installation: Installation?
                 service.getInstallation(onSuccess: {
                     installation = $0
                 })
@@ -95,7 +95,7 @@ class RestServiceSpec: QuickSpec {
 
             it("should logout") {
                 authenticate(credentials)
-                var user: UserDto?
+                var user: User?
                 service.logout(onSuccess: {
                     user = $0
                 })
@@ -104,7 +104,7 @@ class RestServiceSpec: QuickSpec {
 
             it("should get current user") {
                 authenticate(credentials)
-                var user: UserDto?
+                var user: User?
                 service.getCurrentUser(onSuccess: {
                     user = $0
                 })
@@ -113,7 +113,7 @@ class RestServiceSpec: QuickSpec {
 
             it("should refresh token") {
                 authenticate(credentials)
-                var authentication: AuthenticationDto?
+                var authentication: Authentication?
                 service.refreshToken(onSuccess: {
                     authentication = $0
                 })

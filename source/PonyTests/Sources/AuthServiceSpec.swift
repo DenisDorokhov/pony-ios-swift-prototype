@@ -12,33 +12,33 @@ import SwiftDate
 
 private class AuthServiceDelegateMock: AuthServiceDelegate {
 
-    var didAuthenticateUser: UserDto?
-    var didUpdateUser: UserDto?
-    var didLogoutUser: UserDto?
+    var didAuthenticateUser: User?
+    var didUpdateUser: User?
+    var didLogoutUser: User?
 
-    func authService(authService: AuthService, didAuthenticateUser user: UserDto) {
+    func authService(authService: AuthService, didAuthenticateUser user: User) {
         didAuthenticateUser = user
     }
 
-    func authService(authService: AuthService, didUpdateUser user: UserDto) {
+    func authService(authService: AuthService, didUpdateUser user: User) {
         didUpdateUser = user
     }
 
-    func authService(authService: AuthService, didLogoutUser user: UserDto) {
+    func authService(authService: AuthService, didLogoutUser user: User) {
         didLogoutUser = user
     }
 }
 
-private func buildCredentialsMock() -> CredentialsDto {
-    return CredentialsDto(email: "foo@bar.com", password: "demo")
+private func buildCredentialsMock() -> Credentials {
+    return Credentials(email: "foo@bar.com", password: "demo")
 }
 
-private func buildUserMock() -> UserDto {
-    return UserDto(id: 1, creationDate: NSDate(), name: "Foobar", email: "foo@bar.com", role: .User)
+private func buildUserMock() -> User {
+    return User(id: 1, creationDate: NSDate(), name: "Foobar", email: "foo@bar.com", role: .User)
 }
 
-private func buildAuthenticationMock(accessTokenExpiration accessTokenExpiration: NSDate = 1.days.ago, refreshTokenExpiration: NSDate = 1.days.ago) -> AuthenticationDto {
-    return AuthenticationDto(accessToken: "someAccessToken", accessTokenExpiration: accessTokenExpiration,
+private func buildAuthenticationMock(accessTokenExpiration accessTokenExpiration: NSDate = 1.days.ago, refreshTokenExpiration: NSDate = 1.days.ago) -> Authentication {
+    return Authentication(accessToken: "someAccessToken", accessTokenExpiration: accessTokenExpiration,
             refreshToken: "someRefreshToken", refreshTokenExpiration: refreshTokenExpiration,
             user: buildUserMock())
 }
@@ -74,8 +74,8 @@ class AuthServiceSpec: QuickSpec {
                 TestUtils.cleanAll()
             }
 
-            let authenticate: Void -> UserDto? = {
-                var user: UserDto?
+            let authenticate: Void -> User? = {
+                var user: User?
                 waitUntil {
                     done in
                     authService.authenticate(buildCredentialsMock(), onSuccess: {
@@ -85,8 +85,8 @@ class AuthServiceSpec: QuickSpec {
                 }
                 return user
             }
-            let updateUser: Void -> UserDto? = {
-                var user: UserDto?
+            let updateUser: Void -> User? = {
+                var user: User?
                 waitUntil {
                     done in
                     authService.updateUser(onSuccess: {
@@ -126,7 +126,7 @@ class AuthServiceSpec: QuickSpec {
 
             it("should logout") {
                 authenticate()
-                var user: UserDto?
+                var user: User?
                 authService.logout(onSuccess: {
                     user = $0
                 })
@@ -151,7 +151,7 @@ class AuthServiceSpec: QuickSpec {
             it("should logout after access denied error when refreshing token") {
                 authenticate()
                 restServiceMock.refreshTokenAuthentication = nil
-                restServiceMock.errors = [ErrorDto.accessDenied]
+                restServiceMock.errors = [Error.accessDenied]
                 waitUntil {
                     done in
                     authService.checkAccessTokenExpiration {

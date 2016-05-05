@@ -16,7 +16,7 @@ private class BootstrapServiceDelegateMock: BootstrapServiceDelegate {
     var didStartBackgroundActivity: Bool = false
     var didRequireRestUrl: Bool = false
     var didRequireAuthentication: Bool = false
-    var didFailWithErrors: [ErrorDto]?
+    var didFailWithErrors: [Error]?
 
     func bootstrapServiceDidStartBootstrap(bootstrapService: BootstrapService) {
         didStartBootstrap = true
@@ -38,17 +38,17 @@ private class BootstrapServiceDelegateMock: BootstrapServiceDelegate {
         didRequireAuthentication = true
     }
 
-    func bootstrapService(bootstrapService: BootstrapService, didFailWithErrors errors: [ErrorDto]) {
+    func bootstrapService(bootstrapService: BootstrapService, didFailWithErrors errors: [Error]) {
         didFailWithErrors = errors
     }
 }
 
-private func buildUserMock() -> UserDto {
-    return UserDto(id: 1, creationDate: NSDate(), name: "Foobar", email: "foo@bar.com", role: .User)
+private func buildUserMock() -> User {
+    return User(id: 1, creationDate: NSDate(), name: "Foobar", email: "foo@bar.com", role: .User)
 }
 
-private func buildAuthenticationMock() -> AuthenticationDto {
-    return AuthenticationDto(accessToken: "someAccessToken", accessTokenExpiration: NSDate(),
+private func buildAuthenticationMock() -> Authentication {
+    return Authentication(accessToken: "someAccessToken", accessTokenExpiration: NSDate(),
             refreshToken: "someRefreshToken", refreshTokenExpiration: NSDate(),
             user: buildUserMock())
 }

@@ -6,7 +6,7 @@
 import Foundation
 import ObjectMapper
 
-class ErrorDto: Mappable, CustomStringConvertible {
+class Error: Mappable, CustomStringConvertible {
 
     static let CODE_CLIENT_REQUEST_FAILED = "errorClientRequestFailed"
     static let CODE_CLIENT_REQUEST_TIMEOUT = "errorClientRequestTimeout"
@@ -34,20 +34,20 @@ class ErrorDto: Mappable, CustomStringConvertible {
     static let CODE_PAGE_SIZE_INVALID = "errorPageSizeInvalid"
     static let CODE_SONGS_COUNT_INVALID = "errorSongsCountInvalid"
 
-    static var clientOffline: ErrorDto {
-        return ErrorDto(code: CODE_CLIENT_OFFLINE, text: "Could not make server request. Are you online?")
+    static var clientOffline: Error {
+        return Error(code: CODE_CLIENT_OFFLINE, text: "Could not make server request. Are you online?")
     }
-    static var clientRequestTimeout: ErrorDto {
-        return ErrorDto(code: CODE_CLIENT_REQUEST_TIMEOUT, text: "Client request timed out.")
+    static var clientRequestTimeout: Error {
+        return Error(code: CODE_CLIENT_REQUEST_TIMEOUT, text: "Client request timed out.")
     }
-    static var clientRequestCancelled: ErrorDto {
-        return ErrorDto(code: CODE_CLIENT_REQUEST_CANCELLED, text: "Client request has been cancelled.")
+    static var clientRequestCancelled: Error {
+        return Error(code: CODE_CLIENT_REQUEST_CANCELLED, text: "Client request has been cancelled.")
     }
-    static var accessDenied: ErrorDto {
-        return ErrorDto(code: CODE_ACCESS_DENIED, text: "Access denied.")
+    static var accessDenied: Error {
+        return Error(code: CODE_ACCESS_DENIED, text: "Access denied.")
     }
-    static var unexpected: ErrorDto {
-        return ErrorDto(code: CODE_UNEXPECTED, text: "Unexpected error occurred.")
+    static var unexpected: Error {
+        return Error(code: CODE_UNEXPECTED, text: "Unexpected error occurred.")
     }
 
     var code: String!
@@ -66,7 +66,7 @@ class ErrorDto: Mappable, CustomStringConvertible {
 
     var description: String {
         get {
-            return "ErrorDto{" +
+            return "Error{" +
                     "field=\(field)" +
                     ", code=\(code)" +
                     ", text=\(text)" +
@@ -75,8 +75,8 @@ class ErrorDto: Mappable, CustomStringConvertible {
         }
     }
 
-    class func fetchAllByCodes(codes: [String], fromArray errors: [ErrorDto]) -> [ErrorDto] {
-        var result: [ErrorDto] = []
+    class func fetchAllByCodes(codes: [String], fromArray errors: [Error]) -> [Error] {
+        var result: [Error] = []
         for error in errors {
             for code in codes {
                 if error.code == code || error.code.hasPrefix("\(code).") {
@@ -87,7 +87,7 @@ class ErrorDto: Mappable, CustomStringConvertible {
         return result
     }
 
-    class func fetchFirstByCodes(codes: [String], fromArray errors: [ErrorDto]) -> ErrorDto? {
+    class func fetchFirstByCodes(codes: [String], fromArray errors: [Error]) -> Error? {
         return fetchAllByCodes(codes, fromArray: errors).first
     }
 

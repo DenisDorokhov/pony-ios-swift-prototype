@@ -23,10 +23,10 @@ class LibraryServiceSpec: QuickSpec {
                 TestUtils.cleanAll()
             }
 
-            let buildSongMock: Void -> SongDto = {
+            let buildSongMock: Void -> Song = {
                 let bundle = NSBundle(forClass: LibraryServiceSpec.self)
                 let json = try! String(contentsOfFile: bundle.pathForResource("song", ofType: "json")!)
-                return Mapper<SongDto>().map(json)!
+                return Mapper<Song>().map(json)!
             }
 
             it("should save song, album and artist") {
@@ -36,13 +36,13 @@ class LibraryServiceSpec: QuickSpec {
                         done()
                     })
                 }
-                var artists: [ArtistDto]?
+                var artists: [Artist]?
                 service.getArtists(onSuccess: {
                     artists = $0
                 })
                 expect(artists).toEventuallyNot(beNil())
                 expect(artists).to(haveCount(1))
-                var artistAlbums: ArtistAlbumsDto?
+                var artistAlbums: ArtistAlbums?
                 service.getArtistAlbums(artists![0].id, onSuccess: {
                     artistAlbums = $0
                 })
@@ -59,7 +59,7 @@ class LibraryServiceSpec: QuickSpec {
                         done()
                     })
                 }
-                var artists: [ArtistDto]?
+                var artists: [Artist]?
                 service.getArtists(onSuccess: {
                     artists = $0
                 })

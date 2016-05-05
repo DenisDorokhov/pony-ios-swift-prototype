@@ -6,17 +6,13 @@
 import Foundation
 import ObjectMapper
 
-class AbstractDto: Mappable {
+class Installation: Mappable {
 
-    var id: Int64!
-
-    init(id: Int64) {
-        self.id = id
-    }
+    var version: String!
 
     required init?(_ map: Map) {}
 
     func mapping(map: Map) {
-        id <- (map["id"], Int64Transform())
+        version <- map["version"]
     }
 }

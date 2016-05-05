@@ -1,30 +1,29 @@
 //
-// Created by Denis Dorokhov on 26/04/16.
+// Created by Denis Dorokhov on 29/04/16.
 // Copyright (c) 2016 Denis Dorokhov. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
 
-class TokenPair: Mappable {
+class Authentication: Mappable {
 
-    private(set) var accessToken: String!
-    private(set) var accessTokenExpiration: NSDate!
+    var accessToken: String!
+    var accessTokenExpiration: NSDate!
 
-    private(set) var refreshToken: String!
-    private(set) var refreshTokenExpiration: NSDate!
+    var refreshToken: String!
+    var refreshTokenExpiration: NSDate!
+
+    var user: User!
 
     init(accessToken: String, accessTokenExpiration: NSDate,
-         refreshToken: String, refreshTokenExpiration: NSDate) {
+         refreshToken: String, refreshTokenExpiration: NSDate,
+         user: User) {
         self.accessToken = accessToken
         self.accessTokenExpiration = accessTokenExpiration
         self.refreshToken = refreshToken
         self.refreshTokenExpiration = refreshTokenExpiration
-    }
-
-    convenience init(authentication: AuthenticationDto) {
-        self.init(accessToken: authentication.accessToken!, accessTokenExpiration: authentication.accessTokenExpiration,
-                refreshToken: authentication.refreshToken, refreshTokenExpiration: authentication.refreshTokenExpiration)
+        self.user = user
     }
 
     required init?(_ map: Map) {}
@@ -34,5 +33,6 @@ class TokenPair: Mappable {
         accessTokenExpiration <- (map["accessTokenExpiration"], DateTransform())
         refreshToken <- map["refreshToken"]
         refreshTokenExpiration <- (map["refreshTokenExpiration"], DateTransform())
+        user <- map["user"]
     }
 }

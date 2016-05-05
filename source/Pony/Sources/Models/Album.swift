@@ -6,26 +6,24 @@
 import Foundation
 import ObjectMapper
 
-class AlbumDto: AbstractDto {
+class Album: Mappable {
 
+    var id: Int64!
     var name: String?
     var year: Int?
     var artwork: Int64?
     var artworkUrl: String?
-    var artist: ArtistDto!
+    var artist: Artist!
 
-    init(id: Int64, artist: ArtistDto) {
+    init(id: Int64, artist: Artist) {
+        self.id = id
         self.artist = artist
-        super.init(id: id)
     }
 
-    required init?(_ map: Map) {
-        super.init(map)
-    }
+    required init?(_ map: Map) {}
 
-    override func mapping(map: Map) {
-        super.mapping(map)
-
+    func mapping(map: Map) {
+        id <- (map["id"], Int64Transform())
         name <- map["name"]
         year <- map["year"]
         artwork <- (map["artwork"], Int64Transform())

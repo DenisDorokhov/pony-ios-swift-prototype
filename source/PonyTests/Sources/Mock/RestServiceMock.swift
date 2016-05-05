@@ -14,20 +14,20 @@ class RestRequestMock: RestRequest {
 
 class RestServiceMock: RestService {
 
-    var installation: InstallationDto?
-    var authentication: AuthenticationDto?
-    var logoutUser: UserDto?
-    var currentUser: UserDto?
-    var refreshTokenAuthentication: AuthenticationDto?
-    var artists: [ArtistDto]?
-    var artistAlbums: ArtistAlbumsDto?
+    var installation: Installation?
+    var authentication: Authentication?
+    var logoutUser: User?
+    var currentUser: User?
+    var refreshTokenAuthentication: Authentication?
+    var artists: [Artist]?
+    var artistAlbums: ArtistAlbums?
     var image: UIImage?
     var song: NSData?
 
-    var errors: [ErrorDto] = [ErrorDto.unexpected]
+    var errors: [Error] = [Error.unexpected]
 
-    func getInstallation(onSuccess onSuccess: (InstallationDto -> Void)?,
-                         onFailure: ([ErrorDto] -> Void)?) -> RestRequest {
+    func getInstallation(onSuccess onSuccess: (Installation -> Void)?,
+                         onFailure: ([Error] -> Void)?) -> RestRequest {
         dispatch_async(dispatch_get_main_queue()) {
             if let installation = self.installation {
                 onSuccess?(installation)
@@ -38,9 +38,9 @@ class RestServiceMock: RestService {
         return RestRequestMock()
     }
 
-    func authenticate(credentials: CredentialsDto,
-                      onSuccess: (AuthenticationDto -> Void)?,
-                      onFailure: ([ErrorDto] -> Void)?) -> RestRequest {
+    func authenticate(credentials: Credentials,
+                      onSuccess: (Authentication -> Void)?,
+                      onFailure: ([Error] -> Void)?) -> RestRequest {
         dispatch_async(dispatch_get_main_queue()) {
             if let authentication = self.authentication {
                 onSuccess?(authentication)
@@ -51,8 +51,8 @@ class RestServiceMock: RestService {
         return RestRequestMock()
     }
 
-    func logout(onSuccess onSuccess: (UserDto -> Void)?,
-                onFailure: ([ErrorDto] -> Void)?) -> RestRequest {
+    func logout(onSuccess onSuccess: (User -> Void)?,
+                onFailure: ([Error] -> Void)?) -> RestRequest {
         dispatch_async(dispatch_get_main_queue()) {
             if let logoutUser = self.logoutUser {
                 onSuccess?(logoutUser)
@@ -63,8 +63,8 @@ class RestServiceMock: RestService {
         return RestRequestMock()
     }
 
-    func getCurrentUser(onSuccess onSuccess: (UserDto -> Void)?,
-                        onFailure: ([ErrorDto] -> Void)?) -> RestRequest {
+    func getCurrentUser(onSuccess onSuccess: (User -> Void)?,
+                        onFailure: ([Error] -> Void)?) -> RestRequest {
         dispatch_async(dispatch_get_main_queue()) {
             if let currentUser = self.currentUser {
                 onSuccess?(currentUser)
@@ -75,8 +75,8 @@ class RestServiceMock: RestService {
         return RestRequestMock()
     }
 
-    func refreshToken(onSuccess onSuccess: (AuthenticationDto -> Void)?,
-                      onFailure: ([ErrorDto] -> Void)?) -> RestRequest {
+    func refreshToken(onSuccess onSuccess: (Authentication -> Void)?,
+                      onFailure: ([Error] -> Void)?) -> RestRequest {
         dispatch_async(dispatch_get_main_queue()) {
             if let refreshTokenAuthentication = self.refreshTokenAuthentication {
                 onSuccess?(refreshTokenAuthentication)
@@ -87,8 +87,8 @@ class RestServiceMock: RestService {
         return RestRequestMock()
     }
 
-    func getArtists(onSuccess onSuccess: ([ArtistDto] -> Void)?,
-                    onFailure: ([ErrorDto] -> Void)?) -> RestRequest {
+    func getArtists(onSuccess onSuccess: ([Artist] -> Void)?,
+                    onFailure: ([Error] -> Void)?) -> RestRequest {
         dispatch_async(dispatch_get_main_queue()) {
             if let artists = self.artists {
                 onSuccess?(artists)
@@ -100,8 +100,8 @@ class RestServiceMock: RestService {
     }
 
     func getArtistAlbums(artistId: Int64,
-                         onSuccess: (ArtistAlbumsDto -> Void)?,
-                         onFailure: ([ErrorDto] -> Void)?) -> RestRequest {
+                         onSuccess: (ArtistAlbums -> Void)?,
+                         onFailure: ([Error] -> Void)?) -> RestRequest {
         dispatch_async(dispatch_get_main_queue()) {
             if let artistAlbums = self.artistAlbums {
                 onSuccess?(artistAlbums)
@@ -114,7 +114,7 @@ class RestServiceMock: RestService {
 
     func downloadImage(absoluteUrl: String,
                        onSuccess: (UIImage -> Void)?,
-                       onFailure: ([ErrorDto] -> Void)?) -> RestRequest {
+                       onFailure: ([Error] -> Void)?) -> RestRequest {
         dispatch_async(dispatch_get_main_queue()) {
             if let image = self.image {
                 onSuccess?(image)
@@ -128,7 +128,7 @@ class RestServiceMock: RestService {
     func downloadSong(absoluteUrl: String, toFile filePath: String,
                       onProgress: (Float -> Void)?,
                       onSuccess: (Void -> Void)?,
-                      onFailure: ([ErrorDto] -> Void)?) -> RestRequest {
+                      onFailure: ([Error] -> Void)?) -> RestRequest {
         dispatch_async(dispatch_get_main_queue()) {
             if let song = self.song {
                 song.writeToFile(filePath, atomically: true)

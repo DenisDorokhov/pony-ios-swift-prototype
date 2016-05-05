@@ -6,23 +6,21 @@
 import Foundation
 import ObjectMapper
 
-class GenreDto: AbstractDto {
+class Genre: Mappable {
 
+    var id: Int64!
     var name: String?
     var artwork: Int64?
     var artworkUrl: String?
 
-    override init(id: Int64) {
-        super.init(id: id)
+    init(id: Int64) {
+        self.id = id
     }
 
-    required init?(_ map: Map) {
-        super.init(map)
-    }
+    required init?(_ map: Map) {}
 
-    override func mapping(map: Map) {
-        super.mapping(map)
-
+    func mapping(map: Map) {
+        id <- (map["id"], Int64Transform())
         name <- map["name"]
         artwork <- (map["artwork"], Int64Transform())
         artworkUrl <- map["artworkUrl"]
