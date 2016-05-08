@@ -36,6 +36,7 @@
 		B3D39814C97989FF4FC94B00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D3992E660164C0D4394C02 /* Assets.xcassets */; };
 		B3D3985843C635574790C00D /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3D395E571B07CDF4A8DE40B /* song.mp3 */; };
 		B3D398B9C195FB2D69E83899 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D399C1B0F06CAF1F3C4AF4 /* ViewController.swift */; };
+		B3D39902F5B18854A2219070 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D398954810FB824BAF4806 /* main.swift */; };
 		B3D3996BB5D9226DEE769859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D39E6172BEA358A6F0A616 /* LaunchScreen.storyboard */; };
 		B3D3998BF3CD89AE6CBCDC00 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3937FA8326E119B25510C /* Album.swift */; };
 		B3D399CAFE266FF93F7C8D05 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D392E735DE46BC22E7895B /* Authentication.swift */; };
@@ -96,6 +97,7 @@
 		B3D397FCA461D490DF5786C7 /* TokenPairDaoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDaoMock.swift; sourceTree = "<group>"; };
 		B3D3980EADBB1A29F657A1C3 /* BootstrapServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BootstrapServiceSpec.swift; sourceTree = "<group>"; };
 		B3D3982038694574A15E694A /* SongRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongRealm.swift; sourceTree = "<group>"; };
+		B3D398954810FB824BAF4806 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		B3D398FAA1C6814E833F9CC2 /* LibraryServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryServiceSpec.swift; sourceTree = "<group>"; };
 		B3D3992E660164C0D4394C02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3D39967C31DDED348E5FFE7 /* Installation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Installation.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				B3D39D4135A6D9C0F637C747 /* Services */,
 				B3D39840FBE7E1F058803475 /* UI */,
 				B3D39E77BE46BD5EEECED290 /* AppDelegate.swift */,
+				B3D398954810FB824BAF4806 /* main.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				B3D391C56EB40C76F226A7B0 /* Credentials.swift in Sources */,
 				B3D3933FC866F3CD5A1B29F4 /* Installation.swift in Sources */,
 				B3D393CEE86554AE03E12A10 /* Response.swift in Sources */,
+				B3D39902F5B18854A2219070 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

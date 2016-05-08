@@ -6,6 +6,7 @@
 import Foundation
 import Quick
 import Nimble
+import ReachabilitySwift
 
 @testable import Pony
 
@@ -70,6 +71,16 @@ class RestServiceSpec: QuickSpec {
                     })
                 }
                 return artistAlbums
+            }
+
+            let isOffline = try! Reachability.reachabilityForLocalWiFi().currentReachabilityStatus == .NotReachable
+            it("should run online") {
+                if isOffline {
+                    fail()
+                }
+            }
+            if isOffline {
+                return
             }
 
             it("should handle errors") {
