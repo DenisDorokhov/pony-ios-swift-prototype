@@ -9,6 +9,7 @@ import AlamofireObjectMapper
 import XCGLogger
 import ObjectMapper
 import AlamofireImage
+import Async
 
 protocol RestRequest: class {
     func cancel()
@@ -160,7 +161,7 @@ class RestServiceImpl: RestService {
         }).progress {
             bytesRead, totalBytesRead, totalBytesExpectedToRead in
             if let onProgress = onProgress {
-                dispatch_async(dispatch_get_main_queue()) {
+                Async.main {
                     onProgress(Float(Double(totalBytesRead) / Double(totalBytesExpectedToRead)))
                 }
             }

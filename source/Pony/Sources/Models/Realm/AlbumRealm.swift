@@ -16,4 +16,23 @@ class AlbumRealm: AbstractRealm {
     dynamic var artist: ArtistRealm!
 
     let songs = LinkingObjects(fromType: SongRealm.self, property: "album")
+
+    convenience init(album: Album) {
+        self.init()
+
+        id = album.id
+        name = album.name
+        year.value = album.year
+        artwork.value = album.artwork
+        artist = ArtistRealm(artist: album.artist)
+    }
+
+    func toAlbum(artworkUrl artworkUrl: Int64? -> String?) -> Album {
+        let album = Album(id: id, artist: artist.toArtist(artworkUrl: artworkUrl))
+        album.name = name
+        album.year = year.value
+        album.artwork = artwork.value
+        album.artworkUrl = artworkUrl(album.artwork)
+        return album
+    }
 }

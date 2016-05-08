@@ -34,6 +34,7 @@
 		B3D3979D4C5E5020A4B2DF69 /* BootstrapServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3980EADBB1A29F657A1C3 /* BootstrapServiceSpec.swift */; };
 		B3D397F9103F5E9A8B569276 /* SongRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3982038694574A15E694A /* SongRealm.swift */; };
 		B3D39814C97989FF4FC94B00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D3992E660164C0D4394C02 /* Assets.xcassets */; };
+		B3D3985843C635574790C00D /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3D395E571B07CDF4A8DE40B /* song.mp3 */; };
 		B3D398B9C195FB2D69E83899 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D399C1B0F06CAF1F3C4AF4 /* ViewController.swift */; };
 		B3D3996BB5D9226DEE769859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D39E6172BEA358A6F0A616 /* LaunchScreen.storyboard */; };
 		B3D3998BF3CD89AE6CBCDC00 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3937FA8326E119B25510C /* Album.swift */; };
@@ -88,6 +89,7 @@
 		B3D3952BC8B739F855020EEE /* AbstractRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRealm.swift; sourceTree = "<group>"; };
 		B3D3954CE9EEB42C40E81D45 /* song.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = song.json; sourceTree = "<group>"; };
 		B3D395BE8B48E946A0331BCC /* Song.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		B3D395E571B07CDF4A8DE40B /* song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song.mp3; sourceTree = "<group>"; };
 		B3D396234A639E5B4C42C6A1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		B3D39623CBE5CB1433120146 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		B3D39793D1B7D89FCE859310 /* Genre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			children = (
 				B3D3954CE9EEB42C40E81D45 /* song.json */,
 				B3D392B4F0458B349519958A /* artwork.png */,
+				B3D395E571B07CDF4A8DE40B /* song.mp3 */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 			files = (
 				B3D3950CCFB106F9A4A99412 /* song.json in Resources */,
 				B3D39E911FE0754074BCDC2D /* artwork.png in Resources */,
+				B3D3985843C635574790C00D /* song.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

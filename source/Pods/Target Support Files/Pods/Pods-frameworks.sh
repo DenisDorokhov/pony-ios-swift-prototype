@@ -87,6 +87,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/AlamofireImage.framework"
   install_framework "Pods/AlamofireObjectMapper.framework"
+  install_framework "Pods/Async.framework"
   install_framework "Pods/KeychainSwift.framework"
   install_framework "Pods/ObjectMapper.framework"
   install_framework "Pods/OrderedSet.framework"
@@ -95,12 +96,14 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/SwiftDate.framework"
   install_framework "Pods/SwiftyTimer.framework"
   install_framework "Pods/Swinject.framework"
+  install_framework "Pods/TaskQueue.framework"
   install_framework "Pods/XCGLogger.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
   install_framework "Pods/AlamofireImage.framework"
   install_framework "Pods/AlamofireObjectMapper.framework"
+  install_framework "Pods/Async.framework"
   install_framework "Pods/KeychainSwift.framework"
   install_framework "Pods/ObjectMapper.framework"
   install_framework "Pods/OrderedSet.framework"
@@ -109,5 +112,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/SwiftDate.framework"
   install_framework "Pods/SwiftyTimer.framework"
   install_framework "Pods/Swinject.framework"
+  install_framework "Pods/TaskQueue.framework"
   install_framework "Pods/XCGLogger.framework"
 fi

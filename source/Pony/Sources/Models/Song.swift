@@ -25,8 +25,11 @@ class Song: Mappable {
     var album: Album!
     var genre: Genre!
 
-    init(id: Int64, album: Album, genre: Genre) {
+    init(id: Int64, url: String, size: Int64, duration: Int, album: Album, genre: Genre) {
         self.id = id
+        self.url = url
+        self.size = size
+        self.duration = duration
         self.album = album
         self.genre = genre
     }

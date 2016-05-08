@@ -17,7 +17,15 @@ class LibraryServiceSpec: QuickSpec {
             var service: LibraryService!
             beforeEach {
                 TestUtils.cleanAll()
+
+                let bundle = NSBundle(forClass: LibraryServiceSpec.self)
+
+                let restServiceMock = RestServiceMock()
+                restServiceMock.imagePath = bundle.pathForResource("artwork", ofType: "png")!
+                restServiceMock.songPath = bundle.pathForResource("song", ofType: "mp3")!
+
                 service = LibraryService()
+                service.restService = restServiceMock
             }
             afterEach {
                 TestUtils.cleanAll()
@@ -29,13 +37,19 @@ class LibraryServiceSpec: QuickSpec {
                 return Mapper<Song>().map(json)!
             }
 
-            it("should save song, album and artist") {
+            it("should download song") {
+                var didProgress = false
                 waitUntil {
                     done in
-                    service.saveSong(buildSongMock(), onSuccess: {
+                    service.downloadSong(buildSongMock(), onProgress: {
+                        progress in
+                        didProgress = true
+                    }, onSuccess: {
+                        song in
                         done()
                     })
                 }
+                expect(didProgress).to(beTrue())
                 var artists: [Artist]?
                 service.getArtists(onSuccess: {
                     artists = $0
@@ -55,7 +69,8 @@ class LibraryServiceSpec: QuickSpec {
                 let song = buildSongMock()
                 waitUntil {
                     done in
-                    service.saveSong(song, onSuccess: {
+                    service.downloadSong(song, onSuccess: {
+                        song in
                         done()
                     })
                 }
@@ -66,7 +81,8 @@ class LibraryServiceSpec: QuickSpec {
                 expect(artists).toEventuallyNot(beNil())
                 waitUntil {
                     done in
-                    service.removeSong(song.id, onSuccess: {
+                    service.deleteSong(song.id, onSuccess: {
+                        song in
                         done()
                     })
                 }

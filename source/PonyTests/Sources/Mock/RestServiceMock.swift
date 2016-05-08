@@ -5,6 +5,8 @@
 
 import Foundation
 import UIKit
+import Async
+import SwiftyTimer
 
 @testable import Pony
 
@@ -21,14 +23,14 @@ class RestServiceMock: RestService {
     var refreshTokenAuthentication: Authentication?
     var artists: [Artist]?
     var artistAlbums: ArtistAlbums?
-    var image: UIImage?
-    var song: NSData?
+    var imagePath: String?
+    var songPath: String?
 
     var errors: [Error] = [Error.unexpected]
 
     func getInstallation(onSuccess onSuccess: (Installation -> Void)?,
                          onFailure: ([Error] -> Void)?) -> RestRequest {
-        dispatch_async(dispatch_get_main_queue()) {
+        Async.main {
             if let installation = self.installation {
                 onSuccess?(installation)
             } else {
@@ -41,7 +43,7 @@ class RestServiceMock: RestService {
     func authenticate(credentials: Credentials,
                       onSuccess: (Authentication -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
-        dispatch_async(dispatch_get_main_queue()) {
+        Async.main {
             if let authentication = self.authentication {
                 onSuccess?(authentication)
             } else {
@@ -53,7 +55,7 @@ class RestServiceMock: RestService {
 
     func logout(onSuccess onSuccess: (User -> Void)?,
                 onFailure: ([Error] -> Void)?) -> RestRequest {
-        dispatch_async(dispatch_get_main_queue()) {
+        Async.main {
             if let logoutUser = self.logoutUser {
                 onSuccess?(logoutUser)
             } else {
@@ -65,7 +67,7 @@ class RestServiceMock: RestService {
 
     func getCurrentUser(onSuccess onSuccess: (User -> Void)?,
                         onFailure: ([Error] -> Void)?) -> RestRequest {
-        dispatch_async(dispatch_get_main_queue()) {
+        Async.main {
             if let currentUser = self.currentUser {
                 onSuccess?(currentUser)
             } else {
@@ -77,7 +79,7 @@ class RestServiceMock: RestService {
 
     func refreshToken(onSuccess onSuccess: (Authentication -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
-        dispatch_async(dispatch_get_main_queue()) {
+        Async.main {
             if let refreshTokenAuthentication = self.refreshTokenAuthentication {
                 onSuccess?(refreshTokenAuthentication)
             } else {
@@ -89,7 +91,7 @@ class RestServiceMock: RestService {
 
     func getArtists(onSuccess onSuccess: ([Artist] -> Void)?,
                     onFailure: ([Error] -> Void)?) -> RestRequest {
-        dispatch_async(dispatch_get_main_queue()) {
+        Async.main {
             if let artists = self.artists {
                 onSuccess?(artists)
             } else {
@@ -102,7 +104,7 @@ class RestServiceMock: RestService {
     func getArtistAlbums(artistId: Int64,
                          onSuccess: (ArtistAlbums -> Void)?,
                          onFailure: ([Error] -> Void)?) -> RestRequest {
-        dispatch_async(dispatch_get_main_queue()) {
+        Async.main {
             if let artistAlbums = self.artistAlbums {
                 onSuccess?(artistAlbums)
             } else {
@@ -115,9 +117,9 @@ class RestServiceMock: RestService {
     func downloadImage(absoluteUrl: String,
                        onSuccess: (UIImage -> Void)?,
                        onFailure: ([Error] -> Void)?) -> RestRequest {
-        dispatch_async(dispatch_get_main_queue()) {
-            if let image = self.image {
-                onSuccess?(image)
+        Async.main {
+            if let imagePath = self.imagePath {
+                onSuccess?(UIImage(data: NSData(contentsOfFile: imagePath)!)!)
             } else {
                 onFailure?(self.errors)
             }
@@ -129,9 +131,13 @@ class RestServiceMock: RestService {
                       onProgress: (Float -> Void)?,
                       onSuccess: (Void -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
-        dispatch_async(dispatch_get_main_queue()) {
-            if let song = self.song {
-                song.writeToFile(filePath, atomically: true)
+        NSTimer.after(0.1) {
+            onProgress?(0.2)
+        }
+        NSTimer.after(0.2) {
+            onProgress?(1.0)
+            if let songPath = self.songPath {
+                try! NSFileManager.defaultManager().copyItemAtPath(songPath, toPath: filePath)
                 onSuccess?()
             } else {
                 onFailure?(self.errors)
