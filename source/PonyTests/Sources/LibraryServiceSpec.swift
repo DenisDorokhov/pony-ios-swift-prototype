@@ -193,6 +193,9 @@ class LibraryServiceSpec: QuickSpec {
                     }
                 }
             }
+
+            // TODO: test case with no artwork
+            // TODO: test error handling
         }
     }
 }
