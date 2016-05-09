@@ -10,15 +10,6 @@ import SwiftyTimer
 
 @testable import Pony
 
-class RestRequestMock: RestRequest {
-
-    private var cancelled = false
-
-    func cancel() {
-        cancelled = true
-    }
-}
-
 class RestServiceMock: RestService {
 
     var installation: Installation?
@@ -46,7 +37,7 @@ class RestServiceMock: RestService {
     func getInstallation(onSuccess onSuccess: (Installation -> Void)?,
                          onFailure: ([Error] -> Void)?) -> RestRequest {
         didCallGetInstallation = true
-        let request = RestRequestMock()
+        let request = RestRequestProxy()
         Async.main {
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
@@ -65,7 +56,7 @@ class RestServiceMock: RestService {
                       onSuccess: (Authentication -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
         didCallAuthenticate = true
-        let request = RestRequestMock()
+        let request = RestRequestProxy()
         Async.main {
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
@@ -83,7 +74,7 @@ class RestServiceMock: RestService {
     func logout(onSuccess onSuccess: (User -> Void)?,
                 onFailure: ([Error] -> Void)?) -> RestRequest {
         didCallLogout = true
-        let request = RestRequestMock()
+        let request = RestRequestProxy()
         Async.main {
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
@@ -101,7 +92,7 @@ class RestServiceMock: RestService {
     func getCurrentUser(onSuccess onSuccess: (User -> Void)?,
                         onFailure: ([Error] -> Void)?) -> RestRequest {
         didCallCurrentUser = true
-        let request = RestRequestMock()
+        let request = RestRequestProxy()
         Async.main {
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
@@ -119,7 +110,7 @@ class RestServiceMock: RestService {
     func refreshToken(onSuccess onSuccess: (Authentication -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
         didCallRefreshToken = true
-        let request = RestRequestMock()
+        let request = RestRequestProxy()
         Async.main {
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
@@ -137,7 +128,7 @@ class RestServiceMock: RestService {
     func getArtists(onSuccess onSuccess: ([Artist] -> Void)?,
                     onFailure: ([Error] -> Void)?) -> RestRequest {
         didCallGetArtists = true
-        let request = RestRequestMock()
+        let request = RestRequestProxy()
         Async.main {
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
@@ -156,7 +147,7 @@ class RestServiceMock: RestService {
                          onSuccess: (ArtistAlbums -> Void)?,
                          onFailure: ([Error] -> Void)?) -> RestRequest {
         didCallGetArtistAlbums = true
-        let request = RestRequestMock()
+        let request = RestRequestProxy()
         Async.main {
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
@@ -175,7 +166,7 @@ class RestServiceMock: RestService {
                        onSuccess: (UIImage -> Void)?,
                        onFailure: ([Error] -> Void)?) -> RestRequest {
         didCallDownloadImage = true
-        let request = RestRequestMock()
+        let request = RestRequestProxy()
         Async.main {
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
@@ -195,7 +186,7 @@ class RestServiceMock: RestService {
                       onSuccess: (Void -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
         didCallDownloadSong = true
-        let request = RestRequestMock()
+        let request = RestRequestProxy()
         NSTimer.after(0.1) {
             if !request.cancelled {
                 onProgress?(0.2)
