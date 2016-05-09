@@ -29,4 +29,8 @@ class ArtistRealm: AbstractRealm {
         artist.artworkUrl = artworkUrl(artist.artwork)
         return artist
     }
+
+    override static func indexedProperties() -> [String] {
+        return ["name", "artwork"]
+    }
 }

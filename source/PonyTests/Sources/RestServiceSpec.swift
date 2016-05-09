@@ -75,9 +75,7 @@ class RestServiceSpec: QuickSpec {
 
             let isOffline = try! Reachability.reachabilityForLocalWiFi().currentReachabilityStatus == .NotReachable
             it("should run online") {
-                if isOffline {
-                    fail()
-                }
+                expect(isOffline).to(beFalse())
             }
             if isOffline {
                 return

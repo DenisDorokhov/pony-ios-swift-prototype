@@ -11,7 +11,12 @@ import SwiftyTimer
 @testable import Pony
 
 class RestRequestMock: RestRequest {
-    func cancel() {}
+
+    private var cancelled = false
+
+    func cancel() {
+        cancelled = true
+    }
 }
 
 class RestServiceMock: RestService {
@@ -30,119 +35,170 @@ class RestServiceMock: RestService {
 
     func getInstallation(onSuccess onSuccess: (Installation -> Void)?,
                          onFailure: ([Error] -> Void)?) -> RestRequest {
+        let request = RestRequestMock()
         Async.main {
-            if let installation = self.installation {
-                onSuccess?(installation)
+            if request.cancelled {
+                onFailure?([Error.clientRequestCancelled])
             } else {
-                onFailure?(self.errors)
+                if let installation = self.installation {
+                    onSuccess?(installation)
+                } else {
+                    onFailure?(self.errors)
+                }
             }
         }
-        return RestRequestMock()
+        return request
     }
 
     func authenticate(credentials: Credentials,
                       onSuccess: (Authentication -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
+        let request = RestRequestMock()
         Async.main {
-            if let authentication = self.authentication {
-                onSuccess?(authentication)
+            if request.cancelled {
+                onFailure?([Error.clientRequestCancelled])
             } else {
-                onFailure?(self.errors)
+                if let authentication = self.authentication {
+                    onSuccess?(authentication)
+                } else {
+                    onFailure?(self.errors)
+                }
             }
         }
-        return RestRequestMock()
+        return request
     }
 
     func logout(onSuccess onSuccess: (User -> Void)?,
                 onFailure: ([Error] -> Void)?) -> RestRequest {
+        let request = RestRequestMock()
         Async.main {
-            if let logoutUser = self.logoutUser {
-                onSuccess?(logoutUser)
+            if request.cancelled {
+                onFailure?([Error.clientRequestCancelled])
             } else {
-                onFailure?(self.errors)
+                if let logoutUser = self.logoutUser {
+                    onSuccess?(logoutUser)
+                } else {
+                    onFailure?(self.errors)
+                }
             }
         }
-        return RestRequestMock()
+        return request
     }
 
     func getCurrentUser(onSuccess onSuccess: (User -> Void)?,
                         onFailure: ([Error] -> Void)?) -> RestRequest {
+        let request = RestRequestMock()
         Async.main {
-            if let currentUser = self.currentUser {
-                onSuccess?(currentUser)
+            if request.cancelled {
+                onFailure?([Error.clientRequestCancelled])
             } else {
-                onFailure?(self.errors)
+                if let currentUser = self.currentUser {
+                    onSuccess?(currentUser)
+                } else {
+                    onFailure?(self.errors)
+                }
             }
         }
-        return RestRequestMock()
+        return request
     }
 
     func refreshToken(onSuccess onSuccess: (Authentication -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
+        let request = RestRequestMock()
         Async.main {
-            if let refreshTokenAuthentication = self.refreshTokenAuthentication {
-                onSuccess?(refreshTokenAuthentication)
+            if request.cancelled {
+                onFailure?([Error.clientRequestCancelled])
             } else {
-                onFailure?(self.errors)
+                if let refreshTokenAuthentication = self.refreshTokenAuthentication {
+                    onSuccess?(refreshTokenAuthentication)
+                } else {
+                    onFailure?(self.errors)
+                }
             }
         }
-        return RestRequestMock()
+        return request
     }
 
     func getArtists(onSuccess onSuccess: ([Artist] -> Void)?,
                     onFailure: ([Error] -> Void)?) -> RestRequest {
+        let request = RestRequestMock()
         Async.main {
-            if let artists = self.artists {
-                onSuccess?(artists)
+            if request.cancelled {
+                onFailure?([Error.clientRequestCancelled])
             } else {
-                onFailure?(self.errors)
+                if let artists = self.artists {
+                    onSuccess?(artists)
+                } else {
+                    onFailure?(self.errors)
+                }
             }
         }
-        return RestRequestMock()
+        return request
     }
 
     func getArtistAlbums(artistId: Int64,
                          onSuccess: (ArtistAlbums -> Void)?,
                          onFailure: ([Error] -> Void)?) -> RestRequest {
+        let request = RestRequestMock()
         Async.main {
-            if let artistAlbums = self.artistAlbums {
-                onSuccess?(artistAlbums)
+            if request.cancelled {
+                onFailure?([Error.clientRequestCancelled])
             } else {
-                onFailure?(self.errors)
+                if let artistAlbums = self.artistAlbums {
+                    onSuccess?(artistAlbums)
+                } else {
+                    onFailure?(self.errors)
+                }
             }
         }
-        return RestRequestMock()
+        return request
     }
 
     func downloadImage(absoluteUrl: String,
                        onSuccess: (UIImage -> Void)?,
                        onFailure: ([Error] -> Void)?) -> RestRequest {
+        let request = RestRequestMock()
         Async.main {
-            if let imagePath = self.imagePath {
-                onSuccess?(UIImage(data: NSData(contentsOfFile: imagePath)!)!)
+            if request.cancelled {
+                onFailure?([Error.clientRequestCancelled])
             } else {
-                onFailure?(self.errors)
+                if let imagePath = self.imagePath {
+                    onSuccess?(UIImage(data: NSData(contentsOfFile: imagePath)!)!)
+                } else {
+                    onFailure?(self.errors)
+                }
             }
         }
-        return RestRequestMock()
+        return request
     }
 
     func downloadSong(absoluteUrl: String, toFile filePath: String,
                       onProgress: (Float -> Void)?,
                       onSuccess: (Void -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
+        let request = RestRequestMock()
         NSTimer.after(0.1) {
-            onProgress?(0.2)
-        }
-        NSTimer.after(0.2) {
-            onProgress?(1.0)
-            if let songPath = self.songPath {
-                try! NSFileManager.defaultManager().copyItemAtPath(songPath, toPath: filePath)
-                onSuccess?()
-            } else {
-                onFailure?(self.errors)
+            if !request.cancelled {
+                onProgress?(0.2)
             }
         }
-        return RestRequestMock()
+        NSTimer.after(0.2) {
+            if !request.cancelled {
+                onProgress?(1.0)
+            }
+            Async.main {
+                if request.cancelled {
+                    onFailure?([Error.clientRequestCancelled])
+                } else {
+                    if let songPath = self.songPath {
+                        try! NSFileManager.defaultManager().copyItemAtPath(songPath, toPath: filePath)
+                        onSuccess?()
+                    } else {
+                        onFailure?(self.errors)
+                    }
+                }
+            }
+        }
+        return request
     }
 }

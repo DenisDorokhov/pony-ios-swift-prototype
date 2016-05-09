@@ -71,6 +71,7 @@ class AuthServiceSpec: QuickSpec {
                 authService.addDelegate(delegateMock)
             }
             afterEach {
+                authService.removeDelegate(delegateMock)
                 TestUtils.cleanAll()
             }
 

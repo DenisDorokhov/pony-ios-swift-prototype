@@ -83,15 +83,15 @@ class LibraryService {
                     onSuccess?(artists)
                 }
             } catch let error {
+                self.log.error("Could not fetch artists: \(error).")
                 Async.main {
-                    self.log.error("Could not fetch artists: \(error).")
                     onFailure?([Error.unexpected])
                 }
             }
         }
     }
 
-    func getArtistAlbums(artistId: Int64, onSuccess: (ArtistAlbums? -> Void)? = nil, onFailure: ([Error] -> Void)? = nil) {
+    func getArtistAlbums(artistId: Int64, onSuccess: (ArtistAlbums -> Void)? = nil, onFailure: ([Error] -> Void)? = nil) {
         Async.customQueue(realmQueue) {
             do {
                 let realm = try self.buildRealm()
@@ -107,11 +107,15 @@ class LibraryService {
                     artistAlbums = ArtistAlbums(artist: artist.toArtist(artworkUrl: self.buildArtworkUrl), albums: albums)
                 }
                 Async.main {
-                    onSuccess?(artistAlbums)
+                    if let artistAlbums = artistAlbums {
+                        onSuccess?(artistAlbums)
+                    } else {
+                        onFailure?([Error(code: Error.CODE_ARTIST_NOT_FOUND, text: "Artist not found.")])
+                    }
                 }
             } catch let error {
+                self.log.error("Could not fetch albums: \(error).")
                 Async.main {
-                    self.log.error("Could not fetch albums: \(error).")
                     onFailure?([Error.unexpected])
                 }
             }
@@ -185,6 +189,10 @@ class LibraryService {
         taskQueue.run()
 
         log.info("Song '\(song.id)' download started.")
+
+        for delegate in fetchDelegates() {
+            delegate.libraryService(self, didStartSongDownload: task.song)
+        }
     }
 
     func cancelSongDownload(songId: Int64) {
@@ -227,8 +235,8 @@ class LibraryService {
                     }
                 }
             } catch let error {
+                self.log.error("Could not delete song: \(error).")
                 Async.main {
-                    self.log.error("Could not delete song: \(error).")
                     onFailure?([Error.unexpected])
                 }
             }
@@ -280,8 +288,8 @@ class LibraryService {
                     onSuccess?(song)
                 }
             } catch let error {
+                self.log.error("Could not save song: \(error).")
                 Async.main {
-                    self.log.error("Could not save song: \(error).")
                     onFailure?([Error.unexpected])
                 }
             }
@@ -341,6 +349,7 @@ class LibraryService {
                         onSuccess(filePath)
                     } else {
                         self.log.error("Artwork '\(artwork)' could not be written to file.")
+                        onFailure([Error.unexpected])
                     }
                 } else {
                     self.log.error("Artwork '\(artwork)' could not be encoded into PNG.")
@@ -363,8 +372,8 @@ class LibraryService {
                         onSuccess(filePath)
                     }
                 } catch let error {
+                    self.log.error("Could not copy stored artwork file '\(path)': \(error).")
                     Async.main {
-                        self.log.error("Could not copy stored artwork file '\(path)': \(error).")
                         onFailure([Error.unexpected])
                     }
                 }
