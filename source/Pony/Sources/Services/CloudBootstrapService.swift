@@ -7,20 +7,20 @@ import Foundation
 import XCGLogger
 import OrderedSet
 
-protocol BootstrapServiceDelegate: class {
+protocol CloudBootstrapServiceDelegate: class {
 
-    func bootstrapServiceDidStartBootstrap(bootstrapService: BootstrapService)
-    func bootstrapServiceDidFinishBootstrap(bootstrapService: BootstrapService)
+    func cloudBootstrapServiceDidStartBootstrap(cloudBootstrapService: CloudBootstrapService)
+    func cloudBootstrapServiceDidFinishBootstrap(cloudBootstrapService: CloudBootstrapService)
 
-    func bootstrapServiceDidStartBackgroundActivity(bootstrapService: BootstrapService)
+    func cloudBootstrapServiceDidStartBackgroundActivity(cloudBootstrapService: CloudBootstrapService)
 
-    func bootstrapServiceDidRequireRestUrl(bootstrapService: BootstrapService)
-    func bootstrapServiceDidRequireAuthentication(bootstrapService: BootstrapService)
+    func cloudBootstrapServiceDidRequireRestUrl(cloudBootstrapService: CloudBootstrapService)
+    func cloudBootstrapServiceDidRequireAuthentication(cloudBootstrapService: CloudBootstrapService)
 
-    func bootstrapService(bootstrapService: BootstrapService, didFailWithErrors errors: [Error])
+    func cloudBootstrapService(cloudBootstrapService: CloudBootstrapService, didFailWithErrors errors: [Error])
 }
 
-class BootstrapService {
+class CloudBootstrapService {
 
     private let log = XCGLogger.defaultInstance()
 
@@ -31,11 +31,11 @@ class BootstrapService {
 
     private var isBootstrapping: Bool = false
 
-    func addDelegate(delegate: BootstrapServiceDelegate) {
+    func addDelegate(delegate: CloudBootstrapServiceDelegate) {
         delegates.append(NSValue(nonretainedObject: delegate))
     }
 
-    func removeDelegate(delegate: BootstrapServiceDelegate) {
+    func removeDelegate(delegate: CloudBootstrapServiceDelegate) {
         delegates.remove(NSValue(nonretainedObject: delegate))
     }
 
@@ -47,7 +47,7 @@ class BootstrapService {
             isBootstrapping = true
 
             for delegate in fetchDelegates() {
-                delegate.bootstrapServiceDidStartBootstrap(self)
+                delegate.cloudBootstrapServiceDidStartBootstrap(self)
             }
 
             if restUrlDao.fetchUrl() != nil {
@@ -65,7 +65,7 @@ class BootstrapService {
                 log.info("Bootstrapping requires server URL.")
 
                 for delegate in fetchDelegates() {
-                    delegate.bootstrapServiceDidRequireRestUrl(self)
+                    delegate.cloudBootstrapServiceDidRequireRestUrl(self)
                 }
             }
         } else {
@@ -82,7 +82,7 @@ class BootstrapService {
     private func validateAuthentication() {
 
         for delegate in fetchDelegates() {
-            delegate.bootstrapServiceDidStartBackgroundActivity(self)
+            delegate.cloudBootstrapServiceDidStartBackgroundActivity(self)
         }
 
         authService.updateUser(onSuccess: {
@@ -95,24 +95,25 @@ class BootstrapService {
             if Error.fetchFirstByCodes([Error.CODE_ACCESS_DENIED], fromArray: errors) != nil {
                 self.log.info("Bootstrapping requires authentication.")
                 for delegate in self.fetchDelegates() {
-                    delegate.bootstrapServiceDidRequireAuthentication(self)
+                    delegate.cloudBootstrapServiceDidRequireAuthentication(self)
                 }
             } else {
                 for delegate in self.fetchDelegates() {
-                    delegate.bootstrapService(self, didFailWithErrors: errors)
+                    delegate.cloudBootstrapService(self, didFailWithErrors: errors)
                 }
             }
         })
     }
 
-    private func fetchDelegates() -> [BootstrapServiceDelegate] {
-        return delegates.map { $0.nonretainedObjectValue as! BootstrapServiceDelegate }
+    private func fetchDelegates() -> [CloudBootstrapServiceDelegate] {
+        return delegates.map { $0.nonretainedObjectValue as! CloudBootstrapServiceDelegate
+        }
     }
 
     private func propagateDidFinishBootstrap() {
         log.info("Bootstrap finished.")
         for delegate in fetchDelegates() {
-            delegate.bootstrapServiceDidFinishBootstrap(self)
+            delegate.cloudBootstrapServiceDidFinishBootstrap(self)
         }
     }
 

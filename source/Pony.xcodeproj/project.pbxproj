@@ -13,7 +13,7 @@
 		268109111CD9377E008F3228 /* LibraryServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D398FAA1C6814E833F9CC2 /* LibraryServiceSpec.swift */; };
 		3956DC758D9AA584E5A35383 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE1A90DE10DFBC548CAF88 /* Pods.framework */; };
 		561A3C9C416CA6582C3DD4B7 /* Pods_PonyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A72F40AC0753B824B6BB77 /* Pods_PonyTests.framework */; };
-		B3D39122BB0E1E81E2A58A90 /* BootstrapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39F52401F016C133B0CEA /* BootstrapService.swift */; };
+		B3D39122BB0E1E81E2A58A90 /* CloudBootstrapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39F52401F016C133B0CEA /* CloudBootstrapService.swift */; };
 		B3D39162AADDFA0D314AB4C4 /* RestServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39F809856F31BC2EF5203 /* RestServiceMock.swift */; };
 		B3D39198471030D8D5D6D5FC /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39BF5AAB8ECFB44483D19 /* AuthService.swift */; };
 		B3D391C56EB40C76F226A7B0 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D391F13B0D876337744D06 /* Credentials.swift */; };
@@ -31,7 +31,7 @@
 		B3D396128F93CE66BE415E61 /* AuthServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39C3883749C49F2BE973D /* AuthServiceSpec.swift */; };
 		B3D39621BE82AD696363957B /* LibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39B85D9A70610E01D4E02 /* LibraryService.swift */; };
 		B3D3973FFCB12181A1F15E6B /* AbstractRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3952BC8B739F855020EEE /* AbstractRealm.swift */; };
-		B3D3979D4C5E5020A4B2DF69 /* BootstrapServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3980EADBB1A29F657A1C3 /* BootstrapServiceSpec.swift */; };
+		B3D3979D4C5E5020A4B2DF69 /* CloudBootstrapServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3980EADBB1A29F657A1C3 /* CloudBootstrapServiceSpec.swift */; };
 		B3D397F9103F5E9A8B569276 /* SongRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3982038694574A15E694A /* SongRealm.swift */; };
 		B3D39814C97989FF4FC94B00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D3992E660164C0D4394C02 /* Assets.xcassets */; };
 		B3D3985843C635574790C00D /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3D395E571B07CDF4A8DE40B /* song.mp3 */; };
@@ -95,7 +95,7 @@
 		B3D39623CBE5CB1433120146 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		B3D39793D1B7D89FCE859310 /* Genre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		B3D397FCA461D490DF5786C7 /* TokenPairDaoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDaoMock.swift; sourceTree = "<group>"; };
-		B3D3980EADBB1A29F657A1C3 /* BootstrapServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BootstrapServiceSpec.swift; sourceTree = "<group>"; };
+		B3D3980EADBB1A29F657A1C3 /* CloudBootstrapServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudBootstrapServiceSpec.swift; sourceTree = "<group>"; };
 		B3D3982038694574A15E694A /* SongRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongRealm.swift; sourceTree = "<group>"; };
 		B3D398954810FB824BAF4806 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		B3D398FAA1C6814E833F9CC2 /* LibraryServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryServiceSpec.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		B3D39E8AA3ED63236F004023 /* TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		B3D39EC4F986F91AA8D717C8 /* AlbumRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumRealm.swift; sourceTree = "<group>"; };
 		B3D39F25FEBC90B78958346B /* ArtistAlbums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistAlbums.swift; sourceTree = "<group>"; };
-		B3D39F52401F016C133B0CEA /* BootstrapService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BootstrapService.swift; sourceTree = "<group>"; };
+		B3D39F52401F016C133B0CEA /* CloudBootstrapService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudBootstrapService.swift; sourceTree = "<group>"; };
 		B3D39F809856F31BC2EF5203 /* RestServiceMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestServiceMock.swift; sourceTree = "<group>"; };
 		B3D39FB5683940F8C4F44E92 /* FileUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
 		B3D39FEB986753D323CE1837 /* AlamofireManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireManager.swift; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 				B3D39B9533688E2C057EE5B4 /* Common */,
 				B3D39EFB275B5A3F78696CCC /* Mock */,
 				B3D39C3883749C49F2BE973D /* AuthServiceSpec.swift */,
-				B3D3980EADBB1A29F657A1C3 /* BootstrapServiceSpec.swift */,
+				B3D3980EADBB1A29F657A1C3 /* CloudBootstrapServiceSpec.swift */,
 				B3D398FAA1C6814E833F9CC2 /* LibraryServiceSpec.swift */,
 				B3D39204849A2F8BF7AACC01 /* RestServiceSpec.swift */,
 				B3D393C8784FF489E26E4E7F /* RestUrlDaoSpec.swift */,
@@ -323,7 +323,7 @@
 				B3D39A40ACC21728156084E8 /* Rest */,
 				B3D39D38A30582C055F490A2 /* Dao */,
 				B3D39BF5AAB8ECFB44483D19 /* AuthService.swift */,
-				B3D39F52401F016C133B0CEA /* BootstrapService.swift */,
+				B3D39F52401F016C133B0CEA /* CloudBootstrapService.swift */,
 				B3D39B85D9A70610E01D4E02 /* LibraryService.swift */,
 			);
 			path = Services;
@@ -581,7 +581,7 @@
 				B3D39D26AB503C4EAED027ED /* RestService.swift in Sources */,
 				B3D39A7134E553F3DB1D0D53 /* Int64Transform.swift in Sources */,
 				B3D39198471030D8D5D6D5FC /* AuthService.swift in Sources */,
-				B3D39122BB0E1E81E2A58A90 /* BootstrapService.swift in Sources */,
+				B3D39122BB0E1E81E2A58A90 /* CloudBootstrapService.swift in Sources */,
 				B3D39621BE82AD696363957B /* LibraryService.swift in Sources */,
 				B3D397F9103F5E9A8B569276 /* SongRealm.swift in Sources */,
 				B3D3954F7EBCA811B7C676C8 /* AlbumRealm.swift in Sources */,
@@ -617,7 +617,7 @@
 				26355A1E1CD2B64A0023063C /* RestUrlDaoSpec.swift in Sources */,
 				B3D396128F93CE66BE415E61 /* AuthServiceSpec.swift in Sources */,
 				B3D39162AADDFA0D314AB4C4 /* RestServiceMock.swift in Sources */,
-				B3D3979D4C5E5020A4B2DF69 /* BootstrapServiceSpec.swift in Sources */,
+				B3D3979D4C5E5020A4B2DF69 /* CloudBootstrapServiceSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

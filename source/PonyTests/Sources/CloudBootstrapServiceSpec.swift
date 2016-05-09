@@ -9,7 +9,7 @@ import Nimble
 
 @testable import Pony
 
-private class BootstrapServiceDelegateMock: BootstrapServiceDelegate {
+private class CloudBootstrapServiceDelegateMock: CloudBootstrapServiceDelegate {
 
     var didStartBootstrap: Bool = false
     var didFinishBootstrap: Bool = false
@@ -18,27 +18,27 @@ private class BootstrapServiceDelegateMock: BootstrapServiceDelegate {
     var didRequireAuthentication: Bool = false
     var didFailWithErrors: [Error]?
 
-    func bootstrapServiceDidStartBootstrap(bootstrapService: BootstrapService) {
+    func cloudBootstrapServiceDidStartBootstrap(cloudBootstrapService: CloudBootstrapService) {
         didStartBootstrap = true
     }
 
-    func bootstrapServiceDidFinishBootstrap(bootstrapService: BootstrapService) {
+    func cloudBootstrapServiceDidFinishBootstrap(cloudBootstrapService: CloudBootstrapService) {
         didFinishBootstrap = true
     }
 
-    func bootstrapServiceDidStartBackgroundActivity(bootstrapService: BootstrapService) {
+    func cloudBootstrapServiceDidStartBackgroundActivity(cloudBootstrapService: CloudBootstrapService) {
         didStartBackgroundActivity = true
     }
 
-    func bootstrapServiceDidRequireRestUrl(bootstrapService: BootstrapService) {
+    func cloudBootstrapServiceDidRequireRestUrl(cloudBootstrapService: CloudBootstrapService) {
         didRequireRestUrl = true
     }
 
-    func bootstrapServiceDidRequireAuthentication(bootstrapService: BootstrapService) {
+    func cloudBootstrapServiceDidRequireAuthentication(cloudBootstrapService: CloudBootstrapService) {
         didRequireAuthentication = true
     }
 
-    func bootstrapService(bootstrapService: BootstrapService, didFailWithErrors errors: [Error]) {
+    func cloudBootstrapService(cloudBootstrapService: CloudBootstrapService, didFailWithErrors errors: [Error]) {
         didFailWithErrors = errors
     }
 }
@@ -53,17 +53,17 @@ private func buildAuthenticationMock() -> Authentication {
             user: buildUserMock())
 }
 
-class BootstrapServiceSpec: QuickSpec {
+class CloudBootstrapServiceSpec: QuickSpec {
     override func spec() {
 
-        describe("BootstrapService") {
+        describe("CloudBootstrapService") {
 
             var restUrlDaoMock: RestUrlDaoMock!
             var tokenPairDaoMock: TokenPairDaoMock!
             var restServiceMock: RestServiceMock!
             var authService: AuthService!
-            var delegateMock: BootstrapServiceDelegateMock!
-            var bootstrapService: BootstrapService!
+            var delegateMock: CloudBootstrapServiceDelegateMock!
+            var cloudBootstrapService: CloudBootstrapService!
             beforeEach {
                 TestUtils.cleanAll()
 
@@ -77,28 +77,28 @@ class BootstrapServiceSpec: QuickSpec {
                 authService.tokenPairDao = tokenPairDaoMock
                 authService.restService = restServiceMock
 
-                delegateMock = BootstrapServiceDelegateMock()
+                delegateMock = CloudBootstrapServiceDelegateMock()
 
                 restUrlDaoMock = RestUrlDaoMock()
 
-                bootstrapService = BootstrapService()
-                bootstrapService.restUrlDao = restUrlDaoMock
-                bootstrapService.authService = authService
-                bootstrapService.addDelegate(delegateMock)
+                cloudBootstrapService = CloudBootstrapService()
+                cloudBootstrapService.restUrlDao = restUrlDaoMock
+                cloudBootstrapService.authService = authService
+                cloudBootstrapService.addDelegate(delegateMock)
             }
             afterEach {
                 TestUtils.cleanAll()
             }
 
             it("should start bootstrap and require rest url") {
-                bootstrapService.bootstrap()
+                cloudBootstrapService.bootstrap()
                 expect(delegateMock.didStartBootstrap).to(beTrue())
                 expect(delegateMock.didRequireRestUrl).to(beTrue())
             }
 
             it("should start background activity and require authentication") {
                 restUrlDaoMock.storeUrl(NSURL(string: "http://someUrl")!)
-                bootstrapService.bootstrap()
+                cloudBootstrapService.bootstrap()
                 expect(delegateMock.didRequireAuthentication).toEventually(beTrue())
                 expect(delegateMock.didStartBackgroundActivity).to(beTrue())
             }
@@ -106,7 +106,7 @@ class BootstrapServiceSpec: QuickSpec {
             it("should finish bootstrap") {
                 restUrlDaoMock.storeUrl(NSURL(string: "http://someUrl")!)
                 tokenPairDaoMock.storeTokenPair(TokenPair(authentication: buildAuthenticationMock()))
-                bootstrapService.bootstrap()
+                cloudBootstrapService.bootstrap()
                 expect(delegateMock.didFinishBootstrap).toEventually(beTrue())
             }
 
@@ -114,7 +114,7 @@ class BootstrapServiceSpec: QuickSpec {
                 restUrlDaoMock.storeUrl(NSURL(string: "http://someUrl")!)
                 tokenPairDaoMock.storeTokenPair(TokenPair(authentication: buildAuthenticationMock()))
                 restServiceMock.currentUser = nil
-                bootstrapService.bootstrap()
+                cloudBootstrapService.bootstrap()
                 expect(delegateMock.didFailWithErrors).toEventuallyNot(beNil())
             }
 
@@ -129,7 +129,7 @@ class BootstrapServiceSpec: QuickSpec {
                     })
                 }
                 expect(authService.isAuthenticated).toEventually(beTrue())
-                bootstrapService.clearBootstrapData()
+                cloudBootstrapService.clearBootstrapData()
                 expect(authService.isAuthenticated).to(beFalse())
                 expect(restUrlDaoMock.fetchUrl()).to(beNil())
             }
