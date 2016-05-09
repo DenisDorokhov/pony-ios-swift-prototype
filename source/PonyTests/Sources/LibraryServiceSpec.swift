@@ -48,6 +48,7 @@ class LibraryServiceSpec: QuickSpec {
     override func spec() {
         describe("LibraryService") {
 
+            var restServiceMock: RestServiceMock!
             var delegateMock: LibraryServiceDelegateMock!
             var service: LibraryService!
             beforeEach {
@@ -55,7 +56,7 @@ class LibraryServiceSpec: QuickSpec {
 
                 let bundle = NSBundle(forClass: LibraryServiceSpec.self)
 
-                let restServiceMock = RestServiceMock()
+                restServiceMock = RestServiceMock()
                 restServiceMock.imagePath = bundle.pathForResource("artwork", ofType: "png")!
                 restServiceMock.songPath = bundle.pathForResource("song", ofType: "mp3")!
 
@@ -194,8 +195,55 @@ class LibraryServiceSpec: QuickSpec {
                 }
             }
 
-            // TODO: test case with no artwork
-            // TODO: test error handling
+            it("should handle song download errors") {
+
+                restServiceMock.imagePath = nil
+                restServiceMock.songPath = nil
+
+                let song = buildSongMock()
+                var errors: [Error]?
+                service.downloadSong(song, onFailure: {
+                    errors = $0
+                })
+                expect(errors).toEventuallyNot(beNil())
+                expect(delegateMock.didFailSongDownload).toNot(beNil())
+                expect(service.allTasks()).to(haveCount(0))
+                expect(service.taskForSong(song.id)).to(beNil())
+            }
+
+            it("should download song with no artist and album artwork") {
+
+                let song = buildSongMock()
+                song.album.artwork = nil
+                song.album.artworkUrl = nil
+                song.album.artist.artwork = nil
+                song.album.artist.artworkUrl = nil
+
+                var downloadedSong: Song?
+                service.downloadSong(song, onSuccess: {
+                    downloadedSong = $0
+                })
+                expect(downloadedSong).toEventuallyNot(beNil())
+            }
+
+            it("should not download artwork if it already exists") {
+
+                var song: Song?
+                service.downloadSong(buildSongMock(), onSuccess: {
+                    song = $0
+                })
+                expect(song).toEventuallyNot(beNil())
+
+                restServiceMock.didCallDownloadImage = false
+
+                song = nil
+                service.downloadSong(buildSongMock(), onSuccess: {
+                    song = $0
+                })
+                expect(song).toEventuallyNot(beNil())
+
+                expect(restServiceMock.didCallDownloadImage).to(beFalse())
+            }
         }
     }
 }

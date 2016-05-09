@@ -31,10 +31,21 @@ class RestServiceMock: RestService {
     var imagePath: String?
     var songPath: String?
 
+    var didCallGetInstallation: Bool = false
+    var didCallAuthenticate: Bool = false
+    var didCallLogout: Bool = false
+    var didCallCurrentUser: Bool = false
+    var didCallRefreshToken: Bool = false
+    var didCallGetArtists: Bool = false
+    var didCallGetArtistAlbums: Bool = false
+    var didCallDownloadImage: Bool = false
+    var didCallDownloadSong: Bool = false
+
     var errors: [Error] = [Error.unexpected]
 
     func getInstallation(onSuccess onSuccess: (Installation -> Void)?,
                          onFailure: ([Error] -> Void)?) -> RestRequest {
+        didCallGetInstallation = true
         let request = RestRequestMock()
         Async.main {
             if request.cancelled {
@@ -53,6 +64,7 @@ class RestServiceMock: RestService {
     func authenticate(credentials: Credentials,
                       onSuccess: (Authentication -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
+        didCallAuthenticate = true
         let request = RestRequestMock()
         Async.main {
             if request.cancelled {
@@ -70,6 +82,7 @@ class RestServiceMock: RestService {
 
     func logout(onSuccess onSuccess: (User -> Void)?,
                 onFailure: ([Error] -> Void)?) -> RestRequest {
+        didCallLogout = true
         let request = RestRequestMock()
         Async.main {
             if request.cancelled {
@@ -87,6 +100,7 @@ class RestServiceMock: RestService {
 
     func getCurrentUser(onSuccess onSuccess: (User -> Void)?,
                         onFailure: ([Error] -> Void)?) -> RestRequest {
+        didCallCurrentUser = true
         let request = RestRequestMock()
         Async.main {
             if request.cancelled {
@@ -104,6 +118,7 @@ class RestServiceMock: RestService {
 
     func refreshToken(onSuccess onSuccess: (Authentication -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
+        didCallRefreshToken = true
         let request = RestRequestMock()
         Async.main {
             if request.cancelled {
@@ -121,6 +136,7 @@ class RestServiceMock: RestService {
 
     func getArtists(onSuccess onSuccess: ([Artist] -> Void)?,
                     onFailure: ([Error] -> Void)?) -> RestRequest {
+        didCallGetArtists = true
         let request = RestRequestMock()
         Async.main {
             if request.cancelled {
@@ -139,6 +155,7 @@ class RestServiceMock: RestService {
     func getArtistAlbums(artistId: Int64,
                          onSuccess: (ArtistAlbums -> Void)?,
                          onFailure: ([Error] -> Void)?) -> RestRequest {
+        didCallGetArtistAlbums = true
         let request = RestRequestMock()
         Async.main {
             if request.cancelled {
@@ -157,6 +174,7 @@ class RestServiceMock: RestService {
     func downloadImage(absoluteUrl: String,
                        onSuccess: (UIImage -> Void)?,
                        onFailure: ([Error] -> Void)?) -> RestRequest {
+        didCallDownloadImage = true
         let request = RestRequestMock()
         Async.main {
             if request.cancelled {
@@ -176,6 +194,7 @@ class RestServiceMock: RestService {
                       onProgress: (Float -> Void)?,
                       onSuccess: (Void -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
+        didCallDownloadSong = true
         let request = RestRequestMock()
         NSTimer.after(0.1) {
             if !request.cancelled {
