@@ -15,6 +15,7 @@ pod 'RealmSwift', '0.100.0' # TODO: upgrade for Xcode 7.3!
 pod 'TaskQueue', '0.9.10'
 pod 'AsyncSwift', '1.7.2'
 pod 'ReachabilitySwift', '2.3.3'
+pod 'Localize-Swift', '1.1.2'
 
 target :PonyTests, :exclusive => true do
   pod 'Quick', '0.9.2'

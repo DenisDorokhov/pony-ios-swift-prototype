@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26303FA61CE10A2B0007636C /* CloudBootstrap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26303FA51CE10A2B0007636C /* CloudBootstrap.storyboard */; };
+		26303FA81CE10A4F0007636C /* LocalLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26303FA71CE10A4F0007636C /* LocalLibrary.storyboard */; };
+		26303FAA1CE111EA0007636C /* Player.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26303FA91CE111EA0007636C /* Player.storyboard */; };
 		26355A1E1CD2B64A0023063C /* RestUrlDaoSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D393C8784FF489E26E4E7F /* RestUrlDaoSpec.swift */; };
 		26355A1F1CD4CA170023063C /* RestServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39204849A2F8BF7AACC01 /* RestServiceSpec.swift */; };
 		26355A201CD4CAC50023063C /* RestUrlDaoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39A1EC54D5D19065F43E0 /* RestUrlDaoMock.swift */; };
 		268109111CD9377E008F3228 /* LibraryServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D398FAA1C6814E833F9CC2 /* LibraryServiceSpec.swift */; };
 		3956DC758D9AA584E5A35383 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE1A90DE10DFBC548CAF88 /* Pods.framework */; };
 		561A3C9C416CA6582C3DD4B7 /* Pods_PonyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A72F40AC0753B824B6BB77 /* Pods_PonyTests.framework */; };
+		B3D390BAD27A02847969CD4C /* CloudBootstrapLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39C65BE9FA71C93720E86 /* CloudBootstrapLoginController.swift */; };
 		B3D39122BB0E1E81E2A58A90 /* CloudBootstrapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39F52401F016C133B0CEA /* CloudBootstrapService.swift */; };
 		B3D39162AADDFA0D314AB4C4 /* RestServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39F809856F31BC2EF5203 /* RestServiceMock.swift */; };
 		B3D39198471030D8D5D6D5FC /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39BF5AAB8ECFB44483D19 /* AuthService.swift */; };
@@ -35,7 +39,9 @@
 		B3D397F9103F5E9A8B569276 /* SongRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3982038694574A15E694A /* SongRealm.swift */; };
 		B3D39814C97989FF4FC94B00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B3D3992E660164C0D4394C02 /* Assets.xcassets */; };
 		B3D3985843C635574790C00D /* song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B3D395E571B07CDF4A8DE40B /* song.mp3 */; };
-		B3D398B9C195FB2D69E83899 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D399C1B0F06CAF1F3C4AF4 /* ViewController.swift */; };
+		B3D398B9C195FB2D69E83899 /* LocalLibraryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D399C1B0F06CAF1F3C4AF4 /* LocalLibraryController.swift */; };
+		B3D398D74A528E03462C6AD6 /* CloudBootstrapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3931007C728EEDD189242 /* CloudBootstrapController.swift */; };
+		B3D398EC9EF1389513A68592 /* CloudBootstrapServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3980916CB0BBFA433BEEE /* CloudBootstrapServerController.swift */; };
 		B3D39902F5B18854A2219070 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D398954810FB824BAF4806 /* main.swift */; };
 		B3D3996BB5D9226DEE769859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B3D39E6172BEA358A6F0A616 /* LaunchScreen.storyboard */; };
 		B3D3998BF3CD89AE6CBCDC00 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3937FA8326E119B25510C /* Album.swift */; };
@@ -43,6 +49,7 @@
 		B3D39A7134E553F3DB1D0D53 /* Int64Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39BE3C85156F539EC1B38 /* Int64Transform.swift */; };
 		B3D39A7D80FA31268ADEB655 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D395BE8B48E946A0331BCC /* Song.swift */; };
 		B3D39A9FA1FD254813066309 /* GenreRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3920FD3F3AB649138C92A /* GenreRealm.swift */; };
+		B3D39B4B49B90C90F12D5C6B /* ErrorNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D3914715BC2D934D919DE0 /* ErrorNotifier.swift */; };
 		B3D39BB6A2416BE46C48E858 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39E77BE46BD5EEECED290 /* AppDelegate.swift */; };
 		B3D39BC499A87EE18B70846E /* TokenPairDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D393A86FC0536BA2C77A03 /* TokenPairDao.swift */; };
 		B3D39BD7BDA40D0AB12CF9D8 /* TokenPairDaoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D397FCA461D490DF5786C7 /* TokenPairDaoMock.swift */; };
@@ -55,6 +62,8 @@
 		B3D39E70C7298B0C497301CB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D391BF07B8C9350A04ECAA /* Error.swift */; };
 		B3D39E911FE0754074BCDC2D /* artwork.png in Resources */ = {isa = PBXBuildFile; fileRef = B3D392B4F0458B349519958A /* artwork.png */; };
 		B3D39ED653B7DDF91F09ABD0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39C6D949909253CCBCD75 /* User.swift */; };
+		B3D39F5901183D0B2FFECD85 /* CloudBootstrapRetryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D390808E0020B0310CC22A /* CloudBootstrapRetryController.swift */; };
+		B3D39FF855C80A2EB0E1C077 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D39634A4D16DC57A9F09F9 /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,12 +77,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		26303FA51CE10A2B0007636C /* CloudBootstrap.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CloudBootstrap.storyboard; sourceTree = "<group>"; };
+		26303FA71CE10A4F0007636C /* LocalLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LocalLibrary.storyboard; sourceTree = "<group>"; };
+		26303FA91CE111EA0007636C /* Player.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Player.storyboard; sourceTree = "<group>"; };
 		26E8D5AD1CCFD7650027489B /* Pony.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pony.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26E8D5C11CCFD7650027489B /* PonyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PonyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AEE1A90DE10DFBC548CAF88 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A386F42DE3EC6D73D04AB8D /* Pods-PonyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PonyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PonyTests/Pods-PonyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8C50F6960A8C66EA378E86D4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		91A72F40AC0753B824B6BB77 /* Pods_PonyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PonyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3D390808E0020B0310CC22A /* CloudBootstrapRetryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudBootstrapRetryController.swift; sourceTree = "<group>"; };
+		B3D3914715BC2D934D919DE0 /* ErrorNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorNotifier.swift; sourceTree = "<group>"; };
 		B3D391BF07B8C9350A04ECAA /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		B3D391D8A0C0EC2661EAF45F /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		B3D391F13B0D876337744D06 /* Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
@@ -82,6 +96,7 @@
 		B3D39293B6B5E032A3FA3200 /* RestUrlDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestUrlDao.swift; sourceTree = "<group>"; };
 		B3D392B4F0458B349519958A /* artwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = artwork.png; sourceTree = "<group>"; };
 		B3D392E735DE46BC22E7895B /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		B3D3931007C728EEDD189242 /* CloudBootstrapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudBootstrapController.swift; sourceTree = "<group>"; };
 		B3D3937FA8326E119B25510C /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		B3D393A86FC0536BA2C77A03 /* TokenPairDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDao.swift; sourceTree = "<group>"; };
 		B3D393C8784FF489E26E4E7F /* RestUrlDaoSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestUrlDaoSpec.swift; sourceTree = "<group>"; };
@@ -93,8 +108,10 @@
 		B3D395E571B07CDF4A8DE40B /* song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = song.mp3; sourceTree = "<group>"; };
 		B3D396234A639E5B4C42C6A1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		B3D39623CBE5CB1433120146 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		B3D39634A4D16DC57A9F09F9 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		B3D39793D1B7D89FCE859310 /* Genre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		B3D397FCA461D490DF5786C7 /* TokenPairDaoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDaoMock.swift; sourceTree = "<group>"; };
+		B3D3980916CB0BBFA433BEEE /* CloudBootstrapServerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudBootstrapServerController.swift; sourceTree = "<group>"; };
 		B3D3980EADBB1A29F657A1C3 /* CloudBootstrapServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudBootstrapServiceSpec.swift; sourceTree = "<group>"; };
 		B3D3982038694574A15E694A /* SongRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SongRealm.swift; sourceTree = "<group>"; };
 		B3D398954810FB824BAF4806 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -102,7 +119,7 @@
 		B3D3992E660164C0D4394C02 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B3D39967C31DDED348E5FFE7 /* Installation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Installation.swift; sourceTree = "<group>"; };
 		B3D399916AABD4BC0E5BECB8 /* AlbumSongs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumSongs.swift; sourceTree = "<group>"; };
-		B3D399C1B0F06CAF1F3C4AF4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B3D399C1B0F06CAF1F3C4AF4 /* LocalLibraryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalLibraryController.swift; sourceTree = "<group>"; };
 		B3D39A1EC54D5D19065F43E0 /* RestUrlDaoMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestUrlDaoMock.swift; sourceTree = "<group>"; };
 		B3D39B85D9A70610E01D4E02 /* LibraryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryService.swift; sourceTree = "<group>"; };
 		B3D39BE3C85156F539EC1B38 /* Int64Transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int64Transform.swift; sourceTree = "<group>"; };
@@ -110,6 +127,7 @@
 		B3D39C3883749C49F2BE973D /* AuthServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthServiceSpec.swift; sourceTree = "<group>"; };
 		B3D39C4F5FB810F2F1285312 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B3D39C58B8F7ECD43CDB64AF /* TokenPairDaoSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenPairDaoSpec.swift; sourceTree = "<group>"; };
+		B3D39C65BE9FA71C93720E86 /* CloudBootstrapLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudBootstrapLoginController.swift; sourceTree = "<group>"; };
 		B3D39C6D949909253CCBCD75 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B3D39CDB6C3C0F1C70E90F40 /* RandomUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomUtils.swift; sourceTree = "<group>"; };
 		B3D39DD8F8406B8C80B3A794 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -205,12 +223,22 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		B3D390D5A907FD69ECFD774C /* Cloud */ = {
+			isa = PBXGroup;
+			children = (
+				B3D39605974656A2FB743902 /* Bootstrap */,
+				B3D3931007C728EEDD189242 /* CloudBootstrapController.swift */,
+			);
+			path = Cloud;
+			sourceTree = "<group>";
+		};
 		B3D3915E4DC4B6D7A5CBF385 /* Common */ = {
 			isa = PBXGroup;
 			children = (
 				B3D39FB5683940F8C4F44E92 /* FileUtils.swift */,
 				B3D39CDB6C3C0F1C70E90F40 /* RandomUtils.swift */,
 				B3D39BE3C85156F539EC1B38 /* Int64Transform.swift */,
+				B3D39634A4D16DC57A9F09F9 /* Notifications.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -252,6 +280,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		B3D39605974656A2FB743902 /* Bootstrap */ = {
+			isa = PBXGroup;
+			children = (
+				B3D390808E0020B0310CC22A /* CloudBootstrapRetryController.swift */,
+				B3D39C65BE9FA71C93720E86 /* CloudBootstrapLoginController.swift */,
+				B3D3980916CB0BBFA433BEEE /* CloudBootstrapServerController.swift */,
+			);
+			path = Bootstrap;
+			sourceTree = "<group>";
+		};
 		B3D3977D7C54D3515FE5B416 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,7 +315,8 @@
 		B3D39840FBE7E1F058803475 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B3D399C1B0F06CAF1F3C4AF4 /* ViewController.swift */,
+				B3D399C1B0F06CAF1F3C4AF4 /* LocalLibraryController.swift */,
+				B3D390D5A907FD69ECFD774C /* Cloud */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -313,6 +352,9 @@
 			children = (
 				B3D39E6172BEA358A6F0A616 /* LaunchScreen.storyboard */,
 				B3D39C4F5FB810F2F1285312 /* Main.storyboard */,
+				26303FA91CE111EA0007636C /* Player.storyboard */,
+				26303FA71CE10A4F0007636C /* LocalLibrary.storyboard */,
+				26303FA51CE10A2B0007636C /* CloudBootstrap.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -325,6 +367,7 @@
 				B3D39BF5AAB8ECFB44483D19 /* AuthService.swift */,
 				B3D39F52401F016C133B0CEA /* CloudBootstrapService.swift */,
 				B3D39B85D9A70610E01D4E02 /* LibraryService.swift */,
+				B3D3914715BC2D934D919DE0 /* ErrorNotifier.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -455,9 +498,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26303FA81CE10A4F0007636C /* LocalLibrary.storyboard in Resources */,
+				26303FA61CE10A2B0007636C /* CloudBootstrap.storyboard in Resources */,
 				B3D39814C97989FF4FC94B00 /* Assets.xcassets in Resources */,
 				B3D3996BB5D9226DEE769859 /* LaunchScreen.storyboard in Resources */,
 				B3D3927C94618DBDDFEFC760 /* Main.storyboard in Resources */,
+				26303FAA1CE111EA0007636C /* Player.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,7 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3D39BB6A2416BE46C48E858 /* AppDelegate.swift in Sources */,
-				B3D398B9C195FB2D69E83899 /* ViewController.swift in Sources */,
+				B3D398B9C195FB2D69E83899 /* LocalLibraryController.swift in Sources */,
 				B3D39424EEE94B5E5453D37F /* FileUtils.swift in Sources */,
 				B3D39DC88D79B1D33FFF1D87 /* RandomUtils.swift in Sources */,
 				B3D39C159D2BE0E9147D381C /* AlamofireManager.swift in Sources */,
@@ -601,6 +647,12 @@
 				B3D3933FC866F3CD5A1B29F4 /* Installation.swift in Sources */,
 				B3D393CEE86554AE03E12A10 /* Response.swift in Sources */,
 				B3D39902F5B18854A2219070 /* main.swift in Sources */,
+				B3D39F5901183D0B2FFECD85 /* CloudBootstrapRetryController.swift in Sources */,
+				B3D390BAD27A02847969CD4C /* CloudBootstrapLoginController.swift in Sources */,
+				B3D398EC9EF1389513A68592 /* CloudBootstrapServerController.swift in Sources */,
+				B3D398D74A528E03462C6AD6 /* CloudBootstrapController.swift in Sources */,
+				B3D39B4B49B90C90F12D5C6B /* ErrorNotifier.swift in Sources */,
+				B3D39FF855C80A2EB0E1C077 /* Notifications.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
