@@ -124,9 +124,8 @@ class CloudBootstrapController: UIViewController, CloudBootstrapServiceDelegate,
             [weak self] notification in
             let keyboardFrameValue = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue
             let keyboardSize = keyboardFrameValue?.CGRectValue().size ?? CGSizeZero
-            let inset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0)
-            self?.scrollView.contentInset = inset
-            self?.scrollView.scrollIndicatorInsets = inset
+            self?.scrollView.contentInset.bottom = keyboardSize.height
+            self?.scrollView.scrollIndicatorInsets.bottom = keyboardSize.height - (self?.bottomLayoutGuide.length ?? 0)
         }
         Notifications.subscribe(UIKeyboardWillHideNotification, self) {
             [weak self] notification in

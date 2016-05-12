@@ -26,13 +26,13 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aM5-9M-rad">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="p71-nQ-Cxr">
-                                                <rect key="frame" x="178" y="32" width="20" height="20"/>
+                                                <rect key="frame" x="178" y="20" width="20" height="20"/>
                                             </activityIndicatorView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJa-Es-3kX" userLabel="Server Container">
-                                                <rect key="frame" x="8" y="52" width="359" height="162"/>
+                                                <rect key="frame" x="8" y="40" width="359" height="162"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="162" id="ra5-xt-XR1"/>
                                                 </constraints>
@@ -41,7 +41,7 @@
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIx-w2-0l0" userLabel="Login Container">
-                                                <rect key="frame" x="8" y="52" width="359" height="162"/>
+                                                <rect key="frame" x="8" y="40" width="359" height="162"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="162" id="Hwl-De-RPM"/>
                                                 </constraints>
@@ -50,7 +50,7 @@
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vdP-XA-58t" userLabel="Retry Container">
-                                                <rect key="frame" x="8" y="52" width="359" height="162"/>
+                                                <rect key="frame" x="8" y="40" width="359" height="162"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="162" id="Tco-o4-x77"/>
                                                 </constraints>
@@ -66,14 +66,14 @@
                                             <constraint firstItem="p71-nQ-Cxr" firstAttribute="centerX" secondItem="aM5-9M-rad" secondAttribute="centerX" id="2qS-fE-nkR"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bIx-w2-0l0" secondAttribute="bottom" constant="8" id="8vl-Yy-hhn"/>
                                             <constraint firstAttribute="trailing" secondItem="vdP-XA-58t" secondAttribute="trailing" constant="8" id="E9i-ce-1ui"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="vdP-XA-58t" secondAttribute="bottom" constant="8" id="GOL-Oj-cfU"/>
+                                            <constraint firstAttribute="bottom" secondItem="vdP-XA-58t" secondAttribute="bottom" priority="250" constant="8" id="GOL-Oj-cfU"/>
                                             <constraint firstItem="TJa-Es-3kX" firstAttribute="top" secondItem="p71-nQ-Cxr" secondAttribute="bottom" id="HZM-5H-AcA"/>
                                             <constraint firstAttribute="trailing" secondItem="TJa-Es-3kX" secondAttribute="trailing" constant="8" id="IJ6-r0-Wht"/>
                                             <constraint firstItem="vdP-XA-58t" firstAttribute="leading" secondItem="aM5-9M-rad" secondAttribute="leading" constant="8" id="J6p-jd-h6D"/>
                                             <constraint firstItem="bIx-w2-0l0" firstAttribute="top" secondItem="p71-nQ-Cxr" secondAttribute="bottom" id="Xkf-Ie-qC4"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="TJa-Es-3kX" secondAttribute="bottom" constant="8" id="adF-4d-Hgw"/>
                                             <constraint firstItem="vdP-XA-58t" firstAttribute="top" secondItem="p71-nQ-Cxr" secondAttribute="bottom" id="ehS-Vf-FiA"/>
-                                            <constraint firstItem="p71-nQ-Cxr" firstAttribute="top" secondItem="aM5-9M-rad" secondAttribute="top" constant="32" id="hZB-2i-yw1"/>
+                                            <constraint firstItem="p71-nQ-Cxr" firstAttribute="top" secondItem="aM5-9M-rad" secondAttribute="top" constant="20" id="hZB-2i-yw1"/>
                                             <constraint firstItem="bIx-w2-0l0" firstAttribute="leading" secondItem="aM5-9M-rad" secondAttribute="leading" constant="8" id="vmo-1t-K2g"/>
                                         </constraints>
                                     </view>
@@ -91,7 +91,6 @@
                             <constraint firstAttribute="trailing" secondItem="0ah-oO-nAE" secondAttribute="trailing" id="6Uz-F2-Sm4"/>
                             <constraint firstItem="20l-cL-7Lu" firstAttribute="leading" secondItem="jSx-Xw-eai" secondAttribute="leading" id="AJM-P8-9oS"/>
                             <constraint firstItem="nga-nV-yGE" firstAttribute="top" secondItem="0ah-oO-nAE" secondAttribute="bottom" id="BWf-KP-VR5"/>
-                            <constraint firstItem="aM5-9M-rad" firstAttribute="height" secondItem="0ah-oO-nAE" secondAttribute="height" priority="250" id="Hst-3s-cNe"/>
                             <constraint firstItem="0ah-oO-nAE" firstAttribute="leading" secondItem="jSx-Xw-eai" secondAttribute="leading" id="IBX-1B-s2N"/>
                             <constraint firstItem="aM5-9M-rad" firstAttribute="width" secondItem="jSx-Xw-eai" secondAttribute="width" id="RgF-gE-9cg"/>
                             <constraint firstItem="20l-cL-7Lu" firstAttribute="top" secondItem="RVm-R0-wnW" secondAttribute="bottom" id="TBb-Mv-SLA"/>
@@ -331,7 +330,7 @@
                 <viewControllerPlaceholder storyboardName="CloudArtists" id="xSZ-iP-HxC" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3KT-oL-Y4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="901.5" y="1077.5"/>
+            <point key="canvasLocation" x="901.5" y="742"/>
         </scene>
     </scenes>
 </document>
