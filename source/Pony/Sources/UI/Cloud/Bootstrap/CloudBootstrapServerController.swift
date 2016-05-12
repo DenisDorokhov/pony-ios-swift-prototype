@@ -5,6 +5,7 @@
 
 import UIKit
 import Localize_Swift
+import Regex
 
 class CloudBootstrapServerController: CloudBootstrapConfigControllerAbstract {
 
@@ -97,9 +98,7 @@ class CloudBootstrapServerController: CloudBootstrapConfigControllerAbstract {
     }
 
     func validateUrl(url: String) -> Bool {
-        let regex = "http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&amp;=]*)?"
-        let urlTest = NSPredicate(format: "SELF MATCHES \(regex)")
-        return urlTest.evaluateWithObject(url)
+        return Regex("^http(s)?://([\\w-]+\\.)+[\\w-]+(/[\\w- ./?%&amp;=]*)?$").matches(url)
     }
 
 }

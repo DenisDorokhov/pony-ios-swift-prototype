@@ -154,7 +154,9 @@ class CloudBootstrapController: UIViewController, CloudBootstrapServiceDelegate,
     }
 
     @IBAction
-    func unwindCloudBootstrapFromArtists(segue: UIStoryboardSegue) {}
+    func unwindCloudBootstrapFromCloudArtists(segue: UIStoryboardSegue) {
+        // Do nothing.
+    }
 
     // MARK: CloudBootstrapServiceDelegate
 
@@ -164,7 +166,7 @@ class CloudBootstrapController: UIViewController, CloudBootstrapServiceDelegate,
 
     func cloudBootstrapServiceDidFinishBootstrap(cloudBootstrapService: CloudBootstrapService) {
         backgroundActivityStarted = false
-        performSegueWithIdentifier("cloudBootstrapToArtists", sender: self)
+        performSegueWithIdentifier("cloudBootstrapToCloudArtists", sender: self)
     }
 
     func cloudBootstrapServiceDidStartBackgroundActivity(cloudBootstrapService: CloudBootstrapService) {
@@ -197,12 +199,12 @@ class CloudBootstrapController: UIViewController, CloudBootstrapServiceDelegate,
     }
 
     func cloudBootstrapConfigControllerDidRequestBootstrap(configController: CloudBootstrapConfigController) {
-        backgroundActivityStarted = false
-        cloudBootstrapService.clearBootstrapData()
         cloudBootstrapService.bootstrap()
     }
 
     func cloudBootstrapConfigControllerDidRequestOtherServer(configController: CloudBootstrapConfigController) {
+        backgroundActivityStarted = false
+        cloudBootstrapService.clearBootstrapData()
         cloudBootstrapService.bootstrap()
     }
 

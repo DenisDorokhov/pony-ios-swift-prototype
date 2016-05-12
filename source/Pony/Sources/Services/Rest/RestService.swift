@@ -264,101 +264,50 @@ class RestServiceQueuedProxy: RestService {
 
     let targetService: RestService
 
-    let restQueue: TaskQueue = TaskQueue()
     let imageQueue: TaskQueue = TaskQueue()
     let songQueue: TaskQueue = TaskQueue()
 
     init(targetService: RestService) {
         self.targetService = targetService
 
-        restQueue.maximumNumberOfActiveTasks = 10
         imageQueue.maximumNumberOfActiveTasks = 5
         songQueue.maximumNumberOfActiveTasks = 5
     }
 
     func getInstallation(onSuccess onSuccess: (Installation -> Void)?,
                          onFailure: ([Error] -> Void)?) -> RestRequest {
-        let request = RestRequestProxy()
-        restQueue.tasks += {
-            if !request.cancelled {
-                request.targetRequest = self.targetService.getInstallation(onSuccess: onSuccess, onFailure: onFailure)
-            }
-        }
-        restQueue.run()
-        return request
+        return self.targetService.getInstallation(onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func authenticate(credentials: Credentials,
                       onSuccess: (Authentication -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
-        let request = RestRequestProxy()
-        restQueue.tasks += {
-            if !request.cancelled {
-                request.targetRequest = self.targetService.authenticate(credentials, onSuccess: onSuccess, onFailure: onFailure)
-            }
-        }
-        restQueue.run()
-        return request
+        return self.targetService.authenticate(credentials, onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func logout(onSuccess onSuccess: (User -> Void)?,
                 onFailure: ([Error] -> Void)?) -> RestRequest {
-        let request = RestRequestProxy()
-        restQueue.tasks += {
-            if !request.cancelled {
-                request.targetRequest = self.targetService.logout(onSuccess: onSuccess, onFailure: onFailure)
-            }
-        }
-        restQueue.run()
-        return request
+        return self.targetService.logout(onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func getCurrentUser(onSuccess onSuccess: (User -> Void)?,
                         onFailure: ([Error] -> Void)?) -> RestRequest {
-        let request = RestRequestProxy()
-        restQueue.tasks += {
-            if !request.cancelled {
-                request.targetRequest = self.targetService.getCurrentUser(onSuccess: onSuccess, onFailure: onFailure)
-            }
-        }
-        restQueue.run()
-        return request
+        return self.targetService.getCurrentUser(onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func refreshToken(onSuccess onSuccess: (Authentication -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
-        let request = RestRequestProxy()
-        restQueue.tasks += {
-            if !request.cancelled {
-                request.targetRequest = self.targetService.refreshToken(onSuccess: onSuccess, onFailure: onFailure)
-            }
-        }
-        restQueue.run()
-        return request
+        return self.targetService.refreshToken(onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func getArtists(onSuccess onSuccess: ([Artist] -> Void)?,
                     onFailure: ([Error] -> Void)?) -> RestRequest {
-        let request = RestRequestProxy()
-        restQueue.tasks += {
-            if !request.cancelled {
-                request.targetRequest = self.targetService.getArtists(onSuccess: onSuccess, onFailure: onFailure)
-            }
-        }
-        restQueue.run()
-        return request
+        return self.targetService.getArtists(onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func getArtistAlbums(artistId: Int64, onSuccess: (ArtistAlbums -> Void)?,
                          onFailure: ([Error] -> Void)?) -> RestRequest {
-        let request = RestRequestProxy()
-        restQueue.tasks += {
-            if !request.cancelled {
-                request.targetRequest = self.targetService.getArtistAlbums(artistId, onSuccess: onSuccess, onFailure: onFailure)
-            }
-        }
-        restQueue.run()
-        return request
+        return self.targetService.getArtistAlbums(artistId, onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func downloadImage(absoluteUrl: String,

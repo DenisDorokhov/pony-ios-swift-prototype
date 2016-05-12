@@ -9,7 +9,6 @@
         <!--Pony Cloud-->
         <scene sceneID="may-PJ-FPw">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KSn-aI-fgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="ViA-yZ-clu" customClass="CloudBootstrapController" customModule="Pony" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RVm-R0-wnW"/>
@@ -19,11 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ah-oO-nAE">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="20l-cL-7Lu">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aM5-9M-rad">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                         <subviews>
                                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="p71-nQ-Cxr">
                                                 <rect key="frame" x="178" y="32" width="20" height="20"/>
@@ -85,12 +88,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0ah-oO-nAE" secondAttribute="trailing" id="6Uz-F2-Sm4"/>
                             <constraint firstItem="20l-cL-7Lu" firstAttribute="leading" secondItem="jSx-Xw-eai" secondAttribute="leading" id="AJM-P8-9oS"/>
-                            <constraint firstItem="aM5-9M-rad" firstAttribute="height" secondItem="jSx-Xw-eai" secondAttribute="height" priority="250" id="IJM-tb-wb8"/>
-                            <constraint firstItem="20l-cL-7Lu" firstAttribute="top" secondItem="RVm-R0-wnW" secondAttribute="bottom" id="Lkh-28-aPC"/>
+                            <constraint firstItem="nga-nV-yGE" firstAttribute="top" secondItem="0ah-oO-nAE" secondAttribute="bottom" id="BWf-KP-VR5"/>
+                            <constraint firstItem="aM5-9M-rad" firstAttribute="height" secondItem="0ah-oO-nAE" secondAttribute="height" priority="250" id="Hst-3s-cNe"/>
+                            <constraint firstItem="0ah-oO-nAE" firstAttribute="leading" secondItem="jSx-Xw-eai" secondAttribute="leading" id="IBX-1B-s2N"/>
                             <constraint firstItem="aM5-9M-rad" firstAttribute="width" secondItem="jSx-Xw-eai" secondAttribute="width" id="RgF-gE-9cg"/>
+                            <constraint firstItem="20l-cL-7Lu" firstAttribute="top" secondItem="RVm-R0-wnW" secondAttribute="bottom" id="TBb-Mv-SLA"/>
                             <constraint firstAttribute="trailing" secondItem="20l-cL-7Lu" secondAttribute="trailing" id="eJh-ud-jsc"/>
                             <constraint firstItem="nga-nV-yGE" firstAttribute="top" secondItem="20l-cL-7Lu" secondAttribute="bottom" id="l1d-je-QfJ"/>
+                            <constraint firstItem="0ah-oO-nAE" firstAttribute="top" secondItem="RVm-R0-wnW" secondAttribute="bottom" id="rTd-ux-iLl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Pony Cloud" id="uc5-Fm-HgB"/>
@@ -100,8 +107,10 @@
                     <connections>
                         <outlet property="activityIndicator" destination="p71-nQ-Cxr" id="VOT-BT-hhb"/>
                         <outlet property="scrollView" destination="20l-cL-7Lu" id="rku-6f-uYf"/>
+                        <segue destination="xSZ-iP-HxC" kind="show" identifier="cloudBootstrapToCloudArtists" id="dIM-PL-MXX"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KSn-aI-fgW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="901.5" y="237.5"/>
         </scene>
@@ -315,6 +324,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qwZ-gB-I6E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1392.5" y="491"/>
+        </scene>
+        <!--CloudArtists-->
+        <scene sceneID="FKh-7i-Cs4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CloudArtists" id="xSZ-iP-HxC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3KT-oL-Y4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="901.5" y="1077.5"/>
         </scene>
     </scenes>
 </document>

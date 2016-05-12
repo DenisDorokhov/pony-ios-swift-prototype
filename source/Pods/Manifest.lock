@@ -18,6 +18,7 @@ PODS:
   - Realm/Headers (0.100.0)
   - RealmSwift (0.100.0):
     - Realm (= 0.100.0)
+  - STRegex (0.3.1)
   - SwiftDate (3.0.8)
   - SwiftyTimer (1.4.0)
   - Swinject (1.1.1)
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - Quick (= 0.9.2)
   - ReachabilitySwift (= 2.3.3)
   - RealmSwift (= 0.100.0)
+  - STRegex (= 0.3.1)
   - SwiftDate (= 3.0.8)
   - SwiftyTimer (= 1.4.0)
   - Swinject (= 1.1.1)
@@ -66,6 +68,7 @@ SPEC CHECKSUMS:
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
   Realm: b13b548e712d28a66678970c45cd245ebb94ba3b
   RealmSwift: 1bb0ba2ceaa06b65d740b4f91bfa06e3fd1b805c
+  STRegex: 4c27ffabad2c8b603f050d28e6c794eb72a13608
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftyTimer: db4458cfaf67fc71e16ad6e4637c60b86f76a649
   Swinject: 8c1b46e49c604f8c5c1f45f92ef314d3736bbef4
