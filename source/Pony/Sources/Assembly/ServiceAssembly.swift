@@ -6,6 +6,7 @@
 import Foundation
 import Swinject
 import XCGLogger
+import Haneke
 
 class ServiceAssembly: AssemblyType {
 
@@ -48,7 +49,7 @@ class ServiceAssembly: AssemblyType {
             service.alamofireManager = resolver.resolve(AlamofireManager.self)
             service.tokenPairDao = resolver.resolve(TokenPairDao.self)
             service.restUrlDao = resolver.resolve(RestUrlDao.self)
-            return RestServiceQueuedProxy(targetService: service)
+            return RestServiceCached(targetService: RestServiceQueuedProxy(targetService: service))
         }.inObjectScope(.Container)
 
         container.register(AuthService.self) {

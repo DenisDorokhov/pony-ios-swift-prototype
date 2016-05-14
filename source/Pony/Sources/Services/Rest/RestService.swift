@@ -10,7 +10,6 @@ import XCGLogger
 import ObjectMapper
 import AlamofireImage
 import Async
-import TaskQueue
 
 protocol RestRequest: class {
     func cancel()
@@ -55,6 +54,24 @@ class RestRequestAlamofire: RestRequest {
     }
 }
 
+class RestRequestProxy: RestRequest {
+
+    private(set) var cancelled = false
+
+    var targetRequest: RestRequest? {
+        didSet {
+            if cancelled {
+                targetRequest?.cancel()
+            }
+        }
+    }
+
+    func cancel() {
+        cancelled = true
+        targetRequest?.cancel()
+    }
+}
+
 class RestServiceImpl: RestService {
 
     private let HEADER_ACCESS_TOKEN = "X-Pony-Access-Token"
@@ -65,6 +82,10 @@ class RestServiceImpl: RestService {
     var alamofireManager: Manager!
     var tokenPairDao: TokenPairDao!
     var restUrlDao: RestUrlDao!
+
+    init() {
+        Request.addAcceptableImageContentTypes(["image/jpg"])
+    }
 
     func getInstallation(onSuccess onSuccess: (Installation -> Void)? = nil,
                          onFailure: ([Error] -> Void)? = nil) -> RestRequest {
@@ -145,8 +166,11 @@ class RestServiceImpl: RestService {
             if response.result.isSuccess {
                 onSuccess?(response.result.value!)
             } else {
-                self.log.error("Image request error: \(response.result.error!).")
-                onFailure?([self.buildErrors(response.result.error!)])
+                let convertedError = self.buildError(response.result.error!)
+                if convertedError.code != Error.CODE_CLIENT_REQUEST_CANCELLED {
+                    self.log.error("Image request error: \(response.result.error!).")
+                }
+                onFailure?([convertedError])
             }
         })
     }
@@ -168,8 +192,11 @@ class RestServiceImpl: RestService {
         }.response {
             _, _, _, error in
             if let error = error {
-                self.log.error("Song request error: \(error).")
-                onFailure?([self.buildErrors(error)])
+                let convertedError = self.buildError(error)
+                if convertedError.code != Error.CODE_CLIENT_REQUEST_CANCELLED {
+                    self.log.error("Song request error: \(error).")
+                }
+                onFailure?([convertedError])
             } else {
                 onSuccess?()
             }
@@ -188,7 +215,7 @@ class RestServiceImpl: RestService {
         return headers
     }
 
-    private func buildErrors(error: NSError) -> Error {
+    private func buildError(error: NSError) -> Error {
 
         if error.domain == NSURLErrorDomain {
             if error.code == NSURLErrorNotConnectedToInternet {
@@ -236,106 +263,11 @@ class RestServiceImpl: RestService {
                 onFailure?(responseValue.errors)
             }
         } else {
-            log.error("API request error: \(response.result.error!).")
-            onFailure?([buildErrors(response.result.error!)])
-        }
-    }
-}
-
-class RestRequestProxy: RestRequest {
-
-    private(set) var cancelled = false
-
-    var targetRequest: RestRequest? {
-        didSet {
-            if cancelled {
-                targetRequest?.cancel()
+            let convertedError = self.buildError(response.result.error!)
+            if convertedError.code != Error.CODE_CLIENT_REQUEST_CANCELLED {
+                log.error("API request error: \(response.result.error!).")
             }
+            onFailure?([convertedError])
         }
     }
-
-    func cancel() {
-        cancelled = true
-        targetRequest?.cancel()
-    }
-}
-
-class RestServiceQueuedProxy: RestService {
-
-    let targetService: RestService
-
-    let imageQueue: TaskQueue = TaskQueue()
-    let songQueue: TaskQueue = TaskQueue()
-
-    init(targetService: RestService) {
-        self.targetService = targetService
-
-        imageQueue.maximumNumberOfActiveTasks = 5
-        songQueue.maximumNumberOfActiveTasks = 5
-    }
-
-    func getInstallation(onSuccess onSuccess: (Installation -> Void)?,
-                         onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.getInstallation(onSuccess: onSuccess, onFailure: onFailure)
-    }
-
-    func authenticate(credentials: Credentials,
-                      onSuccess: (Authentication -> Void)?,
-                      onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.authenticate(credentials, onSuccess: onSuccess, onFailure: onFailure)
-    }
-
-    func logout(onSuccess onSuccess: (User -> Void)?,
-                onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.logout(onSuccess: onSuccess, onFailure: onFailure)
-    }
-
-    func getCurrentUser(onSuccess onSuccess: (User -> Void)?,
-                        onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.getCurrentUser(onSuccess: onSuccess, onFailure: onFailure)
-    }
-
-    func refreshToken(onSuccess onSuccess: (Authentication -> Void)?,
-                      onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.refreshToken(onSuccess: onSuccess, onFailure: onFailure)
-    }
-
-    func getArtists(onSuccess onSuccess: ([Artist] -> Void)?,
-                    onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.getArtists(onSuccess: onSuccess, onFailure: onFailure)
-    }
-
-    func getArtistAlbums(artistId: Int64, onSuccess: (ArtistAlbums -> Void)?,
-                         onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.getArtistAlbums(artistId, onSuccess: onSuccess, onFailure: onFailure)
-    }
-
-    func downloadImage(absoluteUrl: String,
-                       onSuccess: (UIImage -> Void)?,
-                       onFailure: ([Error] -> Void)?) -> RestRequest {
-        let request = RestRequestProxy()
-        imageQueue.tasks += {
-            if !request.cancelled {
-                request.targetRequest = self.targetService.downloadImage(absoluteUrl, onSuccess: onSuccess, onFailure: onFailure)
-            }
-        }
-        imageQueue.run()
-        return request
-    }
-
-    func downloadSong(absoluteUrl: String, toFile filePath: String,
-                      onProgress: (Float -> Void)?,
-                      onSuccess: (Void -> Void)?,
-                      onFailure: ([Error] -> Void)?) -> RestRequest {
-        let request = RestRequestProxy()
-        songQueue.tasks += {
-            if !request.cancelled {
-                request.targetRequest = self.targetService.downloadSong(absoluteUrl, toFile: filePath,
-                        onProgress: onProgress, onSuccess: onSuccess, onFailure: onFailure)
-            }
-        }
-        songQueue.run()
-        return request
-    }
-
 }
