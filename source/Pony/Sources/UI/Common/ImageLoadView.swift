@@ -10,7 +10,19 @@ import XCGLogger
 @IBDesignable
 class ImageLoadView: UIView {
 
+    enum State {
+        case Empty
+        case Loaded(UIImage)
+        case Error
+    }
+
     private let log: XCGLogger = XCGLogger.defaultInstance()
+
+    private(set) var state: State = .Empty {
+        didSet {
+            updateState()
+        }
+    }
 
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
@@ -24,7 +36,9 @@ class ImageLoadView: UIView {
 
     var url: String? {
         didSet {
-            updateUrl()
+            if url != oldValue {
+                updateUrl()
+            }
         }
     }
 
@@ -48,10 +62,28 @@ class ImageLoadView: UIView {
             addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(direction + ":|[view]|",
                     options: [], metrics: nil, views: ["view": view]))
         }
-        imageView.image = emptyImage
-        imageView.hidden = false
         imageView.layer.minificationFilter = kCAFilterTrilinear
-        activityIndicator.hidden = true
+        state = .Empty
+    }
+
+    private func updateState() {
+        switch state {
+        case .Empty:
+            imageView.image = emptyImage
+            imageView.contentMode = .Center
+            imageView.hidden = false
+            activityIndicator.hidden = true
+        case .Loaded(let image):
+            self.imageView.image = image
+            self.imageView.contentMode = .ScaleToFill
+            self.imageView.hidden = false
+            self.activityIndicator.hidden = true
+        case .Error:
+            imageView.image = self.errorImage
+            imageView.contentMode = .Center
+            imageView.hidden = false
+            activityIndicator.hidden = true
+        }
     }
 
     private func updateUrl() {
@@ -64,22 +96,16 @@ class ImageLoadView: UIView {
             activityIndicator.startAnimating()
             currentRequest = restService.downloadImage(url, onSuccess: {
                 self.currentRequest = nil
-                self.imageView.image = $0
-                self.imageView.hidden = false
-                self.activityIndicator.hidden = true
+                self.state = .Loaded($0)
             }, onFailure: {
                 if Error.fetchFirstByCodes([Error.CODE_CLIENT_REQUEST_CANCELLED], fromArray: $0) == nil {
                     self.currentRequest = nil
                     self.log.warning("Could not load image '\(url)': \($0)")
-                    self.imageView.image = self.errorImage
-                    self.imageView.hidden = false
-                    self.activityIndicator.hidden = true
+                    self.state = .Error
                 }
             })
         } else {
-            imageView.image = emptyImage
-            imageView.hidden = false
-            activityIndicator.hidden = true
+            state = .Empty
         }
     }
 }
