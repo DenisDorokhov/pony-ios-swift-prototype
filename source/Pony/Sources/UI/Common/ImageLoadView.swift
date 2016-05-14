@@ -68,8 +68,8 @@ class ImageLoadView: UIView {
                 self.imageView.hidden = false
                 self.activityIndicator.hidden = true
             }, onFailure: {
-                self.currentRequest = nil
                 if Error.fetchFirstByCodes([Error.CODE_CLIENT_REQUEST_CANCELLED], fromArray: $0) == nil {
+                    self.currentRequest = nil
                     self.log.warning("Could not load image '\(url)': \($0)")
                     self.imageView.image = self.errorImage
                     self.imageView.hidden = false

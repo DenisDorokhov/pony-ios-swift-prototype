@@ -72,7 +72,7 @@ class RestServiceCached: RestService {
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
             } else {
-                self.log.debug("Cache hit for image '\(absoluteUrl)'.")
+                self.log.verbose("Cache hit for image '\(absoluteUrl)'.")
                 onSuccess?(image)
             }
         }, failure: {
@@ -80,7 +80,7 @@ class RestServiceCached: RestService {
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
             } else {
-                self.log.debug("Cache miss for image '\(absoluteUrl)'.")
+                self.log.verbose("Cache miss for image '\(absoluteUrl)'.")
                 request.targetRequest = self.targetService.downloadImage(absoluteUrl, onSuccess: {
                     self.imageCache.set(value: $0, key: absoluteUrl, formatName: self.IMAGE_CACHE_FORMAT)
                     onSuccess?($0)
