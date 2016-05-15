@@ -54,11 +54,7 @@ class CloudBootstrapConfigControllerAbstract: CloudBootstrapChildControllerAbstr
     }
 
     func showConnectionError() {
-        errorNotifier.notify(Localized("Could not connect to server, please check your server URL."))
-    }
-
-    func showOfflineError() {
-        errorNotifier.notify(Localized("Could not connect to server, are you online?"))
+        errorNotifier.notify(Localized("Could not connect to server."))
     }
 }
 

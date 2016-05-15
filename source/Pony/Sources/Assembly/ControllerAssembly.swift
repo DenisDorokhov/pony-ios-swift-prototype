@@ -33,5 +33,12 @@ class ControllerAssembly: AssemblyType {
             controller.authService = resolver.resolve(AuthService.self)
             controller.errorNotifier = resolver.resolve(ErrorNotifier.self)
         }
+
+        container.registerForStoryboard(CloudAlbumsController.self) {
+            resolver, controller in
+            controller.restService = resolver.resolve(RestService.self)
+            controller.errorNotifier = resolver.resolve(ErrorNotifier.self)
+            controller.libraryService = resolver.resolve(LibraryService.self)
+        }
     }
 }

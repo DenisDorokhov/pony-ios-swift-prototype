@@ -66,9 +66,7 @@ class CloudBootstrapLoginController: CloudBootstrapConfigControllerAbstract, UIT
             self.delegate?.cloudBootstrapConfigControllerDidRequestBootstrap(self)
         }, onFailure: {
             self.finishBackgroundActivity()
-            if Error.fetchFirstByCodes([Error.CODE_CLIENT_OFFLINE], fromArray: $0) != nil {
-                self.showOfflineError()
-            } else if Error.fetchFirstByCodes([Error.CODE_INVALID_CREDENTIALS], fromArray: $0) != nil {
+            if Error.fetchFirstByCodes([Error.CODE_INVALID_CREDENTIALS], fromArray: $0) != nil {
                 self.showCredentialsError()
             } else if Error.fetchFirstByCodes([Error.CODE_VALIDATION], fromArray: $0) != nil {
                 self.showValidationError()

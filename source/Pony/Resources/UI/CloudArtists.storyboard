@@ -30,7 +30,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lAC-qW-yI0" customClass="ImageLoadView" customModule="Pony" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lAC-qW-yI0" customClass="ImageLoaderView" customModule="Pony" customModuleProvider="target">
                                             <rect key="frame" x="16" y="10" width="60" height="60"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -54,7 +54,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="imageLoadView" destination="lAC-qW-yI0" id="3WT-fJ-Hed"/>
+                                    <outlet property="artworkLoaderView" destination="lAC-qW-yI0" id="O5q-0p-dWx"/>
                                     <outlet property="nameLabel" destination="Dgr-pT-UXw" id="FjF-Pg-bcC"/>
                                 </connections>
                             </tableViewCell>

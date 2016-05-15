@@ -9,12 +9,12 @@ import Localize_Swift
 class ArtistCell: UITableViewCell {
 
     @IBOutlet private var nameLabel: UILabel!
-    @IBOutlet private var imageLoadView: ImageLoadView!
+    @IBOutlet private var artworkLoaderView: ImageLoaderView!
 
     var artist: Artist? {
         didSet {
             nameLabel.text = artist?.name ?? Localized("Unknown")
-            imageLoadView.url = artist?.artworkUrl
+            artworkLoaderView.url = artist?.artworkUrl
         }
     }
 

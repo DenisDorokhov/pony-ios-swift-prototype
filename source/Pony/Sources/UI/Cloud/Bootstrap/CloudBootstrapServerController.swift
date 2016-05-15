@@ -62,11 +62,7 @@ class CloudBootstrapServerController: CloudBootstrapConfigControllerAbstract {
                 errors in
                 self.finishBackgroundActivity()
                 self.restUrlDao.removeUrl()
-                if Error.fetchFirstByCodes([Error.CODE_CLIENT_OFFLINE], fromArray: errors) == nil {
-                    self.showConnectionError()
-                } else {
-                    self.showOfflineError()
-                }
+                self.showConnectionError()
             })
         } else {
             showValidationError()

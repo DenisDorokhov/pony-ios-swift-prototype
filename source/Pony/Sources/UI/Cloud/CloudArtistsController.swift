@@ -87,10 +87,8 @@ class CloudArtistsController: UITableViewController, AuthServiceDelegate {
             self.refreshControl?.endRefreshing()
             self.tableView.reloadData()
         }, onFailure: {
-            if Error.fetchFirstByCodes([Error.CODE_CLIENT_OFFLINE], fromArray: $0) == nil {
-                self.log.error("Could not load artists: \($0).")
-                self.errorNotifier.notify(Localized("Could not load artists."))
-            }
+            self.log.error("Could not load artists: \($0).")
+            self.errorNotifier.notify(Localized("Could not load artists."))
             self.refreshControl?.endRefreshing()
         })
     }

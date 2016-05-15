@@ -25,6 +25,18 @@ class Song: Mappable {
     var album: Album!
     var genre: Genre!
 
+    var formattedDuration: String {
+        let formatter = NSDateComponentsFormatter()
+        formatter.zeroFormattingBehavior = NSDateComponentsFormatterZeroFormattingBehavior.Pad
+        formatter.unitsStyle = .Positional
+        if duration > 60 * 60 {
+            formatter.allowedUnits = [NSCalendarUnit.Hour, NSCalendarUnit.Minute, NSCalendarUnit.Second]
+        } else {
+            formatter.allowedUnits = [NSCalendarUnit.Minute, NSCalendarUnit.Second]
+        }
+        return formatter.stringFromTimeInterval(NSTimeInterval(duration)) ?? ""
+    }
+
     init(id: Int64, url: String, size: Int64, duration: Int, album: Album, genre: Genre) {
         self.id = id
         self.url = url

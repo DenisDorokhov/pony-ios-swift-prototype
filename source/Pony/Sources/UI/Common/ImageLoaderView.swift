@@ -8,7 +8,7 @@ import Swinject
 import XCGLogger
 
 @IBDesignable
-class ImageLoadView: UIView {
+class ImageLoaderView: UIView {
 
     enum State {
         case Empty
