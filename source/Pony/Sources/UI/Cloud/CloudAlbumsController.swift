@@ -7,13 +7,17 @@ import UIKit
 import Localize_Swift
 import XCGLogger
 
-class CloudAlbumsController: UITableViewController {
+class CloudAlbumsController: UITableViewController, LibraryServiceDelegate {
 
     private let log = XCGLogger.defaultInstance()
 
     var restService: RestService!
     var errorNotifier: ErrorNotifier!
-    var libraryService: LibraryService!
+    var libraryService: LibraryService! {
+        didSet {
+            libraryService.addDelegate(self)
+        }
+    }
 
     var artist: Artist? {
         didSet {
@@ -25,6 +29,7 @@ class CloudAlbumsController: UITableViewController {
             loadAlbums()
         }
     }
+    var downloadedArtistSongs: Set<Song>?
 
     @IBInspectable var albumCellHeight: CGFloat = 44
     @IBInspectable var songCellHeight: CGFloat = 44
@@ -49,9 +54,63 @@ class CloudAlbumsController: UITableViewController {
 
     private var currentRequest: RestRequest?
 
+    deinit {
+        libraryService.removeDelegate(self)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+    }
+
+    // MARK: LibraryServiceDelegate
+
+    func libraryService(libraryService: LibraryService, didFail errors: [Error], songDownload song: Song) {}
+
+    func libraryService(libraryService: LibraryService, didStartSongDownload song: Song) {
+        for cell in tableView.visibleCells {
+            if let songCell = cell as? SongCell where songCell.song?.id == song.id {
+                songCell.state = .Downloading(0)
+            }
+        }
+    }
+
+    func libraryService(libraryService: LibraryService, didCancelSongDownload song: Song) {
+        for cell in tableView.visibleCells {
+            if let songCell = cell as? SongCell where songCell.song?.id == song.id {
+                songCell.state = .Cloud
+            }
+        }
+    }
+
+    func libraryService(libraryService: LibraryService, didProgressSongDownload task: SongDownloadTask) {
+        for cell in tableView.visibleCells {
+            if let songCell = cell as? SongCell where songCell.song?.id == task.song.id {
+                songCell.state = .Downloading(task.progress)
+            }
+        }
+    }
+
+    func libraryService(libraryService: LibraryService, didCompleteSongDownload song: Song) {
+        if downloadedArtistSongs != nil {
+            downloadedArtistSongs!.insert(song)
+            for cell in tableView.visibleCells {
+                if let songCell = cell as? SongCell where songCell.song?.id == song.id {
+                    songCell.state = .Downloaded
+                }
+            }
+        }
+    }
+
+    func libraryService(libraryService: LibraryService, didDeleteSongDownload song: Song) {
+        if downloadedArtistSongs != nil {
+            downloadedArtistSongs!.remove(song)
+            for cell in tableView.visibleCells {
+                if let songCell = cell as? SongCell where songCell.song?.id == song.id {
+                    songCell.state = .Cloud
+                }
+            }
+        }
     }
 
     // MARK: UITableViewDataSource
@@ -75,6 +134,14 @@ class CloudAlbumsController: UITableViewController {
             songCell = tableView.dequeueReusableCellWithIdentifier("songCell") as! SongCell
         }
         songCell.song = song
+        // TODO: check if song is playing
+        if downloadedArtistSongs?.contains(song) ?? false {
+            songCell.state = .Downloaded
+        } else if let task = libraryService.taskForSong(song.id) {
+            songCell.state = .Downloading(task.progress)
+        } else {
+            songCell.state = .Cloud
+        }
         return songCell
     }
 
@@ -82,7 +149,16 @@ class CloudAlbumsController: UITableViewController {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        // TODO: start download or playback
+        let albumSongs = artistAlbums!.albums[indexPath.section]
+        let song = albumSongs.songs[indexPath.row]
+        // TODO: check if song is playing
+        if downloadedArtistSongs?.contains(song) ?? false {
+            libraryService.deleteSong(song.id)
+        } else if let _ = libraryService.taskForSong(song.id) {
+            libraryService.cancelSongDownload(song.id)
+        } else {
+            libraryService.downloadSong(song)
+        }
     }
 
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -106,31 +182,54 @@ class CloudAlbumsController: UITableViewController {
     // MARK: Private
 
     private func loadAlbums() {
-
         currentRequest?.cancel()
         currentRequest = nil
-
         if let artist = artist {
-
-            let artistToLoad = artist
-            log.info("Loading albums of artist '\(artist.id)'...")
-            currentRequest = restService.getArtistAlbums(artist.id, onSuccess: {
-                self.currentRequest = nil
-                self.artistAlbums = $0
-                self.refreshControl?.endRefreshing()
-                self.tableView.reloadData()
-                self.log.info("\($0.albums.count) albums of artist '\($0.artist.id)' loaded.")
-            }, onFailure: {
-                if Error.fetchFirstByCodes([Error.CODE_CLIENT_REQUEST_CANCELLED], fromArray: $0) != nil {
-                    self.log.debug("Cancelled loading albums of artist '\(artistToLoad.id)'.")
-                } else {
+            let doLoadAlbums = {
+                self.log.info("Loading albums of artist '\(artist.id)'...")
+                self.currentRequest = self.restService.getArtistAlbums(artist.id, onSuccess: {
                     self.currentRequest = nil
-                    self.log.error("Could not load albums of artist '\(artistToLoad.id)': \($0).")
-                    self.errorNotifier.notify("Could not load artist albums")
-                }
-                self.refreshControl?.endRefreshing()
-            })
-
+                    self.artistAlbums = $0
+                    self.refreshControl?.endRefreshing()
+                    self.tableView.reloadData()
+                    self.log.info("\($0.albums.count) albums of artist '\($0.artist.id)' loaded.")
+                }, onFailure: {
+                    if Error.fetchFirstByCodes([Error.CODE_CLIENT_REQUEST_CANCELLED], fromArray: $0) != nil {
+                        self.log.debug("Cancelled loading albums of artist '\(artist.id)'.")
+                    } else {
+                        self.currentRequest = nil
+                        self.log.error("Could not load albums of artist '\(artist.id)': \($0).")
+                        self.errorNotifier.notify(Localized("Could not load artist albums."))
+                    }
+                    self.refreshControl?.endRefreshing()
+                })
+            }
+            if downloadedArtistSongs == nil {
+                log.info("Fetching downloaded albums of artist '\(artist.id)'...")
+                libraryService.getArtistAlbums(artist.id, onSuccess: {
+                    if self.downloadedArtistSongs == nil && self.artist?.id == artist.id {
+                        self.downloadedArtistSongs = []
+                        for albumSongs in $0.albums {
+                            for song in albumSongs.songs {
+                                self.downloadedArtistSongs!.insert(song)
+                            }
+                        }
+                        doLoadAlbums()
+                    }
+                }, onFailure: {
+                    if self.downloadedArtistSongs == nil && self.artist?.id == artist.id {
+                        if Error.fetchFirstByCodes([Error.CODE_ARTIST_NOT_FOUND], fromArray: $0) != nil {
+                            self.downloadedArtistSongs = []
+                            doLoadAlbums()
+                        } else {
+                            self.log.error("Could not fetch downloaded albums of artist '\(artist.id)': \($0).")
+                            self.errorNotifier.notify(Localized("Could not fetch downloaded artist albums."))
+                        }
+                    }
+                })
+            } else {
+                doLoadAlbums()
+            }
         } else {
             tableView.reloadData()
         }

@@ -62,7 +62,7 @@ class LibraryService {
     private var delegates: OrderedSet<NSValue> = []
 
     private var songDownloadTasks: OrderedSet<SongDownloadTask> = []
-    private var songToDownloadTask: [Int64:SongDownloadTask] = [:]
+    private var songToDownloadTask: [Int64: SongDownloadTask] = [:]
 
     func addDelegate(delegate: LibraryServiceDelegate) {
         delegates.append(NSValue(nonretainedObject: delegate))
@@ -167,10 +167,13 @@ class LibraryService {
         taskQueue.tasks += {
             _, next in
             self.doDownloadSong(task, onProgress: {
-                task.progress = $0
-                onProgress?($0)
-                for delegate in self.fetchDelegates() {
-                    delegate.libraryService(self, didProgressSongDownload: task)
+                // Avoid task cancellation race condition.
+                if self.songDownloadTasks.contains(task) {
+                    task.progress = $0
+                    onProgress?($0)
+                    for delegate in self.fetchDelegates() {
+                        delegate.libraryService(self, didProgressSongDownload: task)
+                    }
                 }
             }, onSuccess: {
                 next(nil)
@@ -226,11 +229,13 @@ class LibraryService {
                 }
                 Async.main {
                     if let song = song {
+                        self.log.info("Song download '\(song.id)' deleted.")
                         onSuccess?(song)
                         for delegate in self.fetchDelegates() {
                             delegate.libraryService(self, didDeleteSongDownload: song)
                         }
                     } else {
+                        self.log.error("Could not delete song '\(songId)': song download not found.")
                         onFailure?([Error(code: Error.CODE_SONG_NOT_FOUND, text: "Song not found.")])
                     }
                 }
@@ -434,6 +439,8 @@ class LibraryService {
             try NSURL(fileURLWithPath: songPath).setResourceValue(true, forKey: NSURLIsExcludedFromBackupKey)
 
             saveSong(task.song, onSuccess: {
+                self.songDownloadTasks.remove(task)
+                self.songToDownloadTask.removeValueForKey(task.song.id)
                 self.log.info("Song '\($0.id)' download complete.")
                 onSuccess?($0)
                 for delegate in self.fetchDelegates() {

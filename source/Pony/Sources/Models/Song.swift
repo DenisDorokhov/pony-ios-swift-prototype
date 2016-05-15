@@ -6,7 +6,7 @@
 import Foundation
 import ObjectMapper
 
-class Song: Mappable {
+class Song: Mappable, Hashable {
 
     var id: Int64!
     var updateDate: NSDate?
@@ -61,4 +61,12 @@ class Song: Mappable {
         album <- map["album"]
         genre <- map["genre"]
     }
+
+    var hashValue: Int {
+        return id.hashValue
+    }
+}
+
+func ==(lhs: Song, rhs: Song) -> Bool {
+    return lhs.id == rhs.id
 }

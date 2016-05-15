@@ -60,9 +60,7 @@ class RestRequestProxy: RestRequest {
 
     var targetRequest: RestRequest? {
         didSet {
-            if cancelled {
-                targetRequest?.cancel()
-            }
+            assert(!cancelled)
         }
     }
 

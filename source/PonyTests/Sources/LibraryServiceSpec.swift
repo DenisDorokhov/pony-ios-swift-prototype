@@ -98,6 +98,7 @@ class LibraryServiceSpec: QuickSpec {
                 expect(delegateMock.didProgressSongDownload).toNot(beNil())
                 expect(delegateMock.didCompleteSongDownload).toNot(beNil())
                 if let song = song {
+                    expect(service.taskForSong(song.id)).to(beNil())
                     if let artistArtworkPath = stringToUrl(song.album.artist.artworkUrl)?.path,
                             albumArtworkPath = stringToUrl(song.album.artworkUrl)?.path {
 

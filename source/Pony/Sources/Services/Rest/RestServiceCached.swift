@@ -13,9 +13,8 @@ class RestServiceCached: RestService {
 
     private let log = XCGLogger.defaultInstance()
 
-    let targetService: RestService
-
-    let imageCache: Cache<UIImage>
+    private let targetService: RestService
+    private let imageCache: Cache<UIImage>
 
     init(targetService: RestService) {
         self.targetService = targetService
@@ -29,38 +28,38 @@ class RestServiceCached: RestService {
 
     func getInstallation(onSuccess onSuccess: (Installation -> Void)?,
                          onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.getInstallation(onSuccess: onSuccess, onFailure: onFailure)
+        return targetService.getInstallation(onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func authenticate(credentials: Credentials,
                       onSuccess: (Authentication -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.authenticate(credentials, onSuccess: onSuccess, onFailure: onFailure)
+        return targetService.authenticate(credentials, onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func logout(onSuccess onSuccess: (User -> Void)?,
                 onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.logout(onSuccess: onSuccess, onFailure: onFailure)
+        return targetService.logout(onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func getCurrentUser(onSuccess onSuccess: (User -> Void)?,
                         onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.getCurrentUser(onSuccess: onSuccess, onFailure: onFailure)
+        return targetService.getCurrentUser(onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func refreshToken(onSuccess onSuccess: (Authentication -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.refreshToken(onSuccess: onSuccess, onFailure: onFailure)
+        return targetService.refreshToken(onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func getArtists(onSuccess onSuccess: ([Artist] -> Void)?,
                     onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.getArtists(onSuccess: onSuccess, onFailure: onFailure)
+        return targetService.getArtists(onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func getArtistAlbums(artistId: Int64, onSuccess: (ArtistAlbums -> Void)?,
                          onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.getArtistAlbums(artistId, onSuccess: onSuccess, onFailure: onFailure)
+        return targetService.getArtistAlbums(artistId, onSuccess: onSuccess, onFailure: onFailure)
     }
 
     func downloadImage(absoluteUrl: String,
@@ -94,7 +93,7 @@ class RestServiceCached: RestService {
                       onProgress: (Float -> Void)?,
                       onSuccess: (Void -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
-        return self.targetService.downloadSong(absoluteUrl, toFile: filePath,
+        return targetService.downloadSong(absoluteUrl, toFile: filePath,
                 onProgress: onProgress, onSuccess: onSuccess, onFailure: onFailure)
     }
 }

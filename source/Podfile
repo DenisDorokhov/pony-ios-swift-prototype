@@ -20,6 +20,7 @@ target 'Pony' do
 	pod 'Localize-Swift', '1.1.2'
 	pod 'STRegex', '0.3.1'
 	pod 'HanekeSwift', '0.10.1'
+	pod 'MRProgress', '0.8.3'
 
 	target 'PonyTests' do
 		inherit! :search_paths
