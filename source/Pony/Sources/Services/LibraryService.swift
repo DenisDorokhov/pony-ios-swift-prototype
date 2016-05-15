@@ -139,6 +139,8 @@ class LibraryService {
         songDownloadTasks.append(task)
         songToDownloadTask[song.id] = task
 
+        // TODO: avoid downloading the same artwork two times (when artist and album artwork is the same)
+        // TODO: get rid of TaskQueue component
         let taskQueue = TaskQueue()
         taskQueue.tasks += {
             _, next in

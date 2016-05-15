@@ -6,6 +6,7 @@
 import Foundation
 import TaskQueue
 
+// TODO: get rid of TaskQueue component
 class RestServiceQueuedProxy: RestService {
 
     private let targetService: RestService
