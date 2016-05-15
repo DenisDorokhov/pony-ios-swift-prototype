@@ -258,7 +258,9 @@ class LibraryService {
                 }
             }
         }
+        let songPath = buildSongPath(song.id)
         realm.delete(song)
+        let _ = try? NSFileManager.defaultManager().removeItemAtPath(songPath)
         if let albumToDelete = albumToDelete {
             realm.delete(albumToDelete)
         }

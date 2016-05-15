@@ -181,11 +181,13 @@ class LibraryServiceSpec: QuickSpec {
                 expect(artists).to(haveCount(0))
 
                 if let deletedSong = deletedSong {
-                    if let artistArtworkPath = stringToUrl(deletedSong.album.artist.artworkUrl)?.path,
+                    if let songPath = stringToUrl(deletedSong.url)?.path,
+                            artistArtworkPath = stringToUrl(deletedSong.album.artist.artworkUrl)?.path,
                             albumArtworkPath = stringToUrl(deletedSong.album.artworkUrl)?.path {
 
                         let fileManager = NSFileManager.defaultManager()
 
+                        expect(fileManager.fileExistsAtPath(songPath)).to(beFalse())
                         expect(fileManager.fileExistsAtPath(artistArtworkPath)).to(beFalse())
                         expect(fileManager.fileExistsAtPath(albumArtworkPath)).to(beFalse())
 
