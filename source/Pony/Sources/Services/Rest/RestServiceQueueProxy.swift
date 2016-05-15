@@ -60,7 +60,7 @@ class RestServiceQueuedProxy: RestService {
                        onSuccess: (UIImage -> Void)?,
                        onFailure: ([Error] -> Void)?) -> RestRequest {
         let request = RestRequestProxy()
-        imageQueue.tasks +=! {
+        imageQueue.tasks += {
             _, next in
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
@@ -84,7 +84,7 @@ class RestServiceQueuedProxy: RestService {
                       onSuccess: (Void -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
         let request = RestRequestProxy()
-        songQueue.tasks +=! {
+        songQueue.tasks += {
             _, next in
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])

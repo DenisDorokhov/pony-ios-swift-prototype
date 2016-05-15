@@ -20,6 +20,7 @@ class CloudBootstrapServerController: CloudBootstrapConfigControllerAbstract {
         let url = restUrlDao.fetchUrl()
         serverTextField.text = urlToString(url)
         httpsSwitch.on = (url?.scheme == "https")
+        serverTextField.becomeFirstResponder()
     }
 
     override func startBackgroundActivity() {

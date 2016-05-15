@@ -140,7 +140,7 @@ class LibraryService {
         songToDownloadTask[song.id] = task
 
         let taskQueue = TaskQueue()
-        taskQueue.tasks +=! {
+        taskQueue.tasks += {
             _, next in
             self.doDownloadAlbumArtwork(task, onSuccess: {
                 next(nil)
@@ -152,7 +152,7 @@ class LibraryService {
                 onFailure?($0)
             })
         }
-        taskQueue.tasks +=! {
+        taskQueue.tasks += {
             _, next in
             self.doDownloadArtistArtwork(task, onSuccess: {
                 next(nil)
@@ -164,7 +164,7 @@ class LibraryService {
                 onFailure?($0)
             })
         }
-        taskQueue.tasks +=! {
+        taskQueue.tasks += {
             _, next in
             self.doDownloadSong(task, onProgress: {
                 task.progress = $0

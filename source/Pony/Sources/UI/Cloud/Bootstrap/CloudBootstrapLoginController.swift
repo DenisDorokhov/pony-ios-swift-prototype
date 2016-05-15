@@ -15,9 +15,9 @@ class CloudBootstrapLoginController: CloudBootstrapConfigControllerAbstract, UIT
 
     override func activate() {
         super.activate()
-
         emailTextField.text = ""
         passwordTextField.text = ""
+        emailTextField.becomeFirstResponder()
     }
 
     override func startBackgroundActivity() {
