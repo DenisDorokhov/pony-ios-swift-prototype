@@ -378,9 +378,9 @@
 		B3D39840FBE7E1F058803475 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				B3D399C1B0F06CAF1F3C4AF4 /* LocalLibraryController.swift */,
 				B3D390D5A907FD69ECFD774C /* Cloud */,
 				B3D397197E6134C330831235 /* Common */,
+				B3D399C1B0F06CAF1F3C4AF4 /* LocalLibraryController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";

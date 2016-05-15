@@ -49,6 +49,11 @@ class CloudAlbumsController: UITableViewController {
 
     private var currentRequest: RestRequest?
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.tableFooterView = UIView()
+    }
+
     // MARK: UITableViewDataSource
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

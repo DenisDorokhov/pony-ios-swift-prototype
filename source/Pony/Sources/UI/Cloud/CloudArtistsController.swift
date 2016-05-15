@@ -18,6 +18,11 @@ class CloudArtistsController: UITableViewController, AuthServiceDelegate {
     private var artists: [Artist]?
     private var selectedArtist: Artist?
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.tableFooterView = UIView()
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if artists?.count == nil {
