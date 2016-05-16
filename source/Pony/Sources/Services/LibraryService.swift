@@ -167,13 +167,10 @@ class LibraryService {
         taskChain.addTask {
             next, cancel in
             self.doDownloadSong(task, onProgress: {
-                // Avoid task cancellation race condition.
-                if self.songDownloadTasks.contains(task) {
-                    task.progress = $0
-                    onProgress?($0)
-                    for delegate in self.fetchDelegates() {
-                        delegate.libraryService(self, didProgressSongDownload: task)
-                    }
+                task.progress = $0
+                onProgress?($0)
+                for delegate in self.fetchDelegates() {
+                    delegate.libraryService(self, didProgressSongDownload: task)
                 }
             }, onSuccess: {
                 next()

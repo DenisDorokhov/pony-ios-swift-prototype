@@ -45,12 +45,16 @@ class RestRequestAlamofire: RestRequest {
 
     let request: Request
 
-    init(_ request: Request) {
+    private let onCancel: (Void -> Void)?
+
+    init(_ request: Request, onCancel: (Void -> Void)? = nil) {
         self.request = request
+        self.onCancel = onCancel
     }
 
     func cancel() {
         request.cancel()
+        onCancel?()
     }
 }
 
@@ -59,7 +63,7 @@ class RestRequestProxy: RestRequest {
     private(set) var cancelled = false
 
     var targetRequest: RestRequest? {
-        didSet {
+        willSet {
             assert(!cancelled)
         }
     }
@@ -177,6 +181,10 @@ class RestServiceImpl: RestService {
                       onProgress: (Float -> Void)? = nil,
                       onSuccess: (Void -> Void)? = nil,
                       onFailure: ([Error] -> Void)? = nil) -> RestRequest {
+        var cancelled = false
+        let onCancel = {
+            cancelled = true
+        }
         return RestRequestAlamofire(alamofireManager.download(.GET, absoluteUrl, headers: buildAuthorizationHeaders(), destination: {
             temporaryURL, response in
             return NSURL(fileURLWithPath: filePath)
@@ -184,7 +192,10 @@ class RestServiceImpl: RestService {
             bytesRead, totalBytesRead, totalBytesExpectedToRead in
             if let onProgress = onProgress {
                 Async.main {
-                    onProgress(Float(Double(totalBytesRead) / Double(totalBytesExpectedToRead)))
+                    // Avoid calling progress after request is cancelled.
+                    if !cancelled {
+                        onProgress(Float(Double(totalBytesRead) / Double(totalBytesExpectedToRead)))
+                    }
                 }
             }
         }.response {
@@ -198,7 +209,7 @@ class RestServiceImpl: RestService {
             } else {
                 onSuccess?()
             }
-        })
+        }, onCancel: onCancel)
     }
 
     private func buildUrl(path: String) -> NSURL {
