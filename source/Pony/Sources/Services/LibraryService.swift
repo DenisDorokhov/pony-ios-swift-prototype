@@ -7,7 +7,6 @@ import Foundation
 import RealmSwift
 import XCGLogger
 import OrderedSet
-import TaskQueue
 import Async
 
 class SongDownloadTask: Hashable {
@@ -140,34 +139,33 @@ class LibraryService {
         songToDownloadTask[song.id] = task
 
         // TODO: avoid downloading the same artwork two times (when artist and album artwork is the same)
-        // TODO: get rid of TaskQueue component
-        let taskQueue = TaskQueue()
-        taskQueue.tasks += {
-            _, next in
+        let taskChain = TaskChain()
+        taskChain.addTask {
+            next, cancel in
             self.doDownloadAlbumArtwork(task, onSuccess: {
-                next(nil)
+                next()
             }, onCancellation: {
-                taskQueue.cancel()
+                cancel()
             }, onFailure: {
-                taskQueue.cancel()
+                cancel()
                 self.failSongDownload(task, errors: $0)
                 onFailure?($0)
             })
         }
-        taskQueue.tasks += {
-            _, next in
+        taskChain.addTask {
+            next, cancel in
             self.doDownloadArtistArtwork(task, onSuccess: {
-                next(nil)
+                next()
             }, onCancellation: {
-                taskQueue.cancel()
+                cancel()
             }, onFailure: {
-                taskQueue.cancel()
+                cancel()
                 self.failSongDownload(task, errors: $0)
                 onFailure?($0)
             })
         }
-        taskQueue.tasks += {
-            _, next in
+        taskChain.addTask {
+            next, cancel in
             self.doDownloadSong(task, onProgress: {
                 // Avoid task cancellation race condition.
                 if self.songDownloadTasks.contains(task) {
@@ -178,20 +176,19 @@ class LibraryService {
                     }
                 }
             }, onSuccess: {
-                next(nil)
+                next()
                 self.finishSongDownload(task, onSuccess: onSuccess, onFailure: {
                     self.failSongDownload(task, errors: $0)
                     onFailure?($0)
                 })
             }, onCancellation: {
-                taskQueue.cancel()
+                cancel()
             }, onFailure: {
-                taskQueue.cancel()
+                cancel()
                 self.failSongDownload(task, errors: $0)
                 onFailure?($0)
             })
         }
-        taskQueue.run()
 
         log.info("Song '\(song.id)' download started.")
 

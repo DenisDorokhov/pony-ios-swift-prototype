@@ -14,7 +14,6 @@ target 'Pony' do
 	pod 'SwiftyTimer', '1.4.0'
 	pod 'SwiftDate', '3.0.8'
 	pod 'RealmSwift', '0.101.0'
-	pod 'TaskQueue', '0.9.10'
 	pod 'AsyncSwift', '1.7.2'
 	pod 'ReachabilitySwift', '2.3.3'
 	pod 'Localize-Swift', '1.1.2'

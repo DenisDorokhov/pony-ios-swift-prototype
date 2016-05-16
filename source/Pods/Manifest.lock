@@ -51,7 +51,6 @@ PODS:
   - SwiftDate (3.0.8)
   - SwiftyTimer (1.4.0)
   - Swinject (1.1.1)
-  - TaskQueue (0.9.10)
   - XCGLogger (3.3)
 
 DEPENDENCIES:
@@ -72,7 +71,6 @@ DEPENDENCIES:
   - SwiftDate (= 3.0.8)
   - SwiftyTimer (= 1.4.0)
   - Swinject (= 1.1.1)
-  - TaskQueue (= 0.9.10)
   - XCGLogger (= 3.3)
 
 EXTERNAL SOURCES:
@@ -105,9 +103,8 @@ SPEC CHECKSUMS:
   SwiftDate: 971f8b9394f664f2226b9c3ab64e801a7291c612
   SwiftyTimer: db4458cfaf67fc71e16ad6e4637c60b86f76a649
   Swinject: 8c1b46e49c604f8c5c1f45f92ef314d3736bbef4
-  TaskQueue: a29a193df2aad0c82119d1ded097ad329728e44b
   XCGLogger: d6e196e78940ff6daab17d6917107876f973fa31
 
-PODFILE CHECKSUM: 02184e740a8ab685af6a228a7e9a77a5b6665fe8
+PODFILE CHECKSUM: b3f9b347eeb02aef6877449b9f0da31afa14ef8c
 
 COCOAPODS: 1.0.0

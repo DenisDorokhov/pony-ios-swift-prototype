@@ -3,21 +3,16 @@
 // Copyright (c) 2016 Denis Dorokhov. All rights reserved.
 //
 
-import Foundation
-import TaskQueue
+import UIKit
 
-// TODO: get rid of TaskQueue component
 class RestServiceQueuedProxy: RestService {
 
     private let targetService: RestService
-    private let imageQueue: TaskQueue = TaskQueue()
-    private let songQueue: TaskQueue = TaskQueue()
+    private let imageChain = TaskChain(maxConcurrentTasks: 10)
+    private let songChain = TaskChain(maxConcurrentTasks: 3)
 
     init(targetService: RestService) {
         self.targetService = targetService
-
-        imageQueue.maximumNumberOfActiveTasks = 10
-        songQueue.maximumNumberOfActiveTasks = 5
     }
 
     func getInstallation(onSuccess onSuccess: (Installation -> Void)?,
@@ -60,22 +55,21 @@ class RestServiceQueuedProxy: RestService {
                        onSuccess: (UIImage -> Void)?,
                        onFailure: ([Error] -> Void)?) -> RestRequest {
         let request = RestRequestProxy()
-        imageQueue.tasks += {
-            _, next in
+        imageChain.addTask {
+            next, cancel in
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
-                next(nil)
+                next()
             } else {
                 request.targetRequest = self.targetService.downloadImage(absoluteUrl, onSuccess: {
                     onSuccess?($0)
-                    next(nil)
+                    next()
                 }, onFailure: {
                     onFailure?($0)
-                    next(nil)
+                    next()
                 })
             }
         }
-        imageQueue.run()
         return request
     }
 
@@ -84,22 +78,21 @@ class RestServiceQueuedProxy: RestService {
                       onSuccess: (Void -> Void)?,
                       onFailure: ([Error] -> Void)?) -> RestRequest {
         let request = RestRequestProxy()
-        songQueue.tasks += {
-            _, next in
+        songChain.addTask {
+            next, cancel in
             if request.cancelled {
                 onFailure?([Error.clientRequestCancelled])
-                next(nil)
+                next()
             } else {
                 request.targetRequest = self.targetService.downloadSong(absoluteUrl, toFile: filePath, onProgress: onProgress, onSuccess: {
                     onSuccess?($0)
-                    next(nil)
+                    next()
                 }, onFailure: {
                     onFailure?($0)
-                    next(nil)
+                    next()
                 })
             }
         }
-        songQueue.run()
         return request
     }
 
