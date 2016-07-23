@@ -138,7 +138,6 @@ class LibraryService {
         songDownloadTasks.append(task)
         songToDownloadTask[song.id] = task
 
-        // TODO: avoid downloading the same artwork two times (when artist and album artwork is the same)
         let taskChain = TaskChain()
         taskChain.addTask {
             next, cancel in
