@@ -1,6 +1,4 @@
-Pony for iOS
-============
+Pony for iOS (Prototype)
+========================
 
-iOS client application for <b>Pony</b> - open source music streaming server.
-
-<b>Status:</b> in development.
+This is Swift prototype of iOS client application for [Pony Music Streamer](https://github.com/DenisDorokhov/pony) - open source music streaming server. It is here just for history :-)
